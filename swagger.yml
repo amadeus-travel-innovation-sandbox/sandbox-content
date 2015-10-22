@@ -1,0 +1,2483 @@
+swagger: "2.0"
+info:
+  title: "Amadeus Travel Innovation Sandbox"
+  version: "1.2"
+  contact:
+    name: Amadeus Innovation and Research
+    url: "https://sandbox.amadeus.com"
+  license:
+    name: Amadeus Travel Innovation Sandbox License
+    url: "https://sandbox.amadeus.com/terms-use"
+host: api.sandbox.amadeus.com
+basePath: /v1.2
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /flights/inspiration-search:
+    get:
+      operationId: Flight Inspiration Search
+      summary: The Flight Inspiration Search API lets you go beyond the traditional search by origin, destination and dates to meet the needs of travelers looking for suggestions and a search experience that reflects the way they choose their trip. This can help you answer the question "Where can I go within a given travel budget?" 
+      description: |
+        The Inspiration Flight Search allows you to find the prices of return flights from an origin city without necessarily having a destination, or even a flight date, in mind. The search doesn't return a distinct set of price options, but rather, can tell you the price of flying from a given city to some destination, for a trip of a given duration, that falls within a given date range.
+
+        The search is based on our Extreme Search platform, which continually caches a large number of flight search results from a list of origin cities to a variety of destinations. Since it's a cached search, the response time is fast, but not all origin airports are available. Here is a list of the currently supported origin-destination airport pairs. We try to keep this list as fresh as possible for you, but be aware that it may not always be exactly up-to-date and it can change without warning.
+
+        Despite this limitation don't underestimate the power of this API. Thanks to its quick response speed you can easily pair it with other APIs to provide a low fare and inspiration for any destination. For example, you can could combine it with a event search API and suggest a total price to see go and see an concert or a game in a selection of cities.
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: origin
+          in: query
+          description: City code from which the traveler will depart. See the location and airport interfaces for more information.
+          required: true
+          type: string
+          default: "BOS"
+        - name: destination
+          in: query
+          description:  IATA city code to which the traveler is going 
+          required: false
+          type: string
+          default: "LON"
+        - name: departure_date
+          in: query
+          description: "Range of dates between which the traveler could depart. Ranges are inclusive and ranges of months will apply from the start to the end of the month. If just a single date is specified, only that date will be searched. By default, the date range starts today and applies up to 361 in the future is applied. Past dates are generally not supported, future dates should be in the next 361 days, although results start to become sparse after about 6 months in the future, as airlines may still be defining their schedules. The default is to search all future dates available. "
+          required: false
+          type: string
+          default: "2016-01-16--2016-01-26"
+        - name: duration
+          in: query
+          description: "The allowed duration or range of durations of the trip, in days."
+          required: false
+          type: string
+          default: "1--15"
+        - name: direct
+          in: query
+          description: Limit the search to results that do not require the passenger to change plane?
+          required: false
+          type: boolean
+          default: false
+        - name: max_price
+          in: query
+          description: "Maximum price of trips to find in the result set, in the currency specified for this origin and destination pair in the cache contents spreadsheet. By default, no limit is applied"
+          required: false
+          type: string
+          format: Integer
+        - name: aggregation_mode
+          in: query
+          description: "Specifies the granularity of results to be found. DESTINATION is the default and finds one result per city. COUNTRY finds one result per country, DAY finds on result for every day in the date range, WEEK finds one result for every week in the date range. Note that specifying a small granularity but a large search scope may result in a huge output. For some very large outputs, the API may refuse to provide a result."
+          required: false
+          type: string
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/ExtremeSearchResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"          
+  /flights/extensive-search:
+    get:
+      operationId: Flight Extensive Search
+      summary: The Extensive Flight Search API allows building travel searches based on very flexible and open range of dates. You can use it to answer questions such as "When is the best date to fly...".  It's built on Amadeus' Featured Results technology, which returns thousands of results (prices, itineraries and dates) in a matter of milliseconds. Results are available over half a calendar year with a 1 to 15 day stay duration    
+      description: |
+        The Extensive Flight Search allows you to find the prices of return flights between two airports over a large number of dates, and for a large variety of stay durations. The search doesn't return exact itineraries, but rather tells you the best price for a flight on a given day, for a stay of a given duration.
+
+        The search is based on our Extreme Search platform, which continually caches a large number of flight search results from a list of origin cities to a variety of destinations. Since it's a cached search, the response time is fast, but not all origin airports are available. Here is a list of the currently supported origin-destination airport pairs. We try to keep this list as fresh as possible for you, but be aware that it may not always be exactly up-to-date and it can change without warning.
+
+        That said, a price graph like this provides a powerful bargin shopping tool - allowing travelers with flexible itineraries to identify days on which they can get the cheapest flights to their destinations.
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: origin
+          in: query
+          description: City code from which the traveler will depart. See the location and airport interfaces for more information.
+          required: true
+          type: string
+          default: "BOS"
+        - name: destination
+          in: query
+          description:  IATA city code to which the traveler is going 
+          required: true
+          type: string
+          default: "LON"
+        - name: departure_date
+          in: query
+          description: "Range of dates between which the traveler could depart. Ranges are inclusive and ranges of months will apply from the start to the end of the month. If just a single date is specified, only that date will be searched. By default, the date range starts today and applies up to 361 in the future is applied. Past dates are generally not supported, future dates should be in the next 361 days, although results start to become sparse after about 6 months in the future, as airlines may still be defining their schedules. The default is to search all future dates available. "
+          required: false
+          type: string
+          default: "2016-01-16--2016-01-26"
+        - name: duration
+          in: query
+          description: "The allowed duration or range of durations of the trip, in days."
+          required: false
+          type: string
+          default: "7--9"
+        - name: direct
+          in: query
+          description: Limit the search to results that do not require the passenger to change plane?
+          required: false
+          type: boolean
+          default: false
+        - name: max_price
+          in: query
+          description: "Maximum price of trips to find in the result set, in the currency specified for this origin and destination pair in the cache contents spreadsheet. By default, no limit is applied"
+          required: false
+          type: string
+          default: "950"
+        - name: aggregation_mode
+          in: query
+          description: "Specifies the granularity of results to be found. DESTINATION is the default and finds one result per city. COUNTRY finds one result per country, DAY finds on result for every day in the date range, WEEK finds one result for every week in the date range. Note that specifying a small granularity but a large search scope may result in a huge output. For some very large outputs, the API may refuse to provide a result."
+          required: false
+          type: string
+          default: "DAY"
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/ExtremeSearchResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"          
+  /flights/low-fare-search:
+    get:
+      operationId: Flight Low-Fare Search   
+      summary: The Low-Fare Search API lets you find the cheapest one way or return itineraries and fares between two airports at specific dates.
+      description: This is the low fare search engine Amadeus uses to retrieve the best price for flights, based on our latest Master Pricer Travel Board technology. This document describes how to make a low fare search and how to handle the returned messages. The message is composed of multiple results for given request. A result is defined by a unique combination of price, tax, passenger type, fare type, cabin, and availability for each requested segment. A result is then composed of single or multiple itineraries. Each itinerary is composed of an outbound leg, and, if a return date was specified, an inbound leg. Each leg is composed of a list of one or more flights, that the traveller will be required to take in order to get from the origin airport to the destination airport. 
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: origin
+          in: query
+          description: City code from which the traveler will depart. See the location and airport interfaces for more information.
+          required: true
+          type: string
+          default: "BOS"
+        - name: destination
+          in: query
+          description:  IATA city code to which the traveler is going 
+          required: true
+          type: string
+          default: "LON"
+        - name: departure_date
+          in: query
+          description: "The date on which the traveler will depart from the origin to go to the destination. The maximum scope for a date range is 2 days, for a larger scope, use the Extensive Search! "
+          required: true
+          type: string
+          default: "2016-01-25"
+        - name: return_date
+          in: query
+          description: "The date on which the traveler will depart from the destination to return to the origin. If this parameter is not specified, the search will find only one-way trips. If this, or the return_by parameter are specified, only return trips are found"
+          required: false
+          type: string
+          default: "2016-01-31"
+        - name: arrive_by
+          in: query
+          description: "The datetime by which the outbound flight should arrive, based on local time at the destination airport"
+          required: false
+          type: string
+          default: "2016-01-25T16:00"
+        - name: return_by
+          in: query
+          description: "The time by which the inbound flight should arrive, based on local time at the airport specified as the origin parameter"
+          required: false
+          type: string
+          default: "2016-01-31T08:00"
+        - name: adults
+          in: query
+          description: "The number of adult (age 12 and over) passengers traveling on this flight."
+          required: false
+          type: integer
+          default: 1
+        - name: children
+          in: query
+          description: "The number of child (younger than age 12 on date of departure) passengers traveling on this flight who will each have their own separate seat"
+          required: false
+          type: integer
+          default: 0
+        - name: infants
+          in: query
+          description: "The number of infant (younger than age 2 on date of departure) passengers traveling on this flight. Infants travel in the lap of an adult passenger, and thus the number of infants must not exceed the number of adults."
+          required: false
+          type: integer
+          default: 0
+        - name: include_airlines
+          in: query
+          description: If specified, all results will include at least one flight where one or more of these airlines is the marketing carrier
+          required: false
+          type: string
+          default: "AF"
+        - name: exclude_airlines
+          in: query
+          description: If specified, no results will include any flights where any of these airlines is the marketing carrier
+          required: false
+          type: string
+          default: "UA"
+        - name: non-stop
+          in: query
+          description: Setting this to true will find only flights that do not require the passenger to change from one flight to another
+          required: false
+          type: boolean
+          default: false
+        - name: max_price
+          in: query
+          description: "Maximum price of trips to find in the result set, in USD (US dollars) unless some other currency code is specified. By default, no limit is applied"
+          required: false
+          type: integer
+          default: 980
+        - name: currency
+          in: query
+          description: "The preferred currency for the results"
+          required: false
+          type: string
+          default: "USD"
+        - name: travel_class
+          in: query
+          description: "Searches for results where the majority of the itinerary flight time should be in a the specified cabin class or higher"
+          required: false
+          type: string
+          default: "ECONOMY"
+        - name: number_of_results
+          in: query
+          description: "The number of results to display. This will not be strictly interpreted but used as a guideline to display a useful number of results. By default, the number of results is dynamically determined. A maximum of 250 results will be displayed."
+          required: false
+          type: integer
+          default: 20
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/LowFareSearchResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /flights/affiliate-search:
+    get:
+      operationId: Flight Affiliate Search   
+      summary: The  Flight Affiliate Search API uses Travel Audience Connect's affiliate network API to search flights from our list of partners and provides deep-links to allow the user to book directly on the airline website.
+      description: |
+          The Flight Affiliate Search API combines our Master Pricer search technology with Travel Audience's Connect API partners to provide a flight search where all results come with a deep-link to book the flight at a partner's website. The message is composed of multiple results for given request. A result is defined by a unique combination of price, tax, passenger type, fare type, cabin, and availability for each requested segment. A result is then composed of single or multiple itineraries. Each itinerary is composed of an outbound leg, and, if a return date was specified, an inbound leg. Each leg is composed of a list of one or more flights, that the traveller will be required to take in order to get from the origin airport to the destination airport.  
+          
+          Only Travel Audience Connect partner airlines are searched, so content is limited to only their partner airlines. For an up-to-date list of partner airline routes, do something. You can earn commission using the deep links provided in the search results if you sign up for an account at [Travel Audience Connect]{http://connect.travelaudience.com}.
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: origin
+          in: query
+          description: City code from which the traveler will depart. See the location and airport interfaces for more information.
+          required: true
+          type: string
+          default: "BOS"
+        - name: destination
+          in: query
+          description:  IATA city code to which the traveler is going 
+          required: true
+          type: string
+          default: "LON"
+        - name: departure_date
+          in: query
+          description: "The date on which the traveler will depart from the origin to go to the destination. The maximum scope for a date range is 2 days, for a larger scope, use the Extensive Search! "
+          required: true
+          type: string
+          default: "2016-01-25"
+        - name: return_date
+          in: query
+          description: "The date on which the traveler will depart from the destination to return to the origin. If this parameter is not specified, the search will find only one-way trips. If this, or the return_by parameter are specified, only return trips are found"
+          required: false
+          type: string
+          default: "2016-01-31"
+        - name: adults
+          in: query
+          description: "The number of adult (age 12 and over) passengers traveling on this flight."
+          required: false
+          type: integer
+          default: 1
+        - name: children
+          in: query
+          description: "The number of child (younger than age 12 on date of departure) passengers traveling on this flight who will each have their own separate seat"
+          required: false
+          type: integer
+          default: 0
+        - name: infants
+          in: query
+          description: "The number of infant (younger than age 2 on date of departure) passengers traveling on this flight. Infants travel in the lap of an adult passenger, and thus the number of infants must not exceed the number of adults."
+          required: false
+          type: integer
+          default: 0
+        - name: include_merchants
+          in: query
+          description: If specified, all results will include at least one flight where one or more of these airlines is the marketing carrier
+          required: false
+          type: string
+          default: "AF"
+        - name: exclude_merchants
+          in: query
+          description: If specified, no results will include any flights where any of these airlines is the marketing carrier
+          required: false
+          type: string
+          default: "UA"
+        - name: max_price
+          in: query
+          description: "Maximum price of trips to find in the result set, in USD (US dollars) unless some other currency code is specified. By default, no limit is applied"
+          required: false
+          type: integer
+          default: 980
+        - name: mobile
+          in: query
+          description: "Setting this to true will show mobile web deeplinks "
+          required: false
+          type: boolean
+          default: false
+
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/AffiliateSearchResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"         
+  /location/{code}:
+    get:
+      operationId: Location Information
+      summary: The Location Information API allows you to quickly find out more information about any IATA city or airport location code. With this API, you can find information such as city and airport names and locations, as well as information on timezones and airport usage.
+      description: |
+        This service retrieves the location information corresponding to a IATA city or airport code.
+      
+        When provided with an IATA code, the service determines whether this code could relate to a city code, an airport code or both. If the city could contain multiple airports, it will return all possible airports that correspond to that city code.
+
+        This API is based on the Amadeus supported [Geobases](http://opentraveldata.github.io/geobases/) open-source project. If you wish to make your own database with all IATA location information, in order to get faster reponses, you can download the latest raw data from [their github page](https://github.com/opentraveldata/geobases). The exact file used for this API is [ori_por_public.csv](https://raw.githubusercontent.com/opentraveldata/geobases/public/GeoBases/DataSources/Por/Ori/ori_por_public.csv). 
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: code
+          in: path
+          description: IATA location code for which further information is required
+          required: true
+          type: string
+          default: BOS
+      responses:
+        200:
+          description: Valid Location lookup Response
+          schema:
+            $ref: "#/definitions/LocationResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /airports/autocomplete:
+    get:
+      operationId: Airport Autocomplete
+      summary: The Airport Autocomplete API provides a simple means to find an IATA location code for flight search based on a city or airport name. The API is fully JQuery-Autocomplete compatible to enable you to quickly build a drop-down list for your users to find the right airport easily. 
+      description: |
+        Given the start of any word in an airport's official name, a city name, or the start of an IATA code, this API provides the full name and IATA location code of the city or airport, for use in flight searches. Only major cities and civilian airports with several commercial flights per week are included by default. The response provides up to 20 possible matches, sorted by importance, in a [JQuery UI Autocomplete](http://jqueryui.com/autocomplete/) compatible format. [This sample implementation](https://github.com/amadeus-travel-innovation-sandbox/sandbox-content/blob/master/airport-autocomplete-template.html) using JQuery UI may help. This API uses data from the OpenTravelData project, see [optd_por_public.csv](https://raw.githubusercontent.com/opentraveldata/opentraveldata/master/opentraveldata/optd_por_public.csv).
+
+        The value returned is the IATA location code. The label returned is always in UTF-8 format, with the airport official name (which is often in the native language), in the format of English City Name (if not already included in the airport name) - Airport Name [AIRPORT IATA CODE].
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: term
+          in: query
+          description: Search term that should represent some part of a city or airport name.
+          required: true
+          type: string
+          default: "Ban"
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/AirportAutocompleteResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /airports/nearest-relevant:
+    get:
+      operationId: Nearest Relevant Airport
+      summary: The Nearest Relevant Airport can find the most useful nearby airport to a given location.
+      description: |
+        This service gives the most relevant airports in a radius of 500 km around the given coordinates. The relevance of an airport is computed by dividing the number of airport movements (take offs and landings) by the distance from the point. This causes the relevance of an airport to increase exponentially as you approach it.
+
+        To minimize response time, all distances are computed as a [great-circle distance](http://en.wikipedia.org/wiki/Great-circle_distance) from the provided coordinates to the airport coordinates, and thus do not take into account traffic conditions, international boundaries, mountains, water, or other elements that might make the a nearby airport hard to reach.
+
+        Only civilian airports with at least several commercial flights per week are included in the results.
+
+        The result is a list of airports sorted by decreasing relevance. It always contains the nearest airport with significant commercial traffic.
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: latitude
+          in: query
+          description: Latitude location to be at the center of your search circle.
+          required: true
+          type: string
+          default: "46.6734"
+        - name: longitude
+          in: query
+          description: Longitude location to be at the center of your search circle.
+          required: true
+          type: string
+          default: "-71.7412"
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+              type: array
+              items:
+                $ref: "#/definitions/AirportInformation"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /hotels/search-airport:
+    get:
+      operationId: Hotel Airport Search
+      summary: The Hotel Airport Search API uses Amadeus' fast hotel search engine to locate the cheapest available rooms near a given airport, for a given stay period. This API is ideal if you want to connect flight and hotels. Provide an IATA airport code, as well as the check-in and check-out dates, and get a list of up to 140 properties (names, codes, image, amenities) with their locations and rates. Optional parameters such as currency and maximum rates, amenities or hotel chain codes are also available and can be used to narrow down the results. More optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. 
+      description: |
+        A fast Hotel shopping API to see which hotels are available in a given area, on a given day and displays their lowest prices. With this API you can find out the price of the cheapest daily rate for all hotels near a given airport.
+    
+        This API allows you to quickly see the locations of hotels near a given airport, and what prices in that area look like. The API is based on our high-speed hotel pricing cache, which is also used to power [hotelsearchengine.amadeus.com](https://hotelsearchengine.amadeus.com/). Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: location
+          in: query
+          description: IATA location code for which further information is required.
+          required: true
+          type: string
+          default: "BOS"
+        - name: check_in
+          in: query
+          description: "Date on which the guest will begin their stay in the hotel. Past availability is not displayed, future availability becomes less useful from about 6 months from the current date."
+          required: true
+          type: string
+          default: "2016-01-14"
+        - name: check_out
+          in: query
+          description: "Date on which the guest will end their stay in the hotel."
+          required: true
+          type: string
+          default: "2016-01-16"
+        - name: lang
+          in: query
+          description: "The preferred language of the content related to each hotel. Content will be returned in this language if available."
+          required: false
+          type: string
+          default: "EN"
+        - name: currency
+          in: query
+          description: "The preferred currency for the results"
+          required: false
+          type: string
+          default: "USD"
+        - name: chain
+          in: query
+          description: "Narrows the hotel search to a given hotel provider. The hotel chain is indicated by the first two characters of the property code."
+          required: false
+          type: string
+          default: "6C"
+        - name: max_rate
+          in: query
+          description: "The maximum amount per night that any hotel in the shopping response should cost. This is calculated by dividing the total price of the stay for the given dates by the number of nights specified falling between the check_in and check_out dates."
+          required: false
+          type: number
+          default: 500
+        - name: number_of_results
+          in: query
+          description: "The maximum number of hotels to return in the results set. Hotels are ordered by total price, so if more than the given maximum number of hotels are available, only the cheapest options are returned."
+          required: false
+          type: integer
+          default: 20
+        - name: all_rooms
+          in: query
+          description: "This option if enabled will return all hotel room rates, not just the lowest room rate. Note: This will have an impact on the response time due to the larger messages returned."
+          required: false
+          type: boolean
+          default: false
+        - name: show_sold_out
+          in: query
+          description: This option if enabled will return hotel names and addresses even if rooms are sold out (closed properties)
+          required: false
+          type: boolean
+          default: false
+        - name: amenity
+          in: query
+          description: "Hotel [amenities filter](hotels-api-supported-amenities-filter) to search narrow down hotels with certain amenities. For example: amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED)."
+          required: false
+          type: string
+          default: "PARKING"
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/HotelSearchResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /hotels/search-circle:
+    get:
+      operationId: Hotel Geosearch by circle
+      summary: The Hotel Lowest-Price Search API uses Amadeus' fast hotel search engine to locate the cheapest available rooms within a given radius of a defined point for a given stay period.
+      description: | 
+        A fast Hotel shopping API to see which hotels are available in a given area, on a given day and displays their lowest prices. With this API you can find out the price of the cheapest daily rate for all hotels within a specified radius of a point.
+      
+        This API allows you to quickly see the hotel locations in a region, and what prices in that area look like,  as well as the check-in and check-out dates, and get list of up to 140 properties (names, codes, image, amenities) with their locations and rates. Optional parameters such as currency and maximum rates, amenities or hotel chain codes are also available and can be used to narrow down the results. More optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. 
+    
+        The API is based on our high-speed hotel pricing cache, which is also used to power [hotelsearchengine.amadeus.com](https://hotelsearchengine.amadeus.com/). Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: latitude
+          in: query
+          description: Latitude of the center of the search.
+          required: true
+          type: number
+          default: 36.0857
+        - name: longitude
+          in: query
+          description: Longitude of the center of the search.
+          required: true
+          type: number
+          default: -115.1541
+        - name: radius
+          in: query
+          description: Radius around the center to look for hotels in kilometers (km).
+          required: true
+          type: integer
+          default: 42
+        - name: check_in
+          in: query
+          description: "Date on which the guest will begin their stay in the hotel. Past availability is not displayed, future availability becomes less useful from about 6 months from the current date."
+          required: true
+          type: string
+          default: "2016-01-14"
+        - name: check_out
+          in: query
+          description: "Date on which the guest will end their stay in the hotel."
+          required: true
+          type: string
+          default: "2016-01-16"
+        - name: lang
+          in: query
+          description: "The preferred language of the content related to each hotel. Content will be returned in this language if available."
+          required: false
+          type: string
+          default: "EN"
+        - name: currency
+          in: query
+          description: "The preferred currency for the results"
+          required: false
+          type: string
+          default: "USD"
+        - name: chain
+          in: query
+          description: "Narrows the hotel search to a given hotel provider. The hotel chain is indicated by the first two characters of the property code."
+          required: false
+          type: string
+          default: "6C"
+        - name: max_rate
+          in: query
+          description: "The maximum amount per night that any hotel in the shopping response should cost. This is calculated by dividing the total price of the stay for the given dates by the number of nights specified falling between the check_in and check_out dates."
+          required: false
+          type: number
+          default: 500
+        - name: number_of_results
+          in: query
+          description: "The maximum number of hotels to return in the results set. Hotels are ordered by total price, so if more than the given maximum number of hotels are available, only the cheapest options are returned."
+          required: false
+          type: integer
+          default: 20
+        - name: all_rooms
+          in: query
+          description: "This option if enabled will return all hotel room rates, not just the lowest room rate. Note: This will have an impact on the response time due to the larger messages returned."
+          required: false
+          type: boolean
+          default: false
+        - name: show_sold_out
+          in: query
+          description: This option if enabled will return hotel names and addresses even if rooms are sold out (closed properties)
+          required: false
+          type: boolean
+          default: false
+        - name: amenity
+          in: query
+          description: "Hotel [amenities filter](hotels-api-supported-amenities-filter) to search narrow down hotels with certain amenities. For example: amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED)."
+          required: false
+          type: string
+          default: "PARKING"
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/HotelSearchResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /hotels/search-box:
+    get:
+      operationId: Hotel Geoseach by box
+      summary: The Hotel Lowest-Price Search API uses Amadeus' fast hotel search engine to locate the cheapest available rooms within a given rectangular region for a given stay period. It's ideal for displaying results on a map.
+      description: |
+        A fast Hotel shopping API to see which hotels are available in a given area, on a given day and displays their lowest prices. With this API you can find out the price of the cheapest daily rate for all hotels within a specified geographical region.
+        
+        This API allows you to quickly see the hotel locations in a region, and what prices in that area look like,  as well as the check-in and check-out dates, and get a list of up to 140 properties (names, codes, image, amenities) with their locations and rates. Optional parameters such as currency and maximum rates, amenities or hotel chain codes are also available and can be used to narrow down the results. More optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. 
+                    
+        The API is based on our high-speed hotel pricing cache, which is also used to power [hotelsearchengine.amadeus.com](https://hotelsearchengine.amadeus.com/). Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: south_west_corner
+          in: query
+          description: The coordinates of the south-west corner of the search box.
+          required: true
+          type: string
+          default: "38.8675,-77.1457"
+        - name: north_east_corner
+          in: query
+          description: The coordinates of the north-east corner of the search box.
+          required: true
+          type: string
+          default: "38.9072,-77.0632"
+        - name: check_in
+          in: query
+          description: "Date on which the guest will begin their stay in the hotel. Past availability is not displayed, future availability becomes less useful from about 6 months from the current date."
+          required: true
+          type: string
+          default: "2016-01-14"
+        - name: check_out
+          in: query
+          description: "Date on which the guest will end their stay in the hotel."
+          required: true
+          type: string
+          default: "2016-01-16"
+        - name: lang
+          in: query
+          description: "The preferred language of the content related to each hotel. Content will be returned in this language if available."
+          required: false
+          type: string
+          default: "EN"
+        - name: currency
+          in: query
+          description: "The preferred currency for the results"
+          required: false
+          type: string
+          default: "USD"
+        - name: chain
+          in: query
+          description: "Narrows the hotel search to a given hotel provider. The hotel chain is indicated by the first two characters of the property code."
+          required: false
+          type: string
+          default: "6C"
+        - name: max_rate
+          in: query
+          description: "The maximum amount per night that any hotel in the shopping response should cost. This is calculated by dividing the total price of the stay for the given dates by the number of nights specified falling between the check_in and check_out dates."
+          required: false
+          type: number
+          default: 500
+        - name: number_of_results
+          in: query
+          description: "The maximum number of hotels to return in the results set. Hotels are ordered by total price, so if more than the given maximum number of hotels are available, only the cheapest options are returned."
+          required: false
+          type: integer
+          default: 20
+        - name: all_rooms
+          in: query
+          description: "This option if enabled will return all hotel room rates, not just the lowest room rate. Note: This will have an impact on the response time due to the larger messages returned."
+          required: false
+          type: boolean
+          default: false
+        - name: show_sold_out
+          in: query
+          description: This option if enabled will return hotel names and addresses even if rooms are sold out (closed properties)
+          required: false
+          type: boolean
+          default: false
+        - name: amenity
+          in: query
+          description: "Hotel [amenities filter](hotels-api-supported-amenities-filter) to search narrow down hotels with certain amenities. For example: amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED)."
+          required: false
+          type: string
+          default: PARKING
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/HotelSearchResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /hotels/{property_code}:
+    get:
+      operationId: Hotel Property Code Search   
+      summary: Once you have found your preferred hotel, our Hotel Property Code Search API allows you to quickly find out more room and rate information. It's ideal for displaying results on a map.
+      description: |
+        This API allows you to quickly see the detailed information of a single hotel, including descriptions, address, GPS location, amenities, awards, lowest priced room and all room prices and booking information. 
+
+        This API gives you more information on a specific property. Optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. 
+    
+        The API is based on our high-speed hotel pricing cache, which is also used to power [hotelsearchengine.amadeus.com](https://hotelsearchengine.amadeus.com/). Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: property_code
+          in: path
+          description: A Hotel property code based on 2 letter chain code + 3 letter IATA city code + 3 char property unique id.
+          required: true
+          type: string
+          default: "BWDCA133"
+        - name: check_in
+          in: query
+          description: "Date on which the guest will begin their stay in the hotel. Past availability is not displayed, future availability becomes less useful from about 6 months from the current date."
+          required: true
+          type: string
+          default: "2016-01-14"
+        - name: check_out
+          in: query
+          description: "Date on which the guest will end their stay in the hotel."
+          required: true
+          type: string
+          default: "2016-01-17"
+        - name: lang
+          in: query
+          description: "The preferred language of the content related to each hotel. Content will be returned in this language if available."
+          required: false
+          type: string
+          default: "EN"
+        - name: currency
+          in: query
+          description: "The preferred currency for the results"
+          required: false
+          type: string
+          default: "USD"
+        - name: all_rooms
+          in: query
+          description: "This option if enabled will return all hotel room rates, not just the lowest room rate. Note: This will have an impact on the response time due to the larger messages returned."
+          required: false
+          type: boolean
+          default: true
+        - name: show_sold_out
+          in: query
+          description: This option if enabled will return hotel names and addresses even if rooms are sold out (closed properties)
+          required: false
+          type: boolean
+          default: false
+      responses:
+        200:
+          description: Valid Lookup Response
+          schema:
+            $ref: "#/definitions/HotelPropertyResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /cars/search-airport:
+    get:
+      operationId: Car Rental Airport Search
+      summary: The Car Rental API uses Amadeus' classic car service to locate the best available car. Define a circular area with one coordinate and radius, or provide an airport code, as well as the pick-up and drop-off dates, and get a list of car rental providers with their locations and rates. Optional parameters such as currency and rental provider codes are also available and can be used to narrow down the results. This API is an ideal pairing with the flight and hotel search to provide ground transportation options at the destination.
+      description: |
+        With this API you can find out the price and type of car, for all car rental providers, near a specified airport.
+
+        You can quickly see the locations of car providers near a given airport, and what cars are available to rent, and at what prices. This API is based on our classic car pricing service that gets live availability from car providers, and is used to power a variety of airline and travel agency websites.
+                   
+        Results are validated from car providers, and thus response times may take up to 10 seconds (response times are typically about 5s), and the number of concurrent calls is throttled per user to avoid flooding our provider's systems. However, this means the final result is guaranteed to be live and accurate.
+
+        The configuration of this API allows search for car rentals in the rental location where the car is picked up (at the start of the rental), is the same as the one where it will be dropped off. 
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: location
+          in: query
+          description: The IATA code of the airport at which the car will be rented.
+          required: true
+          type: string
+          default: "NCE"
+        - name: pick_up
+          in: query
+          description: "Date on which the car rental will be collected from the car rental location. If no time is provided, a default value of 09:00 is used. Past availability is not displayed, future availability becomes less useful from about 6 months from the current date."
+          required: true
+          type: string
+          default: "2016-01-04"
+        - name: drop_off
+          in: query
+          description: "Date at which the car rental will end and the car will be returned to the rental location. If no time is provided, a default value of 17:00 is used."
+          required: true
+          type: string
+          default: "2016-01-08"
+        - name: lang
+          in: query
+          description: "The preferred language of the content related to each car rental. Content will be returned in this language if available."
+          required: false
+          type: string
+          default: "EN"
+        - name: currency
+          in: query
+          description: "The preferred currency to use when displaying prices and rates related to the car rental."
+          required: false
+          type: string
+          default: "USD"
+        - name: provider
+          in: query
+          description: "2 character car rental provider code. You may provide this parameter more than once. "
+          required: false
+          type: string
+          default: "ZI"
+        - name: rate_class
+          in: query
+          description: "Allows to request specific rate types."
+          required: false
+          type: string
+          default: "ALL"
+        - name: rate_plan
+          in: query
+          description: "Qualifies the rate depending on the pickup date and the rental duration."
+          required: false
+          type: string
+          default: "DAILY"
+        - name: vehicle
+          in: query
+          description: "Specifies the type of vehicle to be rented. If selected, the results set will include only vehicles that match these type descriptions. The enumerations above correspond to ACRISS Pseudo Codes, and you may also provide an ACRISS pseudo code directly. If specifying a vehicle-specific ACRISS code, you may provide this parameter up to 3 times."
+          required: false
+          type: string
+          default: "PASSENGER_VAN"
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/CarSearchResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /cars/search-circle:
+    get:
+      operationId: Car Rental Geosearch
+      summary: The Car Rental API uses Amadeus' classic car service to locate the best available car. Define a circular area with one coordinate and radius, or provide an airport code, as well as the pick-up and drop-off dates, and get a list of car rental providers with their locations and rates. Optional parameters such as currency and rental provider codes are also available and can be used to narrow down the results. This API is an ideal pairing with the flight and hotel search to provide ground transportation options at the destination.
+      description: | 
+        With this API you can find out the price and type of car, for all car rental providers, in a specified geographical location.
+
+        You can quickly see the locations of car providers near a given point, and what cars are available to rent, and at what prices. This API is based on our classic car pricing service that gets live availability from car providers, and is used to power a variety of airline and travel agency websites.
+                   
+        Results are validated from car providers, and thus response times may take up to 10 seconds (response times are typically about 5s), and the number of concurrent calls is throttled per user to avoid flooding our provider's systems. However, this means the final result is guaranteed to be live and accurate.
+
+        The configuration of this API allows search for car rentals in the rental location where the car is picked up (at the start of the rental), is the same as the one where it will be dropped off. 
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: latitude
+          in: query
+          description: Latitude of the center of the search.
+          required: true
+          type: number
+          default: 35.1504
+        - name: longitude
+          in: query
+          description: Longitude of the center of the search.
+          required: true
+          type: number
+          default: -114.57632
+        - name: radius
+          in: query
+          description: Radius around the center to look for hotels in kilometers (km).
+          required: true
+          type: integer
+          default: 42
+        - name: pick_up
+          in: query
+          description: "Date on which the car rental will be collected from the car rental location. If no time is provided, a default value of 09:00 is used. Past availability is not displayed, future availability becomes less useful from about 6 months from the current date."
+          required: true
+          type: string
+          default: "2016-01-04"
+        - name: drop_off
+          in: query
+          description: "Date at which the car rental will end and the car will be returned to the rental location. If no time is provided, a default value of 17:00 is used."
+          required: true
+          type: string
+          default: "2016-01-08"
+        - name: lang
+          in: query
+          description: "The preferred language of the content related to each car rental. Content will be returned in this language if available."
+          required: false
+          type: string
+          default: "EN"
+        - name: currency
+          in: query
+          description: "The preferred currency to use when displaying prices and rates related to the car rental."
+          required: false
+          type: string
+          default: "USD"
+        - name: provider
+          in: query
+          description: "2 character car rental provider code. You may provide this parameter more than once. "
+          required: false
+          type: string
+          default: "ZI"
+        - name: rate_class
+          in: query
+          description: "Allows to request specific rate types."
+          required: false
+          type: string
+          default: "ALL"
+        - name: rate_plan
+          in: query
+          description: "Qualifies the rate depending on the pickup date and the rental duration."
+          required: false
+          type: string
+          default: "DAILY"
+        - name: vehicle
+          in: query
+          description: "Specifies the type of vehicle to be rented. If selected, the results set will include only vehicles that match these type descriptions. The enumerations above correspond to ACRISS Pseudo Codes, and you may also provide an ACRISS pseudo code directly. If specifying a vehicle-specific ACRISS code, you may provide this parameter up to 3 times."
+          required: false
+          type: string
+          default: "PASSENGER_VAN"
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/CarSearchResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /rail-stations/autocomplete:
+    get:
+      operationId: Rail-Station Autocomplete
+      summary: Use the Rail Station Autocomplete API to transform user input into a unique rail station code.
+      description:  |
+        Given the start of any word in a rail station's official name, as a term, this API provides the full name and rail station ID of a rail station for use in searches. The response provides an array of up to 20 possible matches, sorted by passenger traffic, in a JQuery Autocomplete compatible format.
+
+        The value returned is the UIC station code. The label returned is always in UTF-8 format, with the station's official name (which is often in the native language). Agglomeration station codes may also be returned.
+
+        Note that only French and Italian rail stations are supported by the Rail Station Autocomplete API
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: term
+          in: query
+          description: Search term that should represent some part of a station name. Not case sensitive, may be blank.
+          required: true
+          type: string
+          default: "Mi"
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/RailStationAutocompleteResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /rail-station/{id}:
+    get:
+      operationId: Rail-Station Information
+      summary: This service retrieves the rail station information corresponding to an Amadeus UIC rail station ID. Currently only French and Italian stations are supported.
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: id
+          in: path
+          description: Station ID for which further information is required.
+          required: true
+          type: string
+          default: "8301700"
+      responses:
+        200:
+          description: Valid Station Lookup Response
+          schema:
+            $ref: "#/definitions/RailStationResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /trains/extensive-search:
+    get:
+      operationId: Train Extensive Search
+      summary:  Our instant extensive train search will provide you with multi-day availability and a variety of schedule and pricing options to travel to your destination.
+      description:  |
+        This API allows you to search trains availability and prices for a single day or date range. It's based on our Rail Instant Search technology, providing you with immediate results from our rail search cache.
+
+        This API has content from SNCF (French trains) and Trenitalia (Italian Trains).
+                    
+        The content is also restricted to single-leg trips - where a single train takes you directly from the origin to the destination.
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: origin
+          in: query
+          description: Identifier of the rail station from which you would like to depart.
+          required: true
+          type: string
+          default: "7171801"
+        - name: destination
+          in: query
+          description:  Identifier of the rail station to which you would like to travel.
+          required: true
+          type: string
+          default: "8768600"
+        - name: departure_date
+          in: query
+          description: The date or range of dates on which you would like to depart from the origin station to go to the destination.
+          required: true
+          type: string
+          default: "2015-10-14"
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/ExtensiveTrainSearchResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /rail-stations/nearest-relevant:
+    get:
+      operationId: Nearest Relevant Rail Station
+      summary: The Nearest Relevant Rail Station can find the most useful nearby station to a given location.
+      description: |
+        This service provides information on railways stations in Italy and France that are near the given coordinates. Nearby stations will be rated from 1 to 100 based on their relevance to deliver services to the given location. This relevance is computed taking into account the Intercity rail traffic of the station, and its distance from your current location. So nearer subway or regional rail stations may be returned low in the result set, despite the fact that they may be much nearer than a further, intercity station.
+
+        To minimize response time, all distances are computed as a great-circle distance from the provided coordinates to the rail station coordinates, and therefore do not take into account traffic conditions, international boundaries, mountains, water, or anything else that might make the a nearby station hard-to-reach
+
+        Stations without daily service are not included, and the nearest station with daily traffic will always be returned.
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: latitude
+          in: query
+          description: Latitude location to be at the center of your search circle.
+          required: true
+          type: string
+          default: "41.8902"
+        - name: longitude
+          in: query
+          description: Longitude location to be at the center of your search circle.
+          required: true
+          type: string
+          default: 12.4922"
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/RelevantRailStationResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /trains/schedule-search:
+    get:
+      operationId: Train Schedule Search
+      summary: The train schedule search can suggest destinations from your chosen departure station
+      description: This API allows you to find all the possible destinations in the Rail Instant Search cache (used by Extensive Search above) from a given origin station on a given day. You can use this to help build network maps, journey planners or provide inspiration for rail travel.
+
+                   This API has content from SNCF (French trains) and Trenitalia (Italian Trains). All the options returned are single-leg trips - where a single train takes you directly from the origin to the destination. In general, only departure dates up to 90 days in the future are supported
+
+                   Currently agglomeration stations are not supported
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: origin 
+          in: query
+          description: Identifier of the rail station where you would like to depart from.
+          required: true
+          type: string
+          default: "7171801"
+        - name: departure_date
+          in: query
+          description: The date on which you would like to depart from the origin station to go to the destination.
+          required: true
+          type: string
+          default: "2015-10-14"
+      responses:
+        200:
+          description: Valid Search response
+          schema:
+            $ref: "#/definitions/TrainScheduleSearchResponse"
+        default:
+          description: Client or server error response
+          schema:       
+            $ref: "#/definitions/Error"
+  /travel-record/{record_locator}:
+    get:
+      operationId: Travel Record Retrieve
+      summary: "Amadeus has one of the world's largest repositories of travel records. Enable travelers to explore the details of their journeys stored in the Amadeus system using our Retrieve Travel Record API."
+      description: |
+        Note: This API requires the use of HTTPS
+
+        This service retrieves a travel record (also sometimes referred to as a PNR) for a given journey when provided with Record Locator to identify a travel record, along with the last name of any traveler who is marked as a passenger on this record.
+
+        The API provides detailed information on a given record, including any air, car, hotel or rail reservations, as well as passenger details, and contact frequent traveler information for each passenger when available. You can use this to provide a wide variety of pre-trip or in-trip services.
+
+        Note that this API transmits sensitive personal data about a traveler's journey. We work hard to ensure that we comply with all the legal requirements this entails, and as an application owner, you need to do so too - we don't want you to get in trouble! This paragraph, or anything else in our documentation, does not constitute legal advice, it's just to give you an idea of some of the potential issues that you may encounter. Please check your legal obligations regarding the use of this data before implementing this API
+
+        In most countries, the data in the returned travel record is considered to be the property of the traveler. In order to ensure that you are acting on behalf of the traveler, we require you to provide the traveler's last name in addition to the record locator when you make a call to this API. You should ensure that you have consent from the traveler before retrieving this record, in some countries this is a legal requirement - please respect this appropriately.
+
+        Our data center is based in Europe, so there is a legal requirement that you to access this API over a secure connection. If you plan to store the information returned by this API, ensure you comply with storage requirements for European data, in addition to those of your local country. For example, there are strict requirements on the caching of retrieved travel records, so please ensure the cache control HTTP headers in the response are respected."
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: record_locator 
+          in: path
+          description: The Amadeus identifier of the given travel record. Usually printed at the top of an itinerary or boarding pass.
+          required: true
+          type: string
+          default: "ZA6PHM"
+        - name: last_name
+          in: query
+          description: The last name of any traveler in this record, as written on their identification used for travel. This is required to ensure that applications retrieving the record are acting on behalf of the customer.
+          required: true
+          type: string
+          default: "SANDBOX"
+        - name: env
+          in: query
+          description: Indicates the Amadeus system from which this record should be retrieved.
+          type: string
+          default: "TEST"
+      responses:
+        200:
+          description: Valid Travel Record
+          schema:
+            $ref: "#/definitions/TravelRecordResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+definitions:
+  Error:
+    required:
+      - status
+      - message
+    properties:
+      status:
+        type: integer
+      message:
+        type: string
+      more_info:
+        type: string
+  ExtremeSearchResponse:
+    required:
+      - origin
+      - currency
+      - results
+    properties:
+      origin:
+        type: string
+        description: IATA code
+      currency:
+        type: string
+        description: "[ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code."
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/ExtremeSearchResult"
+  ExtremeSearchResult:
+     required:
+        - destination
+        - price
+     properties:
+      destination:
+        type: string
+        description: The IATA code of the city or airport to which the traveler may go, from the provided origin
+      departure_date:
+        type: string
+        description: "The date departure at the origin, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd, to go to the above destination"
+      return_date:
+        type: string
+        description: "The date at which the flight from the destination to the origin will arrive at the origin. The date is in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd, in the local date of the origin"
+      price:
+        type: string
+        description: "The minimum total price for one adult passenger for a round trip from the origin to the destination and back. Always a string, formatted correctly for the provided currency"
+      airline:
+        type: string
+        description: "The 2 character alphanumeric IATA airline code of the airline that is responsible for selling the traveler this flight - also known as the Validating Carrier." 
+  AffiliateSearchResponse:
+     required:
+        - meta
+     properties:
+      meta:
+        description: "Meta data about the results"
+        $ref: "#/definitions/AffiliateSearchMeta" 
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/AffiliateSearchResult" 
+  AffiliateSearchMeta:
+     required:
+         - carriers
+     properties:
+      carriers:
+        type: array
+        items:
+          $ref: "#/definitions/CarrierMeta"
+  CarrierMeta:
+     type: object
+     additionalProperties:
+        $ref: "#/definitions/CarrierInfo"
+  CarrierInfo:
+      required:
+          - name
+          - logos
+      properties:
+       logos:
+         description: Logos of the airline in a variety of sizes
+         $ref: "#/definitions/Logos"
+       name:
+         description: Display name of the airline
+         type: string
+  Logos:
+       properties:
+         small:
+           description: URL to logo of resolution 27x27px
+           type: string
+         medium:
+           description: URL to logo of resolution 60x60px
+           type: string
+  LowFareSearchResponse:
+     required:
+        - currency
+     properties:
+      currency:
+        type: string
+        description: "[ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code."
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/LowFareSearchResult"
+  AffiliateSearchResult:
+     required:
+        - fare
+        - payout
+        - outbound
+        - airline
+        - deep_link
+     properties:
+      outbound:
+        description: The flight from the origin to the destination
+        $ref: "#/definitions/FlightSearchBound"
+      inbound:
+        description: The return flight from the destination to the origin
+        $ref: "#/definitions/FlightSearchBound"
+      fare:
+        description: The price and fare information which applies to all itineraries in this response
+        $ref: "#/definitions/AffiliateFlightSearchPrice"
+      payout:
+        description: Details of the amount of payout that the affiliate will received per click or if this flight is sold
+        $ref: "#/definitions/AffiliatePayout"
+      airline:
+        type: string
+        description: The 2 character alphanumeric IATA airline code of the airline that is selling this result
+      deep_link:
+        description: A link to the page from which this result can be purchased from the affiliate
+        type: string
+  AffiliatePayout:
+     properties:
+       CPC:
+         $ref: "#/definitions/Amount"
+         description: The [Cost per Click]{https://en.wikipedia.org/wiki/Pay_per_click} commission earned when the provided deep link is clicked
+       CPA:
+         $ref: "#/definitions/Amount"
+         description: The [Cost per Action]{https://en.wikipedia.org/wiki/Cost_per_action} commission earned for a given action from the provided deep link
+       CPS:
+         $ref: "#/definitions/Amount"
+         description: The [Cost per Sale]{https://en.wikipedia.org/wiki/Pay_per_sale} commission earned as a result of a booking made from the provided deep link
+  LowFareSearchResult:
+     required:
+        - fare
+     properties:
+      itineraries:
+        type: array
+        items:
+          $ref: "#/definitions/FlightSearchItinerary"
+      fare:
+        description: "The price and fare information which applies to all itineraries in this response"
+        $ref: "#/definitions/FlightSearchPrice"     
+  FlightSearchItinerary:
+     required:
+        - outbound
+     properties:
+      outbound:
+        description: "The bound container for the flight information for bringing the traveler from the origin airport to the destination airport"
+        $ref: "#/definitions/FlightSearchBound"
+      inbound:
+        description: "The bound container for the flight information for bringing the traveler from the destination airport to the origin airport"
+        $ref: "#/definitions/FlightSearchBound"
+  FlightSearchBound:
+     required:
+        - flights
+     properties:
+      flights:
+        type: array
+        items:
+          $ref: "#/definitions/FlightSearchSegment"
+      duration:
+        type: string
+        description: "The duration of this bound, including layover time, expressed in the format hh:mm"
+  FlightSearchSegment:
+     required:
+        - departs_at
+        - arrives_at
+        - origin
+        - destination
+        - marketing_airline
+        - operating_airline
+        - flight_number
+        - booking_info
+     properties:
+      departs_at:
+        type: string
+        description: "Date and time of departure at the origin, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)  date format yyyy-MM-ddTHH:mm in the local time at the origin airport"
+      arrives_at:
+        type: string
+        description: "Date and time of departure at the destination, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)  date format yyyy-MM-ddTHH:mm in the local time at the destination airport"
+      origin:
+        description: "Information on the origin airport, from which this flight departs"
+        $ref: "#/definitions/Airport"
+      destination:
+        description: "Information on the destination airport, at which this flight arrives"
+        $ref: "#/definitions/Airport"       
+      marketing_airline:
+        type: string
+        description: "The 2 character alphanumeric IATA airline code of the airline that is responsible for the traveller this flight "
+      operating_airline:
+        type: string
+        description: "The 2 character alphanumeric IATA airline code of the airline that is providing the aircraft for this flight. Note that in the USA, if the marketing and operating carrier are different, you are legally required to display this in your application."
+      flight_number:
+        type: string
+        description: "The identifier that the airline uses for this flight route. This is most commonly - but not always - a number. When combined with the airline and date, it identifies an individual aircraft's flight"
+      aircraft:
+        type: string
+        description: "The [IATA aircraft type designator](http://www.jacanaent.com/JacTechLib/07Aviation/AircraftTypeCodes.txt) of aircraft that will be used for this flight"
+      booking_info:
+        description: "A booking information object with additional details about how the quality of this flight at the given price."
+        $ref: "#/definitions/FlightSearchBookingInfo"
+  Airport:
+     required:
+        - airport
+     properties:
+      airport:
+        type: string
+        description: The 3 character IATA code of the airport in question for this flight
+      terminal:
+        type: string
+        description: "The terminal identifier at which this flight will arrive or depart in the given airport"
+  FlightSearchBookingInfo:
+     required:
+        - travel_class
+        - booking_code
+        - seats_remaining
+     properties:
+      travel_class:
+        type: string
+        description: The cabin class offered on this flight. An enumeration that will read either ECONOMY, PREMIUM_ECONOMY, BUSINESS or FIRST
+      cabin_code:
+        type: string
+        description: A single character encoding of the travel_class, generally only available on responses from affiliates.
+      booking_code:
+        type: string
+        description: "The Reservation Booking Designator code that determines the quality and terms of the flight offered for the given price. A single letter from A..Z"
+      seats_remaining:
+        type: string
+        description: "The minimum number of seats that are still available for this price at the time of search. If the value is a 4 or above, there are often more than this number of seats still available."
+      fare_family:
+        type: string
+        description: Enumeration of the type of fare which this airline is providing, eg. VALUE. This is generally only available for affiliate responses.
+      fare_basis:
+        type: string
+        description: The full [Fare Basis Code]{https://en.wikipedia.org/wiki/Fare_basis_code} for the fare being offered.
+  AffiliateFlightSearchPrice:
+     required:
+        - currency
+        - total_price
+        - price_per_adult
+        - restrictions
+     properties:
+      currency:
+        type: string
+        description: "[ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code applicable to this fare"
+      total_price:
+        description: The total price for all the requested passengers for this flight
+        type: string
+      price_per_adult:
+        description: "The per-passenger fare for each adult on this flight"     
+        $ref: "#/definitions/Fare"
+      price_per_child:
+        description: "The per-passenger fare for each child on this flight"     
+        $ref: "#/definitions/Fare"
+      price_per_infant:
+        description: "The per-passenger fare for each infant on this flight"        
+        $ref: "#/definitions/Fare"
+      restrictions:
+        description: The restrictions associated with this fare
+        $ref: "#/definitions/FareRestrictions"
+      fees:
+        description: The fees that apply in addition to the total price of this fare
+        $ref: "#/definitions/Fees"
+  Fees:
+    properties:
+      service_fees:
+        type: string
+        description: The cost of any required service fees in addition to the total price
+      creditcard_fees:
+        type: string
+        description: The cost of any fees for common credit cards, such as Visa or Mastercard, in addition to the total price
+  FlightSearchPrice:
+     required:
+        - total_price
+        - price_per_adult
+        - restrictions
+     properties:
+      total_price:
+        description: The total price for all the requested passengers for this flight
+        type: string
+      price_per_adult:
+        description: "The per-passenger fare for each adult on this flight"     
+        $ref: "#/definitions/Fare"
+      price_per_child:
+        description: "The per-passenger fare for each child on this flight"     
+        $ref: "#/definitions/Fare"
+      price_per_infant:
+        description: "The per-passenger fare for each infant on this flight"        
+        $ref: "#/definitions/Fare"
+      restrictions:
+        description: The restrictions associated with this fare
+        $ref: "#/definitions/FareRestrictions"
+  FareRestrictions:
+     required:
+        - refundable
+        - change_penalties
+     properties:
+      refundable:
+        type: boolean
+        description: Indicates whether this fare is refundable under some circumstances. Note that a refund charge or penalty may apply
+      change_penalties:
+        type: boolean
+        description: Indicates whether this fare allows the itinerary to be changed under some circumstances. Note that a change fee or penalty may apply
+  Fare:
+     required:
+        - total_fare
+        - tax
+     properties:
+      total_fare:
+        type: string
+        description: The total price, including taxes per-passenger, for this passenger type, for this itinerary. Always a string, formatted correctly for the given currency
+      tax:
+        type: string
+        description: "The tax applied per-passenger, for this passenger type, for this itinerary. Some of this tax may be refundable in the event of cancellation."
+  AirportAutocompleteResponse:
+     required:
+        - value
+        - label
+     properties:
+      value:
+        type: string
+        description: The 3 letter IATA location code of the given city or airport. You can use this as an input parameter for a flight low-fare or inspiration search.
+      label:
+        type: string
+        description: The name of this airport, in UTF-8 format, prefixed with the name of the city if it is not already incorporated in the name of the airport, and appended with the location's IATA code (as in value), enclosed in square brackets.
+  RailStationAutocompleteResponse:
+     required:
+        - value
+        - label
+     properties:
+      value:
+        type: string
+        description: The unique identifier of the station. You can use this as an input parameter for a rail search.
+      label:
+        type: string
+        description: The full name of the station, in UTF-8 format.
+  LocationResponse:
+     properties:
+      city:
+        description: "Information for any IATA city code which corresponds to the provided code"        
+        $ref: "#/definitions/CityInformation"
+      airports:
+        description: Information for any IATA airport located in the provided IATA city code or which corresponds to the provided code
+        type: array
+        items:
+          $ref: "#/definitions/AirportInformation"        
+  CityInformation:
+     required:
+        - code
+        - geonames_ID
+        - name
+        - country
+        - location
+        - timezone
+     properties:
+      code:
+        type: string
+        description: The IATA code of this city. If you intend to make a flight search from the output of this call, I recommend using this as your input parameter as it generally gives the best results.
+      geonames_ID:
+        type: string
+        description: The ID of this city in the open-sourced Geonames DB  
+      name:
+        type: string
+        description: The name of this city, in English
+      state:
+        type: string
+        description: The state code of this city, if applicable  
+      country:
+        type: string
+        description: The [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in which this city can be found. 
+      location:
+        description: "This city's approximate geolocation. The exact center of a city is often not an exact location, so be aware that this might not be exact."        
+        $ref: "#/definitions/Geolocation" 
+      timezone:
+        type: string
+        description: The [Olson format](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones) name of the timezone in which this city is located 
+  AirportInformation:
+     required:
+        - code
+        - name
+        - city_code
+        - city_name
+        - country
+        - location
+        - timezone
+     properties:
+      code:
+        type: string
+        description:    The 3 letter IATA airport code of this given airport. You can use this as an input parameter for a low-fare flight search, to get more specific results than the city code, but inspiration search works best using the city code.
+      name:
+        type: string
+        description: The name of this airport, in UTF-8 format
+      city_code:
+        type: string
+        description: The three letter IATA city code of the city in which this airport is located.
+      city_name:
+        type: string
+        description: The English name of the city in which this airport is located
+      state:
+        type: string
+        description: The state code of this city, if applicable  
+      country:
+        type: string
+        description: The [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in which this city can be found. 
+      location:
+        description: "  An object containing the longitude and latitude of the given airport."      
+        $ref: "#/definitions/Geolocation"
+      aircraft_movements:
+        type: integer
+        description: The annual number of aircraft movements at that airport. 
+      timezone:
+        type: string
+        description: The [Olson format](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones) name of the timezone in which this airport is located
+  Geolocation:
+     required:
+        - latitude
+        - longitude
+     properties:
+      latitude:
+        type: number
+        description: The north-south coordinate of this location, in decimal degrees, between -90 and 90
+      longitude:
+        type: number
+        description: The east-west coordinate of this location, in decimal degrees, between -180 and 180
+  HotelSearchResponse:
+     properties:
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/HotelPropertyResponse"
+  HotelPropertyResponse:
+     required:
+        - property_code
+        - property_name
+        - location
+        - total_price
+        - min_daily_rate
+     properties:
+      property_code:
+        type: string
+        description: The 8 character property code of this given hotel. The first 2 characters of this code are the chain code that can be specified in the input. The remaining elements are proprietary to each hotel chain.
+      property_name:
+        type: string
+        description: The name of this hotel.
+      location:
+        description: This hotel's approximate geolocation.
+        $ref: "#/definitions/Geolocation"
+      address:
+        description: This hotel's postal address.
+        $ref: "#/definitions/Address"
+      total_price:
+        description: The lowest price of a stay, from the given check in date to the given check out date.
+        $ref: "#/definitions/Amount"
+      min_daily_rate:
+        description: The lowest price per day that the hotel offers between the given check-in and check-out dates. Extra taxes may apply to this rate.
+        $ref: "#/definitions/Amount"        
+      contacts:
+        type: array
+        description: An array of contact objects to tell the user how to contact the hotel. Typically includes a phone and fax number
+        items:
+          $ref: "#/definitions/Contact"
+      amenities:
+        type: array
+        description: An array of amenity objects to the user what facilities this hotel might provide, such as a pool or parking. 
+                    If this array is empty, it does not necessarily mean that there are no amenities available at this hotel, it could also mean that the hotel does not list their amenities in our search!
+        items:
+          $ref: "#/definitions/Amenity"
+      awards:
+        type: array
+        description: An array of hotel award objects to give the user an expectation of the service quality at this hotel. This can be used to indicate, for example, the star rating of a hotel. If this array is empty, it does not necessarily mean that the hotel has no awards, it could simply mean that they didn't tell us about them!
+        items:
+          $ref: "#/definitions/Award"
+      images:
+        type: array
+        description: A selection of image objects, showing pictures of the hotel building, the entrance or some rooms, to give an indication of what to expect at this hotel.
+        items:
+          $ref: "#/definitions/Image"       
+      rooms:
+        type: array
+        description: Information on currently available rooms at this hotel.
+        items:
+          $ref: "#/definitions/HotelRoom"       
+  Address:
+     required:
+        - line1
+        - city
+        - country
+     properties:
+      line1:
+        type: string
+        description: The first line of this place's address. Generally represents the basic street address.
+      city:
+        type: string
+        description: The town or city in which place is located.
+      region:
+        type: string
+        description: The state or region code in which the place is located.
+      postal_code:
+        type: string
+        description: The postal or zip code of this address.
+      country:
+        type: string
+        description: The [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of this address.  
+  Contact:
+     required:
+        - type
+        - detail
+     properties:
+      type:
+        type: string
+        description: The method of contact, such as phone or fax.
+      purpose:
+        type: string
+        description: "The reason or channel of that contact method. For example: HOME, EMERGENCY, MOBILE."
+      detail:
+        type: string
+        description: How that contact should be used, eg. a phone number
+  Amenity:
+     properties:
+      amenity:
+        type: string
+        description: "[The amenity code](hotels-api-supported-amenities-filter)"
+      ota_code:
+        type: string
+        description: The [Open Travel Alliance](http://www.opentravel.org/) [Hotel Amenities Code](ota-hotel-amenity-code-table) for this amenity.
+      description:
+        type: string
+        description: The decoded text description for this amenity code, where available.
+  Award:
+     required:
+        - provider
+        - rating
+     properties:
+      provider:
+        type: string
+        description: The organization that issued the award. For example:. Local Star Rating, AAA.
+      rating:
+        type: string
+        description: "The level of the award that was awarded on the provider's scale. For example: 4 or RECOMMENDED."
+  Image:
+     required:
+        - url
+     properties:
+      category:
+        type: string
+        description: The enumerated category of this image type. Common values include EXTERIOR, GUEST_ROOM, SUITE, LOBBY, RESTAURANT, LOUNGE, LOGO, MAP, MISC and UNKNOWN.
+      width:
+        type: integer
+        description: The pixel width of the image at the provided URL.
+      height:
+        type: integer
+        description: The pixel height of the image at the provided URL.
+      url:
+        type: string
+        description: The URL of the hotel image of this given category and size, for display.
+  HotelRoom:
+     required:
+        - booking_code
+     properties:
+      booking_code:
+        type: string
+        description: The booking code identifies a product at the hotel. It can be used to book a room.
+      room_type_code:
+        type: string
+        description: A 3-letter code to identify a specific room type.
+      rate_plan_code:
+        type: integer
+        description: A 3 letter code to designate different rates base on traveler type.
+      total_price:
+        description: The total price of staying in this room from the given check-in date to the given check-out date
+        $ref: "#/definitions/Amount"
+      rates:
+        description: The total price of staying in this room from the given check-in date to the given check-out date
+        items:
+          $ref: "#/definitions/PeriodRate"
+      descriptions:
+        type: array
+        description: An array of description strings describing room and rate types features
+        items:
+          type: string         
+  Amount:
+     required:
+        - currency
+        - amount
+     properties:
+      currency:
+        type: string
+        description: "[ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code."
+      amount:
+        type: string
+        description: "Total amount in the given currency, formatted appropriately. For example: 194.99"
+  PeriodRate:
+     required:
+        - start_date
+        - end_date
+        - currency
+        - amount
+     properties:
+      start_date:
+        type: string
+        description: "The start date of this rate, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd."
+      end_date:
+        type: string
+        description: "The date on which this rate ends, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd."
+      currency:
+        type: string
+        description: "[ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code of this rate."
+      amount:
+        type: string
+        description: "Total amount in the given currency per day of this rate, formatted appropriately. For example: 194.99."
+  CarSearchResponse:
+     properties:
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/CarSearchResult"
+  CarSearchResult:
+     required:
+        - provider
+     properties:
+      provider:
+        description: Details of the car company offering this rental.
+        $ref: "#/definitions/Company"
+      location:
+        description: This car rental company's approximate geolocation. The exact quality of this parameter depends on the provider but it's usually quite accurate.
+        $ref: "#/definitions/Geolocation"
+      airport:
+        type: string
+        description:  The exact quality of this parameter depends on the provider but it's usually quite accurate.
+      cars:
+        type: array
+        description: Further details about each of the vehicles offered by this car rental provider.
+        items:
+          $ref: "#/definitions/Vehicle"
+  Company:
+     required:
+        - company_code
+        - company_name
+     properties:
+      company_code:
+        type: string
+        description: "The Amadeus 2-character company code of this provider."
+      company_name:
+        type: string
+        description: "The long name of the provider corresponding to the above code."
+  Vehicle:
+     required:
+        - vehicle_info
+     properties:
+      vehicle_info:
+        description: More information about the type of vehicle on offer.
+        $ref: "#/definitions/VehicleInfo"
+      rates:
+        description: Rates that will be applied during the duration of the car rental requested. These rates are generally not inclusive of tax and are used by the car rental company to compute the total cost at the end of the rental period.
+        $ref: "#/definitions/Rate"
+      estimated_total:
+        description:    The estimated total cost of the rental given the rental period and location provided, including all mandatory taxes and charges, and using a default set of rental options and restrictions defined by the car company.
+        $ref: "#/definitions/Amount"
+      image:
+        description: An image to give an indication of what to expect when renting this vehicle.
+        $ref: "#/definitions/Image"
+  VehicleInfo:
+     required:
+        - acriss_code
+        - category
+     properties:
+      acriss_code:
+        type: string
+        description: "The 4 letter [ACRISS code](http://en.wikipedia.org/wiki/ACRISS_Car_Classification_Code) that defines the properties of vehicle being rented."
+      category:
+        type: string
+        description: "The decoded ACRISS vehicle category (For example: Economy, Luxury, Standard)."
+      type:
+        type: string
+        description: "The decoded ACRISS vehicle type, to let you know what kind of vehicle this is (For example: Van, SUV, Pickup)."
+      transmission:
+        type: string
+        description: "The decoded ACRISS transmission type, to let you know if this vehicle is Automatic or Manual Transmission (stick-shift)."
+      air_conditioning:
+        type: boolean
+        description: "The decoded ACRISS air_conditioning information, to let you know if this vehicle has air conditioning"
+      fuel:
+        type: string
+        description: "The decoded ACRISS fuel type, to let you know if this vehicle is hybrid, electric, etc."
+  Rate:
+     required:
+        - type
+        - price
+     properties:
+      type:
+        type: string
+        description: "The type or applicability period of rate being applied. For example: DAILY, WEEKLY, WEEKEND." 
+      price:
+        description: "The long name of the provider corresponding to the above code."
+        $ref: "#/definitions/Amount"
+  ExtensiveTrainSearchResponse:
+     properties:
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/ExtensiveTrainSearchResult"
+  ExtensiveTrainSearchResult:
+     required:
+        - origin
+        - destination
+        - itineraries
+     properties:
+      origin:
+        description: Station object with details about the origin station for this search.
+        $ref: "#/definitions/Station"
+      destination:
+        description: Station object with details about the destination station for this search.
+        $ref: "#/definitions/Station"
+      itineraries:
+        description: "Routes from the origin to the destination."
+        type: array
+        items:
+          $ref: "#/definitions/TrainSearchItinerary"
+  TrainSearchItinerary:
+     required:
+        - trains
+     properties:
+      trains:
+        description: "The array of trains that will be required to complete the given itinerary. Since the cache currently only contains direct itineraries, there will be only one object in this array."
+        type: array
+        items:
+          $ref: "#/definitions/TrainSearchSegment"
+  Station:
+     required:
+        - station_code
+        - station_name
+     properties:
+      station_code:
+        type: string
+        description: ID of this rail station
+      station_name:
+        type: string
+        description: Full name of this rail station.
+  TrainSearchSegment:
+     required:
+        - departs_at
+        - arrives_at
+        - departure_station
+        - arrival_station
+        - marketing_company
+        - operating_company
+        - train_number
+        - prices
+     properties:
+      departs_at:
+        type: string
+        description: "The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date-time of the train's departure in the local time zone of the departure station, in the format YYYY-MM-DDTHH:mm."
+      arrives_at:
+        type: string
+        description: "The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date-time of the train's arrival in the local time zone of the arrival station, in the format YYYY-MM-DDTHH:mm."
+      departure_station:
+        description: "The station object representing the station at which the passenger should board this train in order to complete this part of the itinerary."
+        $ref: "#/definitions/Station"
+      arrival_station:
+        description: "The station object representing the station at which the passenger should disembark this train in order to complete this part of the itinerary."
+        $ref: "#/definitions/Airport"       
+      marketing_company:
+        type: string
+        description: "The name of the train company selling this train journey. This is the name you should see printed on your ticket."
+      operating_company:
+        type: string
+        description: "The name of the train company operating this train journey. This is the name you should see written on the train."
+      train_number:
+        type: string
+        description: "The identifying number of this train service. Usually the marketing company will only operate on train per day with this train number."
+      train_type:
+        type: string
+        description: "The type of train that you may expect for this journey. For example: InterCity, Regional..."
+      prices:
+        description: "Possible pricing for this train journey."
+        type: array
+        items:
+          $ref: "#/definitions/TrainSearchPricing"
+  TrainSearchPricing:
+     required:
+        - service_class
+        - booking_code
+        - accomodation
+        - total_price
+        - rate
+     properties:
+      service_class:
+        type: string
+        description: "A standard enumeration of the type of seat, bed or service the passenger can expect."
+      booking_code:
+        type: string
+        description: A code the identifies the type of booking class being used.
+      accomodation:
+        type: string
+        description: "A standard enumeration of the mode in which the passenger is accommodated. For example: SEAT, BERTH, CABIN, CARGO, UNKNOWN."
+      total_price:
+        description: The total cost of this service.
+        $ref: "#/definitions/Amount"       
+      rate:
+        description: A rate identifying type of charge being levied for this service, and the restrictions that apply.
+        $ref: "#/definitions/RestrictedRate"    
+  RestrictedRate:
+     required:
+        - rate_code
+        - rate_name
+        - restrictions
+     properties:
+      rate_code:
+        type: string
+        description: The unique identifier of this rate.
+      rate_name:
+        type: string
+        description: The name used by the company to describe this rate.
+      restrictions:
+        type: string
+        description: An enumeration of the type of restrictions associated with this rate.
+  RailStationResponse:
+     required:
+        - id
+        - type
+        - name
+        - short_name
+        - country
+        - location
+        - traffic
+     properties:
+      id:
+        type: string
+        description: The ID of this station, as provided in the request
+      type:
+        type: string
+        description: The type of code to which this station refers. Some codes represent agglomeration of multiple stations, whereas others represent an individual station. Possible values are AGGLOMERATION and STATION.
+      name:
+        type: string
+        description: The name of this station.
+      short_name:
+        type: string
+        description: "The shortened name of this station (20 characters max) which may be used in certain cases."
+      country:
+        type: string
+        description: The [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in which this station can be found. 
+      location:
+        description: "This stations's approximate geolocation. "
+        $ref: "#/definitions/Geolocation" 
+      traffic:
+        type: string
+        description: An indication of the level of Intercity traffic passing through this station.
+  RelevantRailStationResponse:
+     required:
+        - station
+        - station_label
+        - distance
+        - street_address
+        - relevance
+        - location
+     properties:
+      station:
+        type: string
+        description: The 7 character Amadeus UID of this given station. You can use this as an input parameter for a schedule or extensive search.
+      station_label:
+        type: string
+        description: The map label of this station, in UTF-8 format.
+      street_address:
+        type: string
+        description: The postal address of this station, in UTF-8 format.
+      distance:
+        type: string
+        description: The grand-circle distance in kilometers of this station from the location provided in the input.
+      relevance:
+        type: string
+        description: The relevance of this station for intercity traffic, based on your current location, rated from 1 (least relevant) to 100 (most relevant). 
+      location:
+        description: "This stations's approximate geolocation. "
+        $ref: "#/definitions/Geolocation" 
+  TrainScheduleSearchResponse:
+     properties:
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/TrainScheduleSearchResult"
+  TrainScheduleSearchResult:
+     required:
+        - origin_station_id
+        - date
+        - services
+     properties:
+      origin_station_id:
+        type: string
+        description: Station ID of the origin station for this search.
+      date:
+        type: string
+        description: The search date provided in the input.
+      services:
+        description: Array to describe service to the destinations.
+        type: array
+        items:
+          $ref: "#/definitions/RailService"
+  RailService:
+     required:
+        - destination_station_id
+        - services
+     properties:
+      destination_station_id:
+        type: string
+        description: ID of the destination rail station.
+      services:
+        description: An array of departure times at which trains depart from the origin station to this destination station. Times are in the ISO 8601 YYYY-MM-DDTHH:mm format.
+        type: array
+        items:
+          type: string
+  TravelRecordResponse:
+     required:
+        - record_locator
+     properties:
+      record_locator:
+        type: string
+        description: 6 character identifier of this travel record on the Amadeus system.
+      header:
+        description: Summarized metadata on the record that has been retrieved.
+        $ref: "#/definitions/TravelRecordHeader"
+      messages:
+        description: Functional or technical messages associated with the retrieval of this travel record.
+        type: array
+        items:
+          $ref: "#/definitions/Message" 
+      travelers:
+        description: Information about each traveler who may be included as part of this travel record.
+        type: array
+        items:
+          $ref: "#/definitions/Traveler" 
+      reservation:
+        description: Details about the itineraries that have been reserved as part of this travel record.
+        $ref: "#/definitions/Reservation"     
+  TravelRecordHeader:
+     required:
+        - creation_office_id
+        - owner_office_id
+     properties:
+      creation_office_id:
+        type: string
+        description: "9 character Amadeus office identifier of the travel agency that created this travel record. An office ID may be considered as equivalent to a [PCC](https://en.wikipedia.org/wiki/Pseudo_city_code) in other reservation systems."
+      owner_office_id:
+        type: string
+        description: "9 character Amadeus office identifier of the travel agency that owns and manages this travel record."   
+  Message:
+     required:
+        - severity
+        - type
+        - message
+     properties:
+      severity:
+        type: string
+        description: An indicator of the importance of this message as part of the flow. May be ERROR or INFO.
+      type:
+        type: string
+        description: An indicator of the source or type of message that has been generated. May be USER or SYSTEM.
+      message:
+        type: string
+        description: A free text message that provides more information.      
+  Traveler:
+     required:
+        - id
+        - last_name
+        - first_name
+        - traveler_type
+     properties:
+      id:
+        type: string
+        description: Uniquely identifies this traveler in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record.
+      last_name:
+        type: string
+        description: "The last name of the passenger, as entered by the agent, in upper-case. May include suffixes. For example: THACKSTON, KING III, LU."
+      first_name:
+        type: string
+        description: "The first name of the passenger, as entered by the agent, in upper-case. May include middle names, initials or prefixes. The total combined length of the first name and last name must be between 2 and 57 characters. For example: ALEXANDRA, JOSE-ANTONIO MR, ELAINE T DR."
+      traveler_type:
+        type: string
+        description: Enumeration of the type of traveler. May be ADULT or CHILD. 
+      infant:
+        description:  Details on any infant that may be sharing this seat with this traveler. Absence of this key indicates that no infant is traveling with this passenger. An empty object at this key indicated an anonymous infant is traveling with the passenger.
+        $ref: "#/definitions/Infant"
+      date_of_birth:
+        type: string
+        description: "An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date indicating the birth date of the traveler, as provided by the agent. For example: 1972-02-19."
+      contacts:
+        description: Details on how to contact this traveler. At least one traveler in a travel-record will have a contact element.
+        type: array
+        items:
+          $ref: "#/definitions/Contact" 
+      frequent_traveler_cards:
+        description: Information regarding loyalty cards that the traveler would like to use to accrue benefits as part of this travel record. Where possible, the system will attempt to validate that the frequent traveler card is eligible for use in the context of this travel record.
+        type: array
+        items:
+          $ref: "#/definitions/FrequentTravelerCard"      
+  Infant:
+     properties:
+      last_name:
+        type: string
+        description: The last name of the infant, as entered by the agent, in upper-case. If no value is provided, the last name of the infant can generally be assumed to be the same as that of the traveler which whom they are associated.
+      first_name:
+        type: string
+        description: The first name of the infant, as entered by the agent, in upper-case. May include middle names, initials or prefixes.
+      date_of_birth:
+        type: string
+        description: "An optional [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date indicating the birth date of the infant, as provided by the agent. For example: 1972-02-19."    
+  FrequentTravelerCard:
+     required:
+        - issuer_type
+        - company_code
+        - card_number
+     properties:        
+      issuer_type:
+        type: string
+        description: The type of organization that issued the card. This is an enumeration, possible values are AIRLINE, HOTEL_CHAIN, RENTAL_CAR_PROVIDER, RAILWAY.
+      company_code:
+        type: string
+        description: "The identifying code of the issuer, within the context of its type. For example: BA (and if the issuer type is AIRLINE, this indicates BA=British Airways)."
+      card_number:
+        type: string
+        description: "The identifying number (or string) marked on the card. For example: 12345678."
+  Reservation:
+     properties:
+      flight_tickets:
+        description: The flight itineraries with a ticket or transitional stored ticket (TST) in this reservation, and their prices.
+        $ref: "#/definitions/FlightTicket"
+      unticketed_flights:
+        description: The flight itineraries in this reservation that have not yet been ticketed or priced.
+        type: array
+        items:
+          $ref: "#/definitions/FlightReservationBound" 
+      cars:
+        description: The rental cars reserved.
+        type: array
+        items:
+          $ref: "#/definitions/CarReservation" 
+      hotels:
+        description: The hotel room bookings in this reservation.
+        type: array
+        items:
+          $ref: "#/definitions/HotelReservation"
+      others:
+        description: Free text information to represent other travel items that may be considered part of the travel itinerary in this reservation.
+        type: array
+        items:
+          $ref: "#/definitions/OtherReservation"
+  FlightTicket:
+     required:
+        - id
+        - price
+        - traveler_ids
+        - flight_bounds
+     properties:
+      id:
+        type: string
+        description: Uniquely identifies this ticket in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record. 
+      price:
+        description: The cost of this ticket.
+        $ref: "#/definitions/Amount"
+      traveler_ids:
+        description: Traveler identifiers to indicate the travelers to whom this ticket applies.
+        type: array
+        items:
+          type: string
+      flight_bounds:
+        description: The flight itinerary for this ticket.
+        type: array
+        items:
+          $ref: "#/definitions/FlightReservationBound"
+  FlightReservationBound:
+     required:
+        - flights
+     properties:
+      flights:
+        description: The individual flights that make up this itinerary. These flights are presented in the order required to fly from the origin to the destination, and the array of flights represents a connection.
+        type: array
+        items:
+          $ref: "#/definitions/FlightReservationSegment"
+  FlightReservationSegment:
+     required:
+        - id
+        - departs_at
+        - arrives_at
+        - origin
+        - destination
+        - marketing_airline
+        - operating_airline
+        - flight_number
+        - traveler_ids
+        - booking_info
+     properties:
+      id:
+        type: string
+        description: Uniquely identifies this flight in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record.
+      departs_at:
+        type: string
+        description: "Date and time of departure at the origin, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)  date format yyyy-MM-ddTHH:mm in the local time at the origin airport"
+      arrives_at:
+        type: string
+        description: "Date and time of departure at the destination, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)  date format yyyy-MM-ddTHH:mm in the local time at the destination airport"
+      origin:
+        description: "Information on the origin airport, from which this flight departs"
+        $ref: "#/definitions/Airport"
+      destination:
+        description: "Information on the destination airport, at which this flight arrives"
+        $ref: "#/definitions/Airport"       
+      marketing_airline:
+        type: string
+        description: "The 2 character alphanumeric IATA airline code of the airline that is responsible for the traveller this flight "
+      operating_airline:
+        type: string
+        description: "The 2 character alphanumeric IATA airline code of the airline that is providing the aircraft for this flight. Note that in the USA, if the marketing and operating carrier are different, you are legally required to display this in your application."
+      flight_number:
+        type: string
+        description: "The identifier that the airline uses for this flight route. This is most commonly - but not always - a number. When combined with the airline and date, it identifies an individual aircraft's flight"
+      traveler_ids:
+        description: Traveler identifiers to indicate the travelers to whom this ticket applies.
+        type: array
+        items:
+          type: string
+      booking_info:
+        description: "A booking information object with additional details about how the quality of this flight at the given price."
+        $ref: "#/definitions/FlightReservationBookingInfo"
+  FlightReservationBookingInfo:
+     required:
+        - travel_class
+        - booking_code
+        - airline_record_locator
+        - status
+     properties:
+      travel_class:
+        type: string
+        description: The cabin class offered on this flight. An enumeration that will read either ECONOMY, PREMIUM_ECONOMY, BUSINESS or FIRST
+      booking_code:
+        type: string
+        description: "The Reservation Booking Designator code that determines the quality and terms of the flight offered for the given price. A single letter from A..Z"
+      airline_record_locator:
+        type: string
+        description: 6 character identifier of this travel record on the airline's system. May be the same as the global record locator.
+      status:
+        type: string
+        description: "An enumeration to represent the reservation status for this seat on this flight. For example: CONFIRMED, CANCELLED, RESCHEDULED, FLIGHT_CANCELLED, WAITLISTED."
+  CarReservation:
+     required:
+        - id
+        - provider
+        - pick_up
+        - drop_off
+        - origin
+        - car
+     properties:
+      id:
+        type: string
+        description: Uniquely identifies this car rental reservation in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record.
+      pick_up:
+        type: string
+        description: "Date on which the car rental will be collected from the car rental location. [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-ddTHH."
+      drop_off:
+        type: string
+        description: "Date at which the car rental will end and the car will be returned to the rental location. [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-ddTHH."
+      provider:
+        description: Details of the car company offering this rental.
+        $ref: "#/definitions/Company"
+      origin:
+        type: string
+        description: "This car rental company office location ID. If this is an airport location, this will be the airport's IATA code. Otherwise, this is a custom value provided by the car rental provider."
+      car:
+        description: A car information object giving further details about the vehicle provided for rental.
+        $ref: "#/definitions/Vehicle"
+      traveler_ids:
+        description: Traveler identifiers to indicate the travelers to whom this car rental applies. Generally, only drivers of the vehicle will be marked in this array.
+        type: array
+        items:
+          type: string
+      booking_info:
+        description: Additional details the status of this car rental reservation.
+        $ref: "#/definitions/CarReservationBookingInfo"
+  CarReservationBookingInfo:
+     required:
+        - reservation_code
+        - status
+     properties:
+      reservation_code:
+        type: string
+        description: The identifier of this reservation in the car rental provider's system. This should be provided at the rental office to identify your reservation.
+      status:
+        type: string
+        description: "An enumeration to represent the reservation status for this car rental. For example: CONFIRMED, CANCELLED, REQUESTED, REJECTED, PENDING_CANCELLATION, PENDING_CONFIRMATION."
+  HotelReservation:
+     required:
+        - id
+        - check_in
+        - check_out
+        - property_code
+        - property_name
+        - traveler_ids
+        - booking_info
+     properties:
+      id:
+        type: string
+        description: Uniquely identifies this hotel room reservation in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record.
+      check_in:
+        type: string
+        description: "Date on which the guest will begin their stay in the hotel, in the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd."
+      check_out:
+        type: string
+        description: "Date on which the guest will end their stay in the hotel, in the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd."
+      property_code:
+        type: string
+        description: The 8 character property code of this given hotel. The first 2 characters of this code are the chain code that can be specified in the input. The remaining elements are proprietary to each hotel chain.
+      property_name:
+        type: string
+        description: The name of this hotel.
+      total_price:
+        description: The total price of this stay, from the given check in date to the given check out date.
+        $ref: "#/definitions/Amount"
+      traveler_ids:
+        description: Traveler identifiers to indicate the travelers to whom this hotel room reservation applies. Generally all non-infant room occupants will be marked in this array.
+        type: array
+        items:
+          type: string
+      booking_info:
+        description: Additional details and status of this hotel room reservation.
+        $ref: "#/definitions/HotelReservationBookingInfo"
+  HotelReservationBookingInfo:
+     required:
+        - reservation_code
+        - status
+     properties:
+      reservation_code:
+        type: string
+        description: The identifier of this reservation in the hotel chain's system. This should be provided at the check-in desk to identify your reservation.
+      status:
+        type: string
+        description: "An enumeration to represent the reservation status for this hotel reservation. For example: CONFIRMED, CANCELLED, REQUESTED."
+  OtherReservation:
+     required:
+        - id
+        - date
+        - location
+        - traveler_ids
+        - booking_info
+     properties:
+      id:
+        type: string
+        description: Uniquely identifies this other reservation in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record.
+      date:
+        type: string
+        description: "Date on which this other reservation will begin, in the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd."
+      location:
+        type: string
+        description: A 3 letter IATA code that identifies where this other reservation will occur.
+      description:
+        type: string
+        description: A free-text description of this reservation, that will inform you of its functional meaning.
+      traveler_ids:
+        description: Traveler identifiers to indicate the travelers to whom this reservation applies.
+        type: array
+        items:
+          type: string
+      booking_info:
+        description: The status of this reservation.
+        $ref: "#/definitions/OtherReservationBookingInfo"
+  OtherReservationBookingInfo:
+     required:
+        - status
+     properties:
+      status:
+        type: string
+        description: "An enumeration to represent the reservation status for this hotel reservation. For example: CONFIRMED, CANCELLED, REQUESTED, REJECTED, PENDING_CANCELLATION, PENDING_CONFIRMATION."
