@@ -263,96 +263,6 @@ paths:
         default:
           description: Client or server error
           schema:
-            $ref: "#/definitions/Error"
-  /flights/affiliate-search:
-    get:
-      operationId: Flight Affiliate Search   
-      summary: The  Flight Affiliate Search API uses Travel Audience Connect's affiliate network API to search flights from our list of partners and provides deep-links to allow the user to book directly on the airline website.
-      description: |
-          The Flight Affiliate Search API combines our Master Pricer search technology with Travel Audience's Connect API partners to provide a flight search where all results come with a deep-link to book the flight at a partner's website. The message is composed of multiple results for given request. A result is defined by a unique combination of price, tax, passenger type, fare type, cabin, and availability for each requested segment. A result is then composed of single or multiple itineraries. Each itinerary is composed of an outbound leg, and, if a return date was specified, an inbound leg. Each leg is composed of a list of one or more flights, that the traveller will be required to take in order to get from the origin airport to the destination airport.  
-          
-          Only Travel Audience Connect partner airlines are searched, so content is limited to only their partner airlines. For an up-to-date list of partner airline routes, do something. You can earn commission using the deep links provided in the search results if you sign up for an account at [Travel Audience Connect]{http://connect.travelaudience.com}.
-      parameters:
-        - name: apikey
-          in: query
-          description: API Key provided for your account, to identify you for API access
-          required: true
-          type: string
-        - name: origin
-          in: query
-          description: City code from which the traveler will depart. See the location and airport interfaces for more information.
-          required: true
-          type: string
-          default: "BOS"
-        - name: destination
-          in: query
-          description:  IATA city code to which the traveler is going 
-          required: true
-          type: string
-          default: "LON"
-        - name: departure_date
-          in: query
-          description: "The date on which the traveler will depart from the origin to go to the destination. The maximum scope for a date range is 2 days, for a larger scope, use the Extensive Search! "
-          required: true
-          type: string
-          default: "2016-01-25"
-        - name: return_date
-          in: query
-          description: "The date on which the traveler will depart from the destination to return to the origin. If this parameter is not specified, the search will find only one-way trips. If this, or the return_by parameter are specified, only return trips are found"
-          required: false
-          type: string
-          default: "2016-01-31"
-        - name: adults
-          in: query
-          description: "The number of adult (age 12 and over) passengers traveling on this flight."
-          required: false
-          type: integer
-          default: 1
-        - name: children
-          in: query
-          description: "The number of child (younger than age 12 on date of departure) passengers traveling on this flight who will each have their own separate seat"
-          required: false
-          type: integer
-          default: 0
-        - name: infants
-          in: query
-          description: "The number of infant (younger than age 2 on date of departure) passengers traveling on this flight. Infants travel in the lap of an adult passenger, and thus the number of infants must not exceed the number of adults."
-          required: false
-          type: integer
-          default: 0
-        - name: include_merchants
-          in: query
-          description: If specified, all results will include at least one flight where one or more of these airlines is the marketing carrier
-          required: false
-          type: string
-          default: "AF"
-        - name: exclude_merchants
-          in: query
-          description: If specified, no results will include any flights where any of these airlines is the marketing carrier
-          required: false
-          type: string
-          default: "UA"
-        - name: max_price
-          in: query
-          description: "Maximum price of trips to find in the result set, in USD (US dollars) unless some other currency code is specified. By default, no limit is applied"
-          required: false
-          type: integer
-          default: 980
-        - name: mobile
-          in: query
-          description: "Setting this to true will show mobile web deeplinks "
-          required: false
-          type: boolean
-          default: false
-
-      responses:
-        200:
-          description: Valid Search Response
-          schema:
-            $ref: "#/definitions/AffiliateSearchResponse"
-        default:
-          description: Client or server error
-          schema:
             $ref: "#/definitions/Error"         
   /location/{code}:
     get:
@@ -1253,48 +1163,6 @@ definitions:
       airline:
         type: string
         description: "The 2 character alphanumeric IATA airline code of the airline that is responsible for selling the traveler this flight - also known as the Validating Carrier." 
-  AffiliateSearchResponse:
-     required:
-        - meta
-     properties:
-      meta:
-        description: "Meta data about the results"
-        $ref: "#/definitions/AffiliateSearchMeta" 
-      results:
-        type: array
-        items:
-          $ref: "#/definitions/AffiliateSearchResult" 
-  AffiliateSearchMeta:
-     required:
-         - carriers
-     properties:
-      carriers:
-        type: array
-        items:
-          $ref: "#/definitions/CarrierMeta"
-  CarrierMeta:
-     type: object
-     additionalProperties:
-        $ref: "#/definitions/CarrierInfo"
-  CarrierInfo:
-      required:
-          - name
-          - logos
-      properties:
-       logos:
-         description: Logos of the airline in a variety of sizes
-         $ref: "#/definitions/Logos"
-       name:
-         description: Display name of the airline
-         type: string
-  Logos:
-       properties:
-         small:
-           description: URL to logo of resolution 27x27px
-           type: string
-         medium:
-           description: URL to logo of resolution 60x60px
-           type: string
   LowFareSearchResponse:
      required:
         - currency
@@ -1306,43 +1174,6 @@ definitions:
         type: array
         items:
           $ref: "#/definitions/LowFareSearchResult"
-  AffiliateSearchResult:
-     required:
-        - fare
-        - payout
-        - outbound
-        - airline
-        - deep_link
-     properties:
-      outbound:
-        description: The flight from the origin to the destination
-        $ref: "#/definitions/FlightSearchBound"
-      inbound:
-        description: The return flight from the destination to the origin
-        $ref: "#/definitions/FlightSearchBound"
-      fare:
-        description: The price and fare information which applies to all itineraries in this response
-        $ref: "#/definitions/AffiliateFlightSearchPrice"
-      payout:
-        description: Details of the amount of payout that the affiliate will received per click or if this flight is sold
-        $ref: "#/definitions/AffiliatePayout"
-      airline:
-        type: string
-        description: The 2 character alphanumeric IATA airline code of the airline that is selling this result
-      deep_link:
-        description: A link to the page from which this result can be purchased from the affiliate
-        type: string
-  AffiliatePayout:
-     properties:
-       CPC:
-         $ref: "#/definitions/Amount"
-         description: The [Cost per Click]{https://en.wikipedia.org/wiki/Pay_per_click} commission earned when the provided deep link is clicked
-       CPA:
-         $ref: "#/definitions/Amount"
-         description: The [Cost per Action]{https://en.wikipedia.org/wiki/Cost_per_action} commission earned for a given action from the provided deep link
-       CPS:
-         $ref: "#/definitions/Amount"
-         description: The [Cost per Sale]{https://en.wikipedia.org/wiki/Pay_per_sale} commission earned as a result of a booking made from the provided deep link
   LowFareSearchResult:
      required:
         - fare
@@ -1447,42 +1278,6 @@ definitions:
       fare_basis:
         type: string
         description: The full [Fare Basis Code]{https://en.wikipedia.org/wiki/Fare_basis_code} for the fare being offered.
-  AffiliateFlightSearchPrice:
-     required:
-        - currency
-        - total_price
-        - price_per_adult
-        - restrictions
-     properties:
-      currency:
-        type: string
-        description: "[ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code applicable to this fare"
-      total_price:
-        description: The total price for all the requested passengers for this flight
-        type: string
-      price_per_adult:
-        description: "The per-passenger fare for each adult on this flight"     
-        $ref: "#/definitions/Fare"
-      price_per_child:
-        description: "The per-passenger fare for each child on this flight"     
-        $ref: "#/definitions/Fare"
-      price_per_infant:
-        description: "The per-passenger fare for each infant on this flight"        
-        $ref: "#/definitions/Fare"
-      restrictions:
-        description: The restrictions associated with this fare
-        $ref: "#/definitions/FareRestrictions"
-      fees:
-        description: The fees that apply in addition to the total price of this fare
-        $ref: "#/definitions/Fees"
-  Fees:
-    properties:
-      service_fees:
-        type: string
-        description: The cost of any required service fees in addition to the total price
-      creditcard_fees:
-        type: string
-        description: The cost of any fees for common credit cards, such as Visa or Mastercard, in addition to the total price
   FlightSearchPrice:
      required:
         - total_price
