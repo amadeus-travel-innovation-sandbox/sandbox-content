@@ -397,6 +397,12 @@ paths:
           required: true
           type: string
           default: "2016-01-16"
+        - name: radius
+          in: query
+          description: Radius around the center to look for hotels in kilometers (km).
+          required: false
+          type: integer
+          default: 42
         - name: lang
           in: query
           description: "The preferred language of the content related to each hotel. Content will be returned in this language if available."
@@ -1573,13 +1579,14 @@ definitions:
         type: string
         description: A 3-letter code to identify a specific room type.
       rate_plan_code:
-        type: integer
+        type: string
         description: A 3 letter code to designate different rates base on traveler type.
       total_price:
         description: The total price of staying in this room from the given check-in date to the given check-out date
         $ref: "#/definitions/Amount"
       rates:
         description: The total price of staying in this room from the given check-in date to the given check-out date
+        type: array
         items:
           $ref: "#/definitions/PeriodRate"
       descriptions:
