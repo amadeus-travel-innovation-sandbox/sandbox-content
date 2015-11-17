@@ -1000,43 +1000,6 @@ paths:
           description: Client or server error
           schema:
             $ref: "#/definitions/Error"
-  /rail-stations/nearest-relevant:
-    get:
-      operationId: Nearest Relevant Rail Station
-      summary: The Nearest Relevant Rail Station can find the most useful nearby station to a given location.
-      description: |
-        This service provides information on railways stations in Italy and France that are near the given coordinates. Nearby stations will be rated from 1 to 100 based on their relevance to deliver services to the given location. This relevance is computed taking into account the Intercity rail traffic of the station, and its distance from your current location. So nearer subway or regional rail stations may be returned low in the result set, despite the fact that they may be much nearer than a further, intercity station.
-
-        To minimize response time, all distances are computed as a great-circle distance from the provided coordinates to the rail station coordinates, and therefore do not take into account traffic conditions, international boundaries, mountains, water, or anything else that might make the a nearby station hard-to-reach
-
-        Stations without daily service are not included, and the nearest station with daily traffic will always be returned.
-      parameters:
-        - name: apikey
-          in: query
-          description: API Key provided for your account, to identify you for API access
-          required: true
-          type: string
-        - name: latitude
-          in: query
-          description: Latitude location to be at the center of your search circle.
-          required: true
-          type: string
-          default: "41.8902"
-        - name: longitude
-          in: query
-          description: Longitude location to be at the center of your search circle.
-          required: true
-          type: string
-          default: 12.4922"
-      responses:
-        200:
-          description: Valid Search Response
-          schema:
-            $ref: "#/definitions/RelevantRailStationResponse"
-        default:
-          description: Client or server error
-          schema:
-            $ref: "#/definitions/Error"
   /trains/schedule-search:
     get:
       operationId: Train Schedule Search
@@ -1861,33 +1824,6 @@ definitions:
       traffic:
         type: string
         description: An indication of the level of Intercity traffic passing through this station.
-  RelevantRailStationResponse:
-     required:
-        - station
-        - station_label
-        - distance
-        - street_address
-        - relevance
-        - location
-     properties:
-      station:
-        type: string
-        description: The 7 character Amadeus UID of this given station. You can use this as an input parameter for a schedule or extensive search.
-      station_label:
-        type: string
-        description: The map label of this station, in UTF-8 format.
-      street_address:
-        type: string
-        description: The postal address of this station, in UTF-8 format.
-      distance:
-        type: string
-        description: The grand-circle distance in kilometers of this station from the location provided in the input.
-      relevance:
-        type: string
-        description: The relevance of this station for intercity traffic, based on your current location, rated from 1 (least relevant) to 100 (most relevant). 
-      location:
-        description: "This stations's approximate geolocation. "
-        $ref: "#/definitions/Geolocation" 
   TrainScheduleSearchResponse:
      properties:
       results:
