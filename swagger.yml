@@ -254,7 +254,7 @@ paths:
           description: "The number of results to display. This will not be strictly interpreted but used as a guideline to display a useful number of results. By default, the number of results is dynamically determined. A maximum of 250 results will be displayed."
           required: false
           type: integer
-          default: 20
+          default: 5
       responses:
         200:
           description: Valid Search Response
@@ -654,7 +654,7 @@ paths:
             $ref: "#/definitions/Error"
   /hotels/search-box:
     get:
-      operationId: Hotel Geoseach by box
+      operationId: Hotel Geosearch by box
       summary: The Hotel Lowest-Price Search API uses Amadeus' fast hotel search engine to locate the cheapest available rooms within a given rectangular region for a given stay period. It's ideal for displaying results on a map.
       description: |
         A fast Hotel shopping API to see which hotels are available in a given area, on a given day and displays their lowest prices. With this API you can find out the price of the cheapest daily rate for all hotels within a specified geographical region.
