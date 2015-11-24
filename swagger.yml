@@ -283,13 +283,13 @@ paths:
           description: City code from which the traveler will depart. See the location and airport interfaces for more information.
           required: true
           type: string
-          default: "BOS"
+          default: "LON"
         - name: destination
           in: query
           description:  IATA city code to which the traveler is going 
           required: true
           type: string
-          default: "LON"
+          default: "DUB"
         - name: departure_date
           in: query
           description: "The date on which the traveler will depart from the origin to go to the destination. The maximum scope for a date range is 2 days, for a larger scope, use the Extensive Search! "
@@ -338,6 +338,12 @@ paths:
           required: false
           type: integer
           default: 980
+        - name: currency
+          in: query
+          description: "The preferred currency for the results"
+          required: false
+          type: string
+          default: "EUR"
         - name: mobile
           in: query
           description: "Setting this to true will show mobile web deeplinks "
