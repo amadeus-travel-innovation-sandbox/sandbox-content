@@ -271,7 +271,7 @@ paths:
       description: |
           The Flight Affiliate Search API combines our Master Pricer search technology with Travel Audience's Connect API partners to provide a flight search where all results come with a deep-link to book the flight at a partner's website. The message is composed of multiple results for given request. A result is defined by a unique combination of price, tax, passenger type, fare type, cabin, and availability for each requested segment. A result is then composed of single or multiple itineraries. Each itinerary is composed of an outbound leg, and, if a return date was specified, an inbound leg. Each leg is composed of a list of one or more flights, that the traveller will be required to take in order to get from the origin airport to the destination airport.  
           
-          Only Travel Audience Connect partner airlines are searched, so content is limited to only their partner airlines. For an up-to-date list of partner airline routes, do something. You can earn commission using the deep links provided in the search results if you sign up for an account at [Travel Audience Connect]{http://connect.travelaudience.com}.
+          Only Travel Audience Connect partner airlines are searched, so content is limited to only their partner airlines. For an up-to-date list of partner airline routes, do something. You can earn commission using the deep links provided in the search results if you sign up for an account at http://connect.travelaudience.com.
       parameters:
         - name: apikey
           in: query
@@ -368,7 +368,7 @@ paths:
       
         When provided with an IATA code, the service determines whether this code could relate to a city code, an airport code or both. If the city could contain multiple airports, it will return all possible airports that correspond to that city code.
 
-        This API is based on the Amadeus supported [Geobases](http://opentraveldata.github.io/geobases/) open-source project. If you wish to make your own database with all IATA location information, in order to get faster reponses, you can download the latest raw data from [their github page](https://github.com/opentraveldata/geobases). The exact file used for this API is [ori_por_public.csv](https://raw.githubusercontent.com/opentraveldata/geobases/public/GeoBases/DataSources/Por/Ori/ori_por_public.csv). 
+        This API is based on the Amadeus supported Geobases open-source project http://opentraveldata.github.io/geobases. If you wish to make your own database with all IATA location information, in order to get faster reponses, you can download the latest raw data from their github page https://github.com/opentraveldata/geobases. The exact file used for this API is https://raw.githubusercontent.com/opentraveldata/geobases/public/GeoBases/DataSources/Por/Ori/ori_por_public.csv
       parameters:
         - name: apikey
           in: query
@@ -397,7 +397,7 @@ paths:
       description: |
         Given the start of any word in an airport's official name, a city name, or the start of an IATA code, this API provides the full name and IATA location code of the city or airport, for use in flight searches. Only major cities and civilian airports with several commercial flights per week are included by default. The response provides up to 20 possible matches, sorted by importance, in a [JQuery UI Autocomplete](http://jqueryui.com/autocomplete/) compatible format. [This sample implementation](https://github.com/amadeus-travel-innovation-sandbox/sandbox-content/blob/master/airport-autocomplete-template.html) using JQuery UI may help. This API uses data from the OpenTravelData project, see [optd_por_public.csv](https://raw.githubusercontent.com/opentraveldata/opentraveldata/master/opentraveldata/optd_por_public.csv).
 
-        The value returned is the IATA location code. The label returned is always in UTF-8 format, with the airport official name (which is often in the native language), in the format of English City Name (if not already included in the airport name) - Airport Name [AIRPORT IATA CODE].
+        The value returned is the IATA location code. The label returned is always in UTF-8 format, with the airport official name (which is often in the native language), in the format of English City Name (if not already included in the airport name).
       parameters:
         - name: apikey
           in: query
@@ -467,7 +467,7 @@ paths:
       description: |
         A fast Hotel shopping API to see which hotels are available in a given area, on a given day and displays their lowest prices. With this API you can find out the price of the cheapest daily rate for all hotels near a given airport.
     
-        This API allows you to quickly see the locations of hotels near a given airport, and what prices in that area look like. The API is based on our high-speed hotel pricing cache, which is also used to power [hotelsearchengine.amadeus.com](https://hotelsearchengine.amadeus.com/). Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.
+        This API allows you to quickly see the locations of hotels near a given airport, and what prices in that area look like. The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.
       parameters:
         - name: apikey
           in: query
@@ -564,7 +564,7 @@ paths:
       
         This API allows you to quickly see the hotel locations in a region, and what prices in that area look like,  as well as the check-in and check-out dates, and get list of up to 140 properties (names, codes, image, amenities) with their locations and rates. Optional parameters such as currency and maximum rates, amenities or hotel chain codes are also available and can be used to narrow down the results. More optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. 
     
-        The API is based on our high-speed hotel pricing cache, which is also used to power [hotelsearchengine.amadeus.com](https://hotelsearchengine.amadeus.com/). Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.
+        The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.
       parameters:
         - name: apikey
           in: query
@@ -667,7 +667,7 @@ paths:
         
         This API allows you to quickly see the hotel locations in a region, and what prices in that area look like,  as well as the check-in and check-out dates, and get a list of up to 140 properties (names, codes, image, amenities) with their locations and rates. Optional parameters such as currency and maximum rates, amenities or hotel chain codes are also available and can be used to narrow down the results. More optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. 
                     
-        The API is based on our high-speed hotel pricing cache, which is also used to power [hotelsearchengine.amadeus.com](https://hotelsearchengine.amadeus.com/). Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.
+        The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.
       parameters:
         - name: apikey
           in: query
@@ -764,7 +764,7 @@ paths:
 
         This API gives you more information on a specific property. Optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. 
     
-        The API is based on our high-speed hotel pricing cache, which is also used to power [hotelsearchengine.amadeus.com](https://hotelsearchengine.amadeus.com/). Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.
+        The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/). Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.
       parameters:
         - name: apikey
           in: query
@@ -1099,11 +1099,12 @@ paths:
     get:
       operationId: Train Schedule Search
       summary: The train schedule search can suggest destinations from your chosen departure station
-      description: This API allows you to find all the possible destinations in the Rail Instant Search cache (used by Extensive Search above) from a given origin station on a given day. You can use this to help build network maps, journey planners or provide inspiration for rail travel.
+      description:  |
+        This API allows you to find all the possible destinations in the Rail Instant Search cache (used by Extensive Search above) from a given origin station on a given day. You can use this to help build network maps, journey planners or provide inspiration for rail travel.
 
-                   This API has content from SNCF (French trains) and Trenitalia (Italian Trains). All the options returned are single-leg trips - where a single train takes you directly from the origin to the destination. In general, only departure dates up to 90 days in the future are supported
+        This API has content from SNCF (French trains) and Trenitalia (Italian Trains). All the options returned are single-leg trips - where a single train takes you directly from the origin to the destination. In general, only departure dates up to 90 days in the future are supported
 
-                   Currently agglomeration stations are not supported
+        Currently agglomeration stations are not supported	  
       parameters:
         - name: apikey
           in: query
@@ -1179,6 +1180,176 @@ paths:
           description: Client or server error
           schema:
             $ref: "#/definitions/Error"
+  /travel-intelligence/top-destinations:
+    get:
+      operationId: Top Flight Destinations
+      summary: The Top Flight Destinations API lets you find the most popular flight destinations from an origin during a period. This can help you answer questions like "Where are most people going to from Paris during the month of September?" 
+      description: >
+        The Top Flight Destinations API lets you find the most popular flight destinations from an origin during a period. This can help you answer questions like "Where are most people from Paris going to during the month of September?" The API is based on estimated flight traffic summary data from two journey points over a specific period. It returns up to 50 results, ordered by popularity, showing number of travelers as well as number of flights.
+       
+        This estimated search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see http://www.amadeus.com/travelintelligence for more information.
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: period
+          in: query
+          description: "Period, in month of the year (YYYY-MM), when consumers are traveling. Only periods from 2011-01 up to previous month of the current year are valid. Future dates are not supported."
+          required: true
+          type: string
+          default: "2015-09"
+        - name: origin
+          in: query
+          description: IATA city code from which the traveler will depart. 
+          required: true
+          type: string
+          default: "BOS"
+        - name: number_of_results
+          in: query
+          description: "The maximum number of destinations to return in the results set. Destinations are ordered by number of travelers. The maximum number of destinations returned is 50"
+          required: false
+          type: integer
+          format: Integer
+          default: "10"
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/TopDestinationsSearchResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /travel-intelligence/top-searches:
+    get:
+      operationId: Top Flight Searches
+      summary: The Top Flight Searches API lets you find the most popular flight searches from an origin in a during given search period. This can help you answer questions like "Where are people looking to travel from Paris during the month of September?" 
+      description: The Top Flight Search allows you to find number of estimated searches from an origin, optionally a destination, within a time period when travelers are performing the searches. The search is based on queries performed from within a country (also refers to as market) and returns up to 50 results, ordered by popularity, showing number of searches for most searched destination with its previous year comparison. This search also shows patterns on how travelers are searching for flights, revealing where, when and for how long they’re planning to travel by returning results in Trip Durations (How long are the trips planned for?) and Advance Search Period (How long before departures do travelers start searching for their trips?) information. This estimated search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see http://www.amadeus.com/travelintelligence for more information.
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: period
+          in: query
+          description: "Period of date (month or year) when consumers are searching to travel. Use YYYY-MM for month or YYYY for year. Only periods from year 2011-01 up to current year, previous month are valid. Future dates are not supported."
+          required: true
+          type: string
+          default: "2015-09"
+        - name: origin
+          in: query
+          description: IATA city code from which the traveler will depart. 
+          required: true
+          type: string
+          default: "BOS"
+        - name: destination
+          in: query
+          description:  IATA city code to which the traveler is going 
+          required: false
+          type: string
+          default: "LON"
+        - name: country
+          in: query
+          description: "2-letter IATA country code of the country where the search queries originates from."
+          required: yes
+          type: string
+          default: "US"
+        - name: number_of_results
+          in: query
+          description: "The maximum number of destinations to return in the results set. Destinations are ordered by number of searches. The maximum number of destinations returned is 50"
+          required: false
+          type: integer
+          format: Integer
+          default: "10"
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/TopSearchesSearchResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /travel-intelligence/flight-traffic:
+    get:
+      operationId: Flight Traffic API
+      summary: The Flight Traffic API lets you find the true origin and destination traffic summary between two journey points over a specified period. This can help you answer questions like "What cities are people coming from to visit Los Angeles between January through April of 2015" 
+      description: >
+        The Flight Traffic API lets you find the origin and destination traffic summary between two journey points over a specified period. The search returns number of flights & travelers for each origin and destination, ordered by popularity, for each month specified within the search period. This search can help you answer questions like "Where are people from Los Angeles traveling to between January and April of 2015?" or "Which is the most popular month for New Yorkers to travel last year?". This search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see http://www.amadeus.com/travelintelligence for more information.
+       
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: period
+          in: query
+          description: "Range of periods for which flight traffic information is required. Ranges are inclusive and ranges of months will apply from the start to the end of the month. If just a single period is specified, only that period will be displayed. Only periods from 2011-01 up to previous month of the current year are valid. Future periods are not supported."
+          required: true
+          type: string
+          default: "2014-09--2014-10"
+        - name: origin
+          in: query
+          description: IATA city code from which the traveler will depart. 
+          required: true
+          type: string
+          default: "BOS"
+        - name: destination
+          in: query
+          description: IATA city code to which the traveler is going. 
+          required: false
+          type: string
+          default: "LAX"
+        - name: number_of_results_per_period
+          in: query
+          description: "The maximum number of destinations to return for each period. Destinations are ordered by dates and number of travelers. The maximum number of destinations per period returned is 50"
+          required: false
+          type: integer
+          format: Integer
+          default: "5"
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/FlightTrafficSearchResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+  /travel-intelligence/airline-autocomplete:
+    get:
+      operationId: Airline Autocomplete
+      summary: The Airline Autocomplete API provides a simple means to find an IATA airline code for flight search based on an airline. The API is fully JQuery-Autocomplete compatible to enable you to quickly build a drop-down list for your users to find the right airline easily. 
+      description: |
+        Given the start of any word in an airline official name or the start of an airline IATA code, this API provides the full name and IATA airline code of the airline, for use in flight searches. The response provides all possible matches, sorted alphabetically, in a [JQuery UI Autocomplete](http://jqueryui.com/autocomplete/) compatible format.
+
+        The value returned is the IATA airline code. The label returned is always in UTF-8 format, with the airline official name.
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: term
+          in: query
+          description: Search term that should represent some part airline name or airline IATA code.
+          required: true
+          type: string
+          default: "Vir"
+      responses:
+        200:
+          description: Valid Search Response
+          schema:
+            $ref: "#/definitions/AirlineAutocompleteResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+
 definitions:
   Error:
     required:
@@ -1341,7 +1512,7 @@ definitions:
         description: Enumeration of the type of fare which this airline is providing, eg. VALUE. This is generally only available for affiliate responses.
       fare_basis:
         type: string
-        description: The full [Fare Basis Code]{https://en.wikipedia.org/wiki/Fare_basis_code} for the fare being offered.
+        description: See https://en.wikipedia.org/wiki/Fare_basis_code for the fare being offered.
   FlightSearchPrice:
      required:
         - total_price
@@ -1534,7 +1705,8 @@ definitions:
           $ref: "#/definitions/Contact"
       amenities:
         type: array
-        description: An array of amenity objects to the user what facilities this hotel might provide, such as a pool or parking. 
+      description: |
+        An array of amenity objects to the user what facilities this hotel might provide, such as a pool or parking. 
                     If this array is empty, it does not necessarily mean that there are no amenities available at this hotel, it could also mean that the hotel does not list their amenities in our search!
         items:
           $ref: "#/definitions/Amenity"
@@ -2385,13 +2557,13 @@ definitions:
      properties:
        CPC:
          $ref: "#/definitions/Amount"
-         description: The [Cost per Click]{https://en.wikipedia.org/wiki/Pay_per_click} commission earned when the provided deep link is clicked
+         description: See https://en.wikipedia.org/wiki/Pay_per_click for commission earned when the provided deep link is clicked
        CPA:
          $ref: "#/definitions/Amount"
-         description: The [Cost per Action]{https://en.wikipedia.org/wiki/Cost_per_action} commission earned for a given action from the provided deep link
+         description: See https://en.wikipedia.org/wiki/Cost_per_action for commission earned for a given action from the provided deep link
        CPS:
          $ref: "#/definitions/Amount"
-         description: The [Cost per Sale]{https://en.wikipedia.org/wiki/Pay_per_sale} commission earned as a result of a booking made from the provided deep link
+         description: See https://en.wikipedia.org/wiki/Pay_per_sale for commission earned as a result of a booking made from the provided deep link
   AffiliateFlightSearchPrice:
      required:
         - currency
@@ -2401,7 +2573,7 @@ definitions:
      properties:
       currency:
         type: string
-        description: "[ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code applicable to this fare"
+        description: "See http://en.wikipedia.org/wiki/ISO_4217 for currency code applicable to this fare"
       total_price:
         description: The total price for all the requested passengers for this flight
         type: string
@@ -2428,3 +2600,115 @@ definitions:
       creditcard_fees:
         type: string
         description: The cost of any fees for common credit cards, such as Visa or Mastercard, in addition to the total price   
+  TopDestinationsSearchResponse:
+    required:
+      - period
+      - origin
+      - results  
+    properties:
+      period:
+        type: string
+        description: The date period, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format YYYY-MM or YYYY
+      origin:
+        type: string
+        description: IATA code
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/TopDestinationsSearchResult"
+  TopDestinationsSearchResult:
+     required:
+        - destination
+        - flights
+        - travelers
+     properties:
+      destination:
+        type: string
+        description: The IATA code of the city or airport to which the traveler may go, from the provided origin
+      flights:
+        type: integer
+        description: Number of flights from origin to destination during the search period provided
+      travelers:
+        type: integer
+        description: Number of passengers from origin to destination during the search period provided
+  TopSearchesSearchResponse:
+    required:
+      - market
+      - period
+      - origin
+      - destination
+      - results  
+    properties:
+      market:
+        type: string
+        description: Country code
+      period:
+        type: string
+        description: The date period, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format YYYY-MM or YYYY
+      origin:
+        type: string
+        description: IATA code
+      destination:
+        type: string
+        description: IATA code
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/TopSearchesSearchResult"
+  TopSearchesSearchResult:
+     required:
+        - destination
+        - searches
+        - searches_prior_year
+     properties:
+      destination:
+        type: string
+        description: The IATA code of the city or airport to which the traveler may go, from the provided origin
+      searches:
+        type: integer
+        description: Average number of daily searches for the destination during the search period provided
+      searches_prior_year:
+        type: integer
+        description: Prior year average number of daily searches for the destination during the search period provided
+  FlightTrafficSearchResponse:
+    required:
+      - period
+      - origin
+      - results  
+    properties:
+      period:
+        type: string
+        description: The date period, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format YYYY-MM or YYYY
+      origin:
+        type: string
+        description: IATA code
+      results:
+        type: array
+        items:
+          $ref: "#/definitions/FlightTrafficSearchResult"
+  FlightTrafficSearchResult:
+     required:
+        - destination
+        - flights
+        - travelers
+     properties:
+      destination:
+        type: string
+        description: The IATA code of the city or airport to which the traveler may go, from the provided origin
+      flights:
+        type: integer
+        description: Number of flights from origin to destination during the search period provided
+      travelers:
+        type: integer
+        description: Number of passengers from origin to destination during the search period provided
+  AirlineAutocompleteResponse:
+     required:
+        - value
+        - label
+     properties:
+      value:
+        type: string
+        description: The 3 letter IATA airline code of the given airline. You can use this as a response filter for a flight low-fare or inspiration search.
+      label:
+        type: string
+        description: The official name of this airline, in UTF-8 format.
