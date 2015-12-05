@@ -1104,7 +1104,7 @@ paths:
 
         This API has content from SNCF (French trains) and Trenitalia (Italian Trains). All the options returned are single-leg trips - where a single train takes you directly from the origin to the destination. In general, only departure dates up to 90 days in the future are supported
 
-        Currently agglomeration stations are not supported	  
+        Currently agglomeration stations are not supported    
       parameters:
         - name: apikey
           in: query
@@ -1184,7 +1184,7 @@ paths:
     get:
       operationId: Top Flight Destinations
       summary: The Top Flight Destinations API lets you find the most popular flight destinations from an origin during a period. This can help you answer questions like "Where are most people going to from Paris during the month of September?" 
-      description: >
+      description: |
         The Top Flight Destinations API lets you find the most popular flight destinations from an origin during a period. This can help you answer questions like "Where are most people from Paris going to during the month of September?" The API is based on estimated flight traffic summary data from two journey points over a specific period. It returns up to 50 results, ordered by popularity, showing number of travelers as well as number of flights.
        
         This estimated search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see http://www.amadeus.com/travelintelligence for more information.
@@ -1211,8 +1211,7 @@ paths:
           description: "The maximum number of destinations to return in the results set. Destinations are ordered by number of travelers. The maximum number of destinations returned is 50"
           required: false
           type: integer
-          format: Integer
-          default: "10"
+          default: 10
       responses:
         200:
           description: Valid Search Response
@@ -1226,7 +1225,7 @@ paths:
     get:
       operationId: Top Flight Searches
       summary: The Top Flight Searches API lets you find the most popular flight searches from an origin in a during given search period. This can help you answer questions like "Where are people looking to travel from Paris during the month of September?" 
-      description: The Top Flight Search allows you to find number of estimated searches from an origin, optionally a destination, within a time period when travelers are performing the searches. The search is based on queries performed from within a country (also refers to as market) and returns up to 50 results, ordered by popularity, showing number of searches for most searched destination with its previous year comparison. This search also shows patterns on how travelers are searching for flights, revealing where, when and for how long they’re planning to travel by returning results in Trip Durations (How long are the trips planned for?) and Advance Search Period (How long before departures do travelers start searching for their trips?) information. This estimated search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see http://www.amadeus.com/travelintelligence for more information.
+      description: "The Top Flight Search allows you to find number of estimated searches from an origin, optionally a destination, within a time period when travelers are performing the searches. The search is based on queries performed from within a country (also refers to as market) and returns up to 50 results, ordered by popularity, showing number of searches for most searched destination with its previous year comparison. This search also shows patterns on how travelers are searching for flights, revealing where, when and for how long they’re planning to travel by returning results in Trip Durations (How long are the trips planned for?) and Advance Search Period (How long before departures do travelers start searching for their trips?) information. This estimated search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see http://www.amadeus.com/travelintelligence for more information."
       parameters:
         - name: apikey
           in: query
@@ -1247,14 +1246,14 @@ paths:
           default: "BOS"
         - name: destination
           in: query
-          description:  IATA city code to which the traveler is going 
+          description:  "IATA city code to which the traveler is going"
           required: false
           type: string
           default: "LON"
         - name: country
           in: query
           description: "2-letter IATA country code of the country where the search queries originates from."
-          required: yes
+          required: true
           type: string
           default: "US"
         - name: number_of_results
@@ -1262,8 +1261,7 @@ paths:
           description: "The maximum number of destinations to return in the results set. Destinations are ordered by number of searches. The maximum number of destinations returned is 50"
           required: false
           type: integer
-          format: Integer
-          default: "10"
+          default: 10
       responses:
         200:
           description: Valid Search Response
@@ -1277,7 +1275,7 @@ paths:
     get:
       operationId: Flight Traffic API
       summary: The Flight Traffic API lets you find the true origin and destination traffic summary between two journey points over a specified period. This can help you answer questions like "What cities are people coming from to visit Los Angeles between January through April of 2015" 
-      description: >
+      description: |
         The Flight Traffic API lets you find the origin and destination traffic summary between two journey points over a specified period. The search returns number of flights & travelers for each origin and destination, ordered by popularity, for each month specified within the search period. This search can help you answer questions like "Where are people from Los Angeles traveling to between January and April of 2015?" or "Which is the most popular month for New Yorkers to travel last year?". This search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see http://www.amadeus.com/travelintelligence for more information.
        
       parameters:
@@ -1309,8 +1307,7 @@ paths:
           description: "The maximum number of destinations to return for each period. Destinations are ordered by dates and number of travelers. The maximum number of destinations per period returned is 50"
           required: false
           type: integer
-          format: Integer
-          default: "5"
+          default: 5
       responses:
         200:
           description: Valid Search Response
@@ -1705,8 +1702,8 @@ definitions:
           $ref: "#/definitions/Contact"
       amenities:
         type: array
-      description: |
-        An array of amenity objects to the user what facilities this hotel might provide, such as a pool or parking. 
+        description: |
+                    An array of amenity objects to the user what facilities this hotel might provide, such as a pool or parking. 
                     If this array is empty, it does not necessarily mean that there are no amenities available at this hotel, it could also mean that the hotel does not list their amenities in our search!
         items:
           $ref: "#/definitions/Amenity"
