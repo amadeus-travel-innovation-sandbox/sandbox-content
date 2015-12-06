@@ -271,7 +271,7 @@ paths:
       description: |
           The Flight Affiliate Search API combines our Master Pricer search technology with Travel Audience's Connect API partners to provide a flight search where all results come with a deep-link to book the flight at a partner's website. The message is composed of multiple results for given request. A result is defined by a unique combination of price, tax, passenger type, fare type, cabin, and availability for each requested segment. A result is then composed of single or multiple itineraries. Each itinerary is composed of an outbound leg, and, if a return date was specified, an inbound leg. Each leg is composed of a list of one or more flights, that the traveller will be required to take in order to get from the origin airport to the destination airport.  
           
-          Only Travel Audience Connect partner airlines are searched, so content is limited to only their partner airlines. For an up-to-date list of partner airline routes, do something. You can earn commission using the deep links provided in the search results if you sign up for an account at http://connect.travelaudience.com.
+          Only Travel Audience Connect partner airlines are searched, so content is limited to only their partner airlines. For an up-to-date list of partner airline routes, see the route maps on their respective websites below. You can earn commission using the deep links provided in the search results if you sign up for an account at http://connect.travelaudience.com.
       parameters:
         - name: apikey
           in: query
