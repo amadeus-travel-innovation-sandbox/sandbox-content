@@ -175,6 +175,7 @@ paths:
           in: query
           description: "The date on which the traveler will depart from the origin to go to the destination. The maximum scope for a date range is 2 days, for a larger scope, use the Extensive Search! "
           required: true
+          format: date
           type: string
           default: "2016-01-25"
         - name: return_date
@@ -1057,6 +1058,7 @@ paths:
           description: The date on which you would like to depart from the origin station to go to the destination.
           required: true
           type: string
+          format: date
           default: "2015-10-14"
       responses:
         200:
@@ -1153,9 +1155,11 @@ definitions:
         description: The IATA code of the city or airport to which the traveler may go, from the provided origin
       departure_date:
         type: string
+        format: date
         description: "The date departure at the origin, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd, to go to the above destination"
       return_date:
         type: string
+        format: date
         description: "The date at which the flight from the destination to the origin will arrive at the origin. The date is in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd, in the local date of the origin"
       price:
         type: string
@@ -1607,9 +1611,11 @@ definitions:
      properties:
       start_date:
         type: string
+        format: date
         description: "The start date of this rate, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd."
       end_date:
         type: string
+        format: date
         description: "The date on which this rate ends, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd."
       currency:
         type: string
@@ -1898,6 +1904,7 @@ definitions:
         description: Station ID of the origin station for this search.
       date:
         type: string
+        format: date
         description: The search date provided in the input.
       services:
         description: Array to describe service to the destinations.
@@ -1990,6 +1997,7 @@ definitions:
         $ref: "#/definitions/Infant"
       date_of_birth:
         type: string
+        format: date
         description: "An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date indicating the birth date of the traveler, as provided by the agent. For example: 1972-02-19."
       contacts:
         description: Details on how to contact this traveler. At least one traveler in a travel-record will have a contact element.
@@ -2011,6 +2019,7 @@ definitions:
         description: The first name of the infant, as entered by the agent, in upper-case. May include middle names, initials or prefixes.
       date_of_birth:
         type: string
+        format: date
         description: "An optional [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date indicating the birth date of the infant, as provided by the agent. For example: 1972-02-19."    
   FrequentTravelerCard:
      required:
@@ -2209,9 +2218,11 @@ definitions:
         description: Uniquely identifies this hotel room reservation in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record.
       check_in:
         type: string
+        format: date
         description: "Date on which the guest will begin their stay in the hotel, in the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd."
       check_out:
         type: string
+        format: date
         description: "Date on which the guest will end their stay in the hotel, in the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd."
       property_code:
         type: string
@@ -2254,6 +2265,7 @@ definitions:
         description: Uniquely identifies this other reservation in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record.
       date:
         type: string
+        format: date
         description: "Date on which this other reservation will begin, in the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd."
       location:
         type: string
