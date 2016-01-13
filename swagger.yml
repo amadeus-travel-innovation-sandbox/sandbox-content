@@ -889,6 +889,13 @@ paths:
           required: false
           type: string
           default: "DAILY"
+        - name: rate_filter
+          in: query
+          description: "Defines the types of rates to be returned in the output"
+          required: false
+          type: string
+          default: "ESTIMATED"
+          enum: [AVAILABLE, ESTIMATED, ALL]
         - name: vehicle
           in: query
           description: "Specifies the type of vehicle to be rented. If selected, the results set will include only vehicles that match these type descriptions. The enumerations above correspond to ACRISS Pseudo Codes, and you may also provide an ACRISS pseudo code directly. If specifying a vehicle-specific ACRISS code, you may provide this parameter up to 3 times."
@@ -982,6 +989,13 @@ paths:
           required: false
           type: string
           default: "DAILY"
+        - name: rate_filter
+          in: query
+          description: "Defines the types of rates to be returned in the output"
+          required: false
+          type: string
+          default: "ESTIMATED"
+          enum: [AVAILABLE, ESTIMATED, ALL]
         - name: vehicle
           in: query
           description: "Specifies the type of vehicle to be rented. If selected, the results set will include only vehicles that match these type descriptions. The enumerations above correspond to ACRISS Pseudo Codes, and you may also provide an ACRISS pseudo code directly. If specifying a vehicle-specific ACRISS code, you may provide this parameter up to 3 times."
