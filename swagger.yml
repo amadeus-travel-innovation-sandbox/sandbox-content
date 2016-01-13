@@ -48,7 +48,7 @@ paths:
           description: "Range of dates between which the traveler could depart. Ranges are inclusive and ranges of months will apply from the start to the end of the month. If just a single date is specified, only that date will be searched. By default, the date range starts today and applies up to 361 in the future is applied. Past dates are generally not supported, future dates should be in the next 361 days, although results start to become sparse after about 6 months in the future, as airlines may still be defining their schedules. The default is to search all future dates available. "
           required: false
           type: string
-          default: "2016-01-16--2016-01-26"
+          default: "2016-06-16--2016-06-26"
         - name: duration
           in: query
           description: "The allowed duration or range of durations of the trip, in days."
@@ -114,7 +114,7 @@ paths:
           description: "Range of dates between which the traveler could depart. Ranges are inclusive and ranges of months will apply from the start to the end of the month. If just a single date is specified, only that date will be searched. By default, the date range starts today and applies up to 361 in the future is applied. Past dates are generally not supported, future dates should be in the next 361 days, although results start to become sparse after about 6 months in the future, as airlines may still be defining their schedules. The default is to search all future dates available. "
           required: false
           type: string
-          default: "2016-01-16--2016-01-26"
+          default: "2016-06-16--2016-06-26"
         - name: duration
           in: query
           description: "The allowed duration or range of durations of the trip, in days."
@@ -177,25 +177,25 @@ paths:
           required: true
           format: date
           type: string
-          default: "2016-01-25"
+          default: "2016-06-25"
         - name: return_date
           in: query
           description: "The date on which the traveler will depart from the destination to return to the origin. If this parameter is not specified, the search will find only one-way trips. If this, or the return_by parameter are specified, only return trips are found"
           required: false
           type: string
-          default: "2016-01-31"
+          default: "2016-06-28"
         - name: arrive_by
           in: query
           description: "The datetime by which the outbound flight should arrive, based on local time at the destination airport"
           required: false
           type: string
-          default: "2016-01-25T16:00"
+          default: "2016-06-25T16:00"
         - name: return_by
           in: query
           description: "The time by which the inbound flight should arrive, based on local time at the airport specified as the origin parameter"
           required: false
           type: string
-          default: "2016-01-31T08:00"
+          default: "2016-06-28T08:00"
         - name: adults
           in: query
           description: "The number of adult (age 12 and over) passengers traveling on this flight."
@@ -296,13 +296,13 @@ paths:
           description: "The date on which the traveler will depart from the origin to go to the destination. The maximum scope for a date range is 2 days, for a larger scope, use the Extensive Search! "
           required: true
           type: string
-          default: "2016-01-25"
+          default: "2016-06-25"
         - name: return_date
           in: query
           description: "The date on which the traveler will depart from the destination to return to the origin. If this parameter is not specified, the search will find only one-way trips. If this, or the return_by parameter are specified, only return trips are found"
           required: false
           type: string
-          default: "2016-01-31"
+          default: "2016-06-28"
         - name: adults
           in: query
           description: "The number of adult (age 12 and over) passengers traveling on this flight."
@@ -486,13 +486,13 @@ paths:
           description: "Date on which the guest will begin their stay in the hotel. Past availability is not displayed, future availability becomes less useful from about 6 months from the current date."
           required: true
           type: string
-          default: "2016-01-14"
+          default: "2016-06-14"
         - name: check_out
           in: query
           description: "Date on which the guest will end their stay in the hotel."
           required: true
           type: string
-          default: "2016-01-16"
+          default: "2016-06-16"
         - name: radius
           in: query
           description: Radius around the center to look for hotels in kilometers (km).
@@ -595,13 +595,13 @@ paths:
           description: "Date on which the guest will begin their stay in the hotel. Past availability is not displayed, future availability becomes less useful from about 6 months from the current date."
           required: true
           type: string
-          default: "2016-01-14"
+          default: "2016-06-14"
         - name: check_out
           in: query
           description: "Date on which the guest will end their stay in the hotel."
           required: true
           type: string
-          default: "2016-01-16"
+          default: "2016-06-16"
         - name: lang
           in: query
           description: "The preferred language of the content related to each hotel. Content will be returned in this language if available."
@@ -692,13 +692,13 @@ paths:
           description: "Date on which the guest will begin their stay in the hotel. Past availability is not displayed, future availability becomes less useful from about 6 months from the current date."
           required: true
           type: string
-          default: "2016-01-14"
+          default: "2016-06-14"
         - name: check_out
           in: query
           description: "Date on which the guest will end their stay in the hotel."
           required: true
           type: string
-          default: "2016-01-16"
+          default: "2016-06-16"
         - name: lang
           in: query
           description: "The preferred language of the content related to each hotel. Content will be returned in this language if available."
@@ -783,13 +783,13 @@ paths:
           description: "Date on which the guest will begin their stay in the hotel. Past availability is not displayed, future availability becomes less useful from about 6 months from the current date."
           required: true
           type: string
-          default: "2016-01-14"
+          default: "2016-06-14"
         - name: check_out
           in: query
           description: "Date on which the guest will end their stay in the hotel."
           required: true
           type: string
-          default: "2016-01-17"
+          default: "2016-06-17"
         - name: lang
           in: query
           description: "The preferred language of the content related to each hotel. Content will be returned in this language if available."
@@ -852,13 +852,13 @@ paths:
           description: "Date on which the car rental will be collected from the car rental location. If no time is provided, a default value of 09:00 is used. Past availability is not displayed, future availability becomes less useful from about 6 months from the current date."
           required: true
           type: string
-          default: "2016-01-04"
+          default: "2016-06-04"
         - name: drop_off
           in: query
           description: "Date at which the car rental will end and the car will be returned to the rental location. If no time is provided, a default value of 17:00 is used."
           required: true
           type: string
-          default: "2016-01-08"
+          default: "2016-06-08"
         - name: lang
           in: query
           description: "The preferred language of the content related to each car rental. Content will be returned in this language if available."
@@ -952,13 +952,13 @@ paths:
           description: "Date on which the car rental will be collected from the car rental location. If no time is provided, a default value of 09:00 is used. Past availability is not displayed, future availability becomes less useful from about 6 months from the current date."
           required: true
           type: string
-          default: "2016-01-04"
+          default: "2016-06-04"
         - name: drop_off
           in: query
           description: "Date at which the car rental will end and the car will be returned to the rental location. If no time is provided, a default value of 17:00 is used."
           required: true
           type: string
-          default: "2016-01-08"
+          default: "2016-06-08"
         - name: lang
           in: query
           description: "The preferred language of the content related to each car rental. Content will be returned in this language if available."
@@ -1100,7 +1100,7 @@ paths:
           description: The date or range of dates on which you would like to depart from the origin station to go to the destination.
           required: true
           type: string
-          default: "2015-10-14"
+          default: "2016-03-14"
       responses:
         200:
           description: Valid Search Response
@@ -1138,7 +1138,7 @@ paths:
           required: true
           type: string
           format: date
-          default: "2015-10-14"
+          default: "2016-03-14"
       responses:
         200:
           description: Valid Search response
