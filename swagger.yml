@@ -36,13 +36,13 @@ paths:
           description: City code from which the traveler will depart. See the location and airport interfaces for more information.
           required: true
           type: string
-          default: "BOS"
+          default: "NYC"
         - name: destination
           in: query
           description:  IATA city code to which the traveler is going 
           required: false
           type: string
-          default: "LON"
+          default: "LAX"
         - name: departure_date
           in: query
           description: "Range of dates between which the traveler could depart. Ranges are inclusive and ranges of months will apply from the start to the end of the month. If just a single date is specified, only that date will be searched. By default, the date range starts today and applies up to 361 in the future is applied. Past dates are generally not supported, future dates should be in the next 361 days, although results start to become sparse after about 6 months in the future, as airlines may still be defining their schedules. The default is to search all future dates available. "
@@ -102,7 +102,7 @@ paths:
           description: City code from which the traveler will depart. See the location and airport interfaces for more information.
           required: true
           type: string
-          default: "BOS"
+          default: "FRA"
         - name: destination
           in: query
           description:  IATA city code to which the traveler is going 
