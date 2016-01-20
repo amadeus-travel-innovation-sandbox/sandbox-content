@@ -1175,13 +1175,13 @@ paths:
           description: The Amadeus identifier of the given travel record. Usually printed at the top of an itinerary or boarding pass.
           required: true
           type: string
-          default: "ZA6PHM"
+          default: "YB8SPK"
         - name: last_name
           in: query
           description: The last name of any traveler in this record, as written on their identification used for travel. This is required to ensure that applications retrieving the record are acting on behalf of the customer.
           required: true
           type: string
-          default: "SANDBOX"
+          default: "LOPEZ"
         - name: env
           in: query
           description: Indicates the Amadeus system from which this record should be retrieved.
