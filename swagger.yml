@@ -63,7 +63,7 @@ paths:
           default: false
         - name: max_price
           in: query
-          description: "Maximum price of trips to find in the result set, in the currency specified for this origin and destination pair in the cache contents spreadsheet. By default, no limit is applied"
+          description: "Maximum price of trips to find in the result set, in the currency specified for this origin and destination pair in the cache contents spreadsheet. So, for example, if the origin is NYC, and the max price is 400, this means 400 USD. If the origin is PAR, and the max price is 400, this means 400 EUR. By default, no limit is applied"
           required: false
           type: string
           format: Integer
@@ -129,7 +129,7 @@ paths:
           default: false
         - name: max_price
           in: query
-          description: "Maximum price of trips to find in the result set, in the currency specified for this origin and destination pair in the cache contents spreadsheet. By default, no limit is applied"
+          description: "Maximum price of trips to find in the result set, in the currency specified for this origin and destination pair in the cache contents spreadsheet. So, for example, if the origin is NYC, and the max price is 400, this means 400 USD. If the origin is PAR, and the max price is 400, this means 400 EUR. By default, no limit is applied"
           required: false
           type: string
           default: "950"
