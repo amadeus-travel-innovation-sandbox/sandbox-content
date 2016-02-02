@@ -216,7 +216,7 @@ paths:
           default: 0
         - name: include_airlines
           in: query
-          description: If specified, all results will include at least one flight where one or more of these airlines is the marketing carrier
+          description: If specified, all results will include at least one flight where one or more of these airlines is the marketing carrier. This behaves as an OR function.
           required: false
           type: string
           default: "AF"
@@ -1739,7 +1739,10 @@ definitions:
         type: array
         description: Information on currently available rooms at this hotel.
         items:
-          $ref: "#/definitions/HotelRoom"       
+          $ref: "#/definitions/HotelRoom" 
+      more_rooms_at_this_hotel:
+        description: Provides a ready-to-use link to make a follow up request to find more available rooms at this hotel
+        $ref: "#/definitions/Link"
   Address:
      required:
         - line1
@@ -1871,6 +1874,13 @@ definitions:
       amount:
         type: string
         description: "Total amount in the given currency per day of this rate, formatted appropriately. For example: 194.99."
+  Link:
+     required:
+        - href
+     properties:
+       href:
+         description: Hyperlink reference URL to the target
+         type: string
   CarSearchResponse:
      properties:
       results:
