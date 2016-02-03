@@ -556,7 +556,7 @@ paths:
         - name: amenity
           in: query
           description: >-
-            Hotel <a href="hotels-api-supported-amenities-filter">amenities filter</a> to search narrow down hotels with certain amenities. For example: amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED).
+            Hotel <a href="hotels-api-supported-amenities-filter">amenities filter</a> to search narrow down hotels with certain amenities. For example&colon; amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED).
           required: false
           type: string
           default: "PARKING"
@@ -660,7 +660,7 @@ paths:
         - name: amenity
           in: query
           description: >-
-            Hotel <a href="hotels-api-supported-amenities-filter">amenities filter</a> to search narrow down hotels with certain amenities. For example: amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED).
+            Hotel <a href="hotels-api-supported-amenities-filter">amenities filter</a> to search narrow down hotels with certain amenities. For example&colon; amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED).
           required: false
           type: string
           default: "PARKING"
@@ -758,7 +758,7 @@ paths:
         - name: amenity
           in: query
           description: >-
-            Hotel <a href="hotels-api-supported-amenities-filter">amenities filter</a> to search narrow down hotels with certain amenities. For example: amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED).
+            Hotel <a href="hotels-api-supported-amenities-filter">amenities filter</a> to search narrow down hotels with certain amenities. For example&colon; amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED).
           required: false
           type: string
           default: PARKING
@@ -1789,7 +1789,7 @@ definitions:
         description: The method of contact, such as phone or fax.
       purpose:
         type: string
-        description: "The reason or channel of that contact method. For example: HOME, EMERGENCY, MOBILE."
+        description: "The reason or channel of that contact method. For example&colon; HOME, EMERGENCY, MOBILE."
       detail:
         type: string
         description: How that contact should be used, eg. a phone number
@@ -1811,10 +1811,10 @@ definitions:
      properties:
       provider:
         type: string
-        description: The organization that issued the award. For example:. Local Star Rating, AAA.
+        description: The organization that issued the award. For example&colon;. Local Star Rating, AAA.
       rating:
         type: string
-        description: "The level of the award that was awarded on the provider's scale. For example: 4 or RECOMMENDED."
+        description: "The level of the award that was awarded on the provider's scale. For example&colon; 4 or RECOMMENDED."
   Image:
      required:
         - url
@@ -1867,7 +1867,7 @@ definitions:
         description: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency code.
       amount:
         type: string
-        description: "Total amount in the given currency, formatted appropriately. For example: 194.99"
+        description: "Total amount in the given currency, formatted appropriately. For example&colon; 194.99"
   PeriodRate:
      required:
         - start_date
@@ -1888,7 +1888,7 @@ definitions:
         description: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency code of this rate.
       amount:
         type: string
-        description: "Total amount in the given currency per day of this rate, formatted appropriately. For example: 194.99."
+        description: "Total amount in the given currency per day of this rate, formatted appropriately. For example&colon; 194.99."
   Link:
      required:
         - href
@@ -1957,10 +1957,10 @@ definitions:
         description: The 4 letter <a href="http://en.wikipedia.org/wiki/ACRISS_Car_Classification_Code">ACRISS code</a> that defines the properties of vehicle being rented.
       category:
         type: string
-        description: "The decoded ACRISS vehicle category (For example: Economy, Luxury, Standard)."
+        description: "The decoded ACRISS vehicle category (For example&colon; Economy, Luxury, Standard)."
       type:
         type: string
-        description: "The decoded ACRISS vehicle type, to let you know what kind of vehicle this is (For example: Van, SUV, Pickup)."
+        description: "The decoded ACRISS vehicle type, to let you know what kind of vehicle this is (For example&colon; Van, SUV, Pickup)."
       transmission:
         type: string
         description: "The decoded ACRISS transmission type, to let you know if this vehicle is Automatic or Manual Transmission (stick-shift)."
@@ -1977,7 +1977,7 @@ definitions:
      properties:
       type:
         type: string
-        description: "The type or applicability period of rate being applied. For example: DAILY, WEEKLY, WEEKEND." 
+        description: "The type or applicability period of rate being applied. For example&colon; DAILY, WEEKLY, WEEKEND." 
       price:
         description: "The long name of the provider corresponding to the above code."
         $ref: "#/definitions/Amount"
@@ -2058,7 +2058,7 @@ definitions:
         description: "The identifying number of this train service. Usually the marketing company will only operate on train per day with this train number."
       train_type:
         type: string
-        description: "The type of train that you may expect for this journey. For example: InterCity, Regional..."
+        description: "The type of train that you may expect for this journey. For example&colon; InterCity, Regional..."
       prices:
         description: "Possible pricing for this train journey."
         type: array
@@ -2080,7 +2080,7 @@ definitions:
         description: A code the identifies the type of booking class being used.
       accomodation:
         type: string
-        description: "A standard enumeration of the mode in which the passenger is accommodated. For example: SEAT, BERTH, CABIN, CARGO, UNKNOWN."
+        description: "A standard enumeration of the mode in which the passenger is accommodated. For example&colon; SEAT, BERTH, CABIN, CARGO, UNKNOWN."
       total_price:
         description: The total cost of this service.
         $ref: "#/definitions/Amount"       
@@ -2231,10 +2231,10 @@ definitions:
         description: Uniquely identifies this traveler in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record.
       last_name:
         type: string
-        description: "The last name of the passenger, as entered by the agent, in upper-case. May include suffixes. For example: THACKSTON, KING III, LU."
+        description: "The last name of the passenger, as entered by the agent, in upper-case. May include suffixes. For example&colon; THACKSTON, KING III, LU."
       first_name:
         type: string
-        description: "The first name of the passenger, as entered by the agent, in upper-case. May include middle names, initials or prefixes. The total combined length of the first name and last name must be between 2 and 57 characters. For example: ALEXANDRA, JOSE-ANTONIO MR, ELAINE T DR."
+        description: "The first name of the passenger, as entered by the agent, in upper-case. May include middle names, initials or prefixes. The total combined length of the first name and last name must be between 2 and 57 characters. For example&colon; ALEXANDRA, JOSE-ANTONIO MR, ELAINE T DR."
       traveler_type:
         type: string
         description: Enumeration of the type of traveler. May be ADULT or CHILD. 
@@ -2244,7 +2244,7 @@ definitions:
       date_of_birth:
         type: string
         format: date
-        description: An <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date indicating the birth date of the traveler, as provided by the agent. For example: 1972-02-19.
+        description: An <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date indicating the birth date of the traveler, as provided by the agent. For example&colon; 1972-02-19.
       contacts:
         description: Details on how to contact this traveler. At least one traveler in a travel-record will have a contact element.
         type: array
@@ -2266,8 +2266,7 @@ definitions:
       date_of_birth:
         type: string
         format: date
-        description: >-
-           An optional <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date indicating the birth date of the infant, as provided by the agent. For example: 1972-02-19.
+        description: An optional <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date indicating the birth date of the infant, as provided by the agent. For example&colon; 1972-02-19.
   FrequentTravelerCard:
      required:
         - issuer_type
@@ -2279,10 +2278,10 @@ definitions:
         description: The type of organization that issued the card. This is an enumeration, possible values are AIRLINE, HOTEL_CHAIN, RENTAL_CAR_PROVIDER, RAILWAY.
       company_code:
         type: string
-        description: "The identifying code of the issuer, within the context of its type. For example: BA (and if the issuer type is AIRLINE, this indicates BA=British Airways)."
+        description: "The identifying code of the issuer, within the context of its type. For example&colon; BA (and if the issuer type is AIRLINE, this indicates BA=British Airways)."
       card_number:
         type: string
-        description: "The identifying number (or string) marked on the card. For example: 12345678."
+        description: "The identifying number (or string) marked on the card. For example&colon; 12345678."
   Reservation:
      properties:
       flight_tickets:
@@ -2403,7 +2402,7 @@ definitions:
         description: 6 character identifier of this travel record on the airline's system. May be the same as the global record locator.
       status:
         type: string
-        description: "An enumeration to represent the reservation status for this seat on this flight. For example: CONFIRMED, CANCELLED, RESCHEDULED, FLIGHT_CANCELLED, WAITLISTED."
+        description: "An enumeration to represent the reservation status for this seat on this flight. For example&colon; CONFIRMED, CANCELLED, RESCHEDULED, FLIGHT_CANCELLED, WAITLISTED."
   CarReservation:
      required:
         - id
@@ -2449,7 +2448,7 @@ definitions:
         description: The identifier of this reservation in the car rental provider's system. This should be provided at the rental office to identify your reservation.
       status:
         type: string
-        description: "An enumeration to represent the reservation status for this car rental. For example: CONFIRMED, CANCELLED, REQUESTED, REJECTED, PENDING_CANCELLATION, PENDING_CONFIRMATION."
+        description: "An enumeration to represent the reservation status for this car rental. For example&colon; CONFIRMED, CANCELLED, REQUESTED, REJECTED, PENDING_CANCELLATION, PENDING_CONFIRMATION."
   HotelReservation:
      required:
         - id
@@ -2498,7 +2497,7 @@ definitions:
         description: The identifier of this reservation in the hotel chain's system. This should be provided at the check-in desk to identify your reservation.
       status:
         type: string
-        description: "An enumeration to represent the reservation status for this hotel reservation. For example: CONFIRMED, CANCELLED, REQUESTED."
+        description: "An enumeration to represent the reservation status for this hotel reservation. For example&colon; CONFIRMED, CANCELLED, REQUESTED."
   OtherReservation:
      required:
         - id
@@ -2534,7 +2533,7 @@ definitions:
      properties:
       status:
         type: string
-        description: "An enumeration to represent the reservation status for this hotel reservation. For example: CONFIRMED, CANCELLED, REQUESTED, REJECTED, PENDING_CANCELLATION, PENDING_CONFIRMATION."
+        description: "An enumeration to represent the reservation status for this hotel reservation. For example&colon; CONFIRMED, CANCELLED, REQUESTED, REJECTED, PENDING_CANCELLATION, PENDING_CONFIRMATION."
   AffiliateSearchResponse:
      required:
         - meta
