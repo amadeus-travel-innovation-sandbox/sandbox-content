@@ -2244,7 +2244,7 @@ definitions:
       date_of_birth:
         type: string
         format: date
-        description: "An <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date indicating the birth date of the traveler, as provided by the agent. For example: 1972-02-19."
+        description: An <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date indicating the birth date of the traveler, as provided by the agent. For example: 1972-02-19.
       contacts:
         description: Details on how to contact this traveler. At least one traveler in a travel-record will have a contact element.
         type: array
@@ -2266,7 +2266,7 @@ definitions:
       date_of_birth:
         type: string
         format: date
-        description: "An optional <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date indicating the birth date of the infant, as provided by the agent. For example: 1972-02-19."    
+        description: An optional <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date indicating the birth date of the infant, as provided by the agent. For example: 1972-02-19.
   FrequentTravelerCard:
      required:
         - issuer_type
