@@ -49,9 +49,15 @@ paths:
           required: false
           type: string
           default: "2016-06-16--2016-06-26"
+        - name: one-way
+          in: query
+          required: false
+          type: boolean
+          default: false
+          description: When set to true, the query will be for a single trip from the origin to the destination. When this parameter is not provided, or is set to false, the query is for a round trip from the origin to the destination and back again.
         - name: duration
           in: query
-          description: "The allowed duration or range of durations of the trip, in days."
+          description: The allowed duration or range of durations of the trip, in days. This parameter must not be set if the one-way parameter is set to true.
           required: false
           type: string
           default: "1--15"
@@ -115,12 +121,18 @@ paths:
           required: false
           type: string
           default: "2016-06-16--2016-06-26"
+        - name: one-way
+          in: query
+          required: false
+          type: boolean
+          default: false
+          description: When set to true, the query will be for a single trip from the origin to the destination. When this parameter is not provided, or is set to false, the query is for a round trip from the origin to the destination and back again.
         - name: duration
           in: query
-          description: "The allowed duration or range of durations of the trip, in days."
+          description: The allowed duration or range of durations of the trip, in days. This parameter must not be set if the one-way parameter is set to true.
           required: false
           type: string
-          default: "7--9"
+          default: "1--15"
         - name: direct
           in: query
           description: Limit the search to results that do not require the passenger to change plane?
@@ -396,7 +408,7 @@ paths:
       operationId: Airport Autocomplete
       summary: The Airport Autocomplete API provides a simple means to find an IATA location code for flight search based on a city or airport name. The API is fully JQuery-Autocomplete compatible to enable you to quickly build a drop-down list for your users to find the right airport easily. 
       description: |
-        Given the start of any word in an airport's official name, a city name, or the start of an IATA code, this API provides the full name and IATA location code of the city or airport, for use in flight searches. Only major cities and civilian airports with several commercial flights per week are included by default. The response provides up to 20 possible matches, sorted by importance, in a [JQuery UI Autocomplete](http://jqueryui.com/autocomplete/) compatible format. [This sample implementation](https://github.com/amadeus-travel-innovation-sandbox/sandbox-content/blob/master/airport-autocomplete-template.html) using JQuery UI may help. This API uses data from the OpenTravelData project, see https://github.com/opentraveldata/opentraveldata/blob/master/opentraveldata/optd_por_public.csv.
+        Given the start of any word in an airport's official name, a city name, or the start of an IATA code, this API provides the full name and IATA location code of the city or airport, for use in flight searches. Only major cities and civilian airports with several commercial flights per week are included by default. The response provides up to 20 possible matches, sorted by importance, in a <a href="http://jqueryui.com/autocomplete/">JQuery UI Autocomplete</a> compatible format. <a href="https://github.com/amadeus-travel-innovation-sandbox/sandbox-content/blob/master/airport-autocomplete-template.html">This sample implementation</a> using JQuery UI may help. This API uses data from the OpenTravelData project, see https://github.com/opentraveldata/opentraveldata/blob/master/opentraveldata/optd_por_public.csv.
 
         The value returned is the IATA location code. The label returned is always in UTF-8 format, with the airport official name (which is often in the native language), in the format of English City Name (if not already included in the airport name).
       parameters:
@@ -427,7 +439,7 @@ paths:
       description: |
         This service gives the most relevant airports in a radius of 500 km around the given coordinates. The relevance of an airport is computed by dividing the number of airport movements (take offs and landings) by the distance from the point. This causes the relevance of an airport to increase exponentially as you approach it.
 
-        To minimize response time, all distances are computed as a [great-circle distance](http://en.wikipedia.org/wiki/Great-circle_distance) from the provided coordinates to the airport coordinates, and thus do not take into account traffic conditions, international boundaries, mountains, water, or other elements that might make the a nearby airport hard to reach.
+        To minimize response time, all distances are computed as a <a href="http://en.wikipedia.org/wiki/Great-circle_distance">great-circle distance</a> from the provided coordinates to the airport coordinates, and thus do not take into account traffic conditions, international boundaries, mountains, water, or other elements that might make the a nearby airport hard to reach.
 
         Only civilian airports with at least several commercial flights per week are included in the results.
 
@@ -543,7 +555,8 @@ paths:
           default: false
         - name: amenity
           in: query
-          description: "Hotel [amenities filter](hotels-api-supported-amenities-filter) to search narrow down hotels with certain amenities. For example: amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED)."
+          description: >-
+            Hotel <a href="hotels-api-supported-amenities-filter">amenities filter</a> to search narrow down hotels with certain amenities. For example: amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED).
           required: false
           type: string
           default: "PARKING"
@@ -646,7 +659,8 @@ paths:
           default: false
         - name: amenity
           in: query
-          description: "Hotel [amenities filter](hotels-api-supported-amenities-filter) to search narrow down hotels with certain amenities. For example: amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED)."
+          description: >-
+            Hotel <a href="hotels-api-supported-amenities-filter">amenities filter</a> to search narrow down hotels with certain amenities. For example: amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED).
           required: false
           type: string
           default: "PARKING"
@@ -743,7 +757,8 @@ paths:
           default: false
         - name: amenity
           in: query
-          description: "Hotel [amenities filter](hotels-api-supported-amenities-filter) to search narrow down hotels with certain amenities. For example: amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED)."
+          description: >-
+            Hotel <a href="hotels-api-supported-amenities-filter">amenities filter</a> to search narrow down hotels with certain amenities. For example: amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED).
           required: false
           type: string
           default: PARKING
@@ -1338,7 +1353,7 @@ paths:
       operationId: Airline Autocomplete
       summary: The Airline Autocomplete API provides a simple means to find an IATA airline code for flight search based on an airline. The API is fully JQuery-Autocomplete compatible to enable you to quickly build a drop-down list for your users to find the right airline easily. 
       description: |
-        Given the start of any word in an airline official name or the start of an airline IATA code, this API provides the full name and IATA airline code of the airline, for use in flight searches. The response provides all possible matches, sorted alphabetically, in a [JQuery UI Autocomplete](http://jqueryui.com/autocomplete/) compatible format.
+        Given the start of any word in an airline official name or the start of an airline IATA code, this API provides the full name and IATA airline code of the airline, for use in flight searches. The response provides all possible matches, sorted alphabetically, in a <a href="http://jqueryui.com/autocomplete/">JQuery UI Autocomplete</a> compatible format.
 
         The value returned is the IATA airline code. The label returned is always in UTF-8 format, with the airline official name.
       parameters:
@@ -1386,7 +1401,7 @@ definitions:
         description: IATA code
       currency:
         type: string
-        description: "[ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code."
+        description: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency code.
       results:
         type: array
         items:
@@ -1402,11 +1417,11 @@ definitions:
       departure_date:
         type: string
         format: date
-        description: "The date departure at the origin, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd, to go to the above destination"
+        description: The date departure at the origin, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-dd, to go to the above destination
       return_date:
         type: string
         format: date
-        description: "The date at which the flight from the destination to the origin will arrive at the origin. The date is in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd, in the local date of the origin"
+        description: The date at which the flight from the destination to the origin will depart from the destination. The date is in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-dd, in the local date of the origin. This field will not be present in the response if the one-way request parameter is set to true.
       price:
         type: string
         description: "The minimum total price for one adult passenger for a round trip from the origin to the destination and back. Always a string, formatted correctly for the provided currency"
@@ -1419,7 +1434,7 @@ definitions:
      properties:
       currency:
         type: string
-        description: "[ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code."
+        description: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency code.
       results:
         type: array
         items:
@@ -1469,10 +1484,10 @@ definitions:
      properties:
       departs_at:
         type: string
-        description: "Date and time of departure at the origin, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)  date format yyyy-MM-ddTHH:mm in the local time at the origin airport"
+        description: Date and time of departure at the origin, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a>  date format yyyy-MM-ddTHH:mm in the local time at the origin airport
       arrives_at:
         type: string
-        description: "Date and time of departure at the destination, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)  date format yyyy-MM-ddTHH:mm in the local time at the destination airport"
+        description: Date and time of departure at the destination, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a>  date format yyyy-MM-ddTHH:mm in the local time at the destination airport
       origin:
         description: "Information on the origin airport, from which this flight departs"
         $ref: "#/definitions/Airport"
@@ -1490,7 +1505,7 @@ definitions:
         description: "The identifier that the airline uses for this flight route. This is most commonly - but not always - a number. When combined with the airline and date, it identifies an individual aircraft's flight"
       aircraft:
         type: string
-        description: "The [IATA aircraft type designator](http://www.jacanaent.com/JacTechLib/07Aviation/AircraftTypeCodes.txt) of aircraft that will be used for this flight"
+        description: The <a href="http://www.jacanaent.com/JacTechLib/07Aviation/AircraftTypeCodes.txt">IATA aircraft type designator</a> of aircraft that will be used for this flight
       booking_info:
         description: "A booking information object with additional details about how the quality of this flight at the given price."
         $ref: "#/definitions/FlightSearchBookingInfo"
@@ -1626,13 +1641,13 @@ definitions:
         description: The state code of this city, if applicable  
       country:
         type: string
-        description: The [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in which this city can be found. 
+        description: The <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2 country code</a> in which this city can be found. 
       location:
         description: "This city's approximate geolocation. The exact center of a city is often not an exact location, so be aware that this might not be exact."        
         $ref: "#/definitions/Geolocation" 
       timezone:
         type: string
-        description: The [Olson format](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones) name of the timezone in which this city is located 
+        description: The <a href="http://en.wikipedia.org/wiki/List_of_tz_database_time_zones">Olson format</a> name of the timezone in which this city is located 
   AirportInformation:
      required:
         - code
@@ -1660,7 +1675,7 @@ definitions:
         description: The state code of this city, if applicable  
       country:
         type: string
-        description: The [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in which this city can be found. 
+        description: The <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2 country code</a> in which this city can be found. 
       location:
         description: "  An object containing the longitude and latitude of the given airport."      
         $ref: "#/definitions/Geolocation"
@@ -1669,7 +1684,7 @@ definitions:
         description: The annual number of aircraft movements at that airport. 
       timezone:
         type: string
-        description: The [Olson format](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones) name of the timezone in which this airport is located
+        description: The <a href="http://en.wikipedia.org/wiki/List_of_tz_database_time_zones">Olson format</a> name of the timezone in which this airport is located
   Geolocation:
      required:
         - latitude
@@ -1763,7 +1778,7 @@ definitions:
         description: The postal or zip code of this address.
       country:
         type: string
-        description: The [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of this address.  
+        description: The <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2 country code</a> country code of this address.  
   Contact:
      required:
         - type
@@ -1782,10 +1797,10 @@ definitions:
      properties:
       amenity:
         type: string
-        description: "[The amenity code](hotels-api-supported-amenities-filter)"
+        description: <a href="hotels-api-supported-amenities-filter">The amenity code</a>
       ota_code:
         type: string
-        description: The [Open Travel Alliance](http://www.opentravel.org/) [Hotel Amenities Code](ota-hotel-amenity-code-table) for this amenity.
+        description: The <a href="http://www.opentravel.org/">Open Travel Alliance</a> <a href="ota-hotel-amenity-code-table">Hotel Amenities Code</a> for this amenity.
       description:
         type: string
         description: The decoded text description for this amenity code, where available.
@@ -1849,7 +1864,7 @@ definitions:
      properties:
       currency:
         type: string
-        description: "[ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code."
+        description: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency code.
       amount:
         type: string
         description: "Total amount in the given currency, formatted appropriately. For example: 194.99"
@@ -1863,14 +1878,14 @@ definitions:
       start_date:
         type: string
         format: date
-        description: "The start date of this rate, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd."
+        description: The start date of this rate, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-dd.
       end_date:
         type: string
         format: date
-        description: "The date on which this rate ends, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd."
+        description: The date on which this rate ends, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-dd.
       currency:
         type: string
-        description: "[ISO 4217](http://en.wikipedia.org/wiki/ISO_4217) currency code of this rate."
+        description: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency code of this rate.
       amount:
         type: string
         description: "Total amount in the given currency per day of this rate, formatted appropriately. For example: 194.99."
@@ -1939,7 +1954,7 @@ definitions:
      properties:
       acriss_code:
         type: string
-        description: "The 4 letter [ACRISS code](http://en.wikipedia.org/wiki/ACRISS_Car_Classification_Code) that defines the properties of vehicle being rented."
+        description: The 4 letter <a href="http://en.wikipedia.org/wiki/ACRISS_Car_Classification_Code">ACRISS code</a> that defines the properties of vehicle being rented.
       category:
         type: string
         description: "The decoded ACRISS vehicle category (For example: Economy, Luxury, Standard)."
@@ -2022,10 +2037,10 @@ definitions:
      properties:
       departs_at:
         type: string
-        description: "The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date-time of the train's departure in the local time zone of the departure station, in the format YYYY-MM-DDTHH:mm."
+        description: The <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date-time of the train's departure in the local time zone of the departure station, in the format YYYY-MM-DDTHH:mm.
       arrives_at:
         type: string
-        description: "The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date-time of the train's arrival in the local time zone of the arrival station, in the format YYYY-MM-DDTHH:mm."
+        description: The <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date-time of the train's arrival in the local time zone of the arrival station, in the format YYYY-MM-DDTHH:mm.
       departure_station:
         description: "The station object representing the station at which the passenger should board this train in order to complete this part of the itinerary."
         $ref: "#/definitions/Station"
@@ -2111,7 +2126,7 @@ definitions:
         description: "The shortened name of this station (20 characters max) which may be used in certain cases."
       country:
         type: string
-        description: The [ISO 3166-1 alpha-2 country code](http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) in which this station can be found. 
+        description: The <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2 country code</a> in which this station can be found. 
       location:
         description: "This stations's approximate geolocation. "
         $ref: "#/definitions/Geolocation" 
@@ -2185,7 +2200,7 @@ definitions:
      properties:
       creation_office_id:
         type: string
-        description: "9 character Amadeus office identifier of the travel agency that created this travel record. An office ID may be considered as equivalent to a [PCC](https://en.wikipedia.org/wiki/Pseudo_city_code) in other reservation systems."
+        description: 9 character Amadeus office identifier of the travel agency that created this travel record. An office ID may be considered as equivalent to a <a href="https://en.wikipedia.org/wiki/Pseudo_city_code">PCC</a> in other reservation systems.
       owner_office_id:
         type: string
         description: "9 character Amadeus office identifier of the travel agency that owns and manages this travel record."   
@@ -2229,7 +2244,7 @@ definitions:
       date_of_birth:
         type: string
         format: date
-        description: "An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date indicating the birth date of the traveler, as provided by the agent. For example: 1972-02-19."
+        description: "An <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date indicating the birth date of the traveler, as provided by the agent. For example: 1972-02-19."
       contacts:
         description: Details on how to contact this traveler. At least one traveler in a travel-record will have a contact element.
         type: array
@@ -2251,7 +2266,7 @@ definitions:
       date_of_birth:
         type: string
         format: date
-        description: "An optional [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date indicating the birth date of the infant, as provided by the agent. For example: 1972-02-19."    
+        description: "An optional <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date indicating the birth date of the infant, as provided by the agent. For example: 1972-02-19."    
   FrequentTravelerCard:
      required:
         - issuer_type
@@ -2342,10 +2357,10 @@ definitions:
         description: Uniquely identifies this flight in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record.
       departs_at:
         type: string
-        description: "Date and time of departure at the origin, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)  date format yyyy-MM-ddTHH:mm in the local time at the origin airport"
+        description: Date and time of departure at the origin, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a>  date format yyyy-MM-ddTHH:mm in the local time at the origin airport
       arrives_at:
         type: string
-        description: "Date and time of departure at the destination, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)  date format yyyy-MM-ddTHH:mm in the local time at the destination airport"
+        description: Date and time of departure at the destination, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a>  date format yyyy-MM-ddTHH:mm in the local time at the destination airport
       origin:
         description: "Information on the origin airport, from which this flight departs"
         $ref: "#/definitions/Airport"
@@ -2402,10 +2417,10 @@ definitions:
         description: Uniquely identifies this car rental reservation in this travel record. This ID is persistent, and remains the same for the lifetime of the travel record.
       pick_up:
         type: string
-        description: "Date on which the car rental will be collected from the car rental location. [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-ddTHH."
+        description: Date on which the car rental will be collected from the car rental location. <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-ddTHH.
       drop_off:
         type: string
-        description: "Date at which the car rental will end and the car will be returned to the rental location. [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-ddTHH."
+        description: Date at which the car rental will end and the car will be returned to the rental location. <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-ddTHH.
       provider:
         description: Details of the car company offering this rental.
         $ref: "#/definitions/Company"
@@ -2450,11 +2465,11 @@ definitions:
       check_in:
         type: string
         format: date
-        description: "Date on which the guest will begin their stay in the hotel, in the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd."
+        description: Date on which the guest will begin their stay in the hotel, in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-dd.
       check_out:
         type: string
         format: date
-        description: "Date on which the guest will end their stay in the hotel, in the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd."
+        description: Date on which the guest will end their stay in the hotel, in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-dd.
       property_code:
         type: string
         description: The 8 character property code of this given hotel. The first 2 characters of this code are the chain code that can be specified in the input. The remaining elements are proprietary to each hotel chain.
@@ -2497,7 +2512,7 @@ definitions:
       date:
         type: string
         format: date
-        description: "Date on which this other reservation will begin, in the [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format yyyy-MM-dd."
+        description: Date on which this other reservation will begin, in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-dd.
       location:
         type: string
         description: A 3 letter IATA code that identifies where this other reservation will occur.
@@ -2641,7 +2656,7 @@ definitions:
     properties:
       period:
         type: string
-        description: The date period, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format YYYY-MM or YYYY
+        description: The date period, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format YYYY-MM or YYYY
       origin:
         type: string
         description: IATA code
@@ -2677,7 +2692,7 @@ definitions:
         description: Country code
       period:
         type: string
-        description: The date period, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format YYYY-MM or YYYY
+        description: The date period, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format YYYY-MM or YYYY
       origin:
         type: string
         description: IATA code
@@ -2711,7 +2726,7 @@ definitions:
     properties:
       period:
         type: string
-        description: The date period, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date format YYYY-MM or YYYY
+        description: The date period, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format YYYY-MM or YYYY
       origin:
         type: string
         description: IATA code
