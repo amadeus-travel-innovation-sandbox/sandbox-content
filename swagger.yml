@@ -1355,7 +1355,8 @@ paths:
       description: |
          Amadeus has partnered with <a href="http://yapq.io/">YapQ</a> to bring you point of interest APIs with the goal of offering you unbiased ratings of landmarks and tourist attractions. YapQ provides Wikipedia and Geonames places at a given location, and rates them according to their interest on social media.<br />
          YapQ's service indexes millions of points around the world, and provides content in 12 different languages. This allows you to ensure you catch the <em>must-see</em> sights in a given city.<br />
-         Each point of interest comes with links to content, grading information, location and directions to help make discovering your destination easy and fun.
+         Each point of interest comes with links to content, grading information, location and directions to help make discovering your destination easy and fun.<br /><br />
+         This service is still under active development. We'd be interested in your feedback - <a href="mailto:sandbox@amadeus.com">send us an email</a> or tweet to @yapQApp.
       parameters:
         - name: apikey
           in: query
@@ -1368,12 +1369,6 @@ paths:
           required: true
           type: string
           default: "Tel Aviv"
-        - name: radius
-          in: query
-          description: The radius from the center of the given city for which you would like to search
-          required: true
-          type: integer
-          default: 10
         - name: lang
           in: query
           description: The preferred language of the content related to each car rental. Content will be returned in this language if available.
@@ -1381,12 +1376,12 @@ paths:
           type: string
           enum: [DE, EN, ES, FR, HE, IT, JA, KO, NL, PL, RU, ZH]
           default: "EN"
-        - name: number_of_results
+        - name: category
           in: query
-          description: "The maximum number of points of interest to return in the results set. This is a range from 1 to 100"
+          description: Filters the resulting points_of_interest to include only results which have a least one category containing the given provided word. Good examples are <em>museum</em>, <em>landmark</em> or <em>church</em>
           required: false
-          type: integer
-          default: 20
+          type: string
+          default: "Museum"
         - name: image_size
           in: query
           description: The size of the images you'd like to see in the response.(What is the exact pixel size of each image type?, Does this refer only to the social )
@@ -1400,12 +1395,12 @@ paths:
           required: false
           type: integer
           default: 4
-        - name: category
+        - name: number_of_results
           in: query
-          description: Filters the resulting points_of_interest to include only results which have a least one category containing the given provided word. Good examples are <em>museum</em>, <em>landmark</em> or <em>church</em>
+          description: "The maximum number of points of interest to return in the results set. This is a range from 1 to 100"
           required: false
-          type: string
-          default: "Museum"
+          type: integer
+          default: 20
       responses:
         200:
           description: Valid Points of Interest Response from YapQ
