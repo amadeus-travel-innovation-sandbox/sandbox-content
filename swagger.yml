@@ -1356,7 +1356,7 @@ paths:
          Amadeus has partnered with <a href="http://yapq.io/">YapQ</a> to bring you point of interest APIs with the goal of offering you unbiased ratings of landmarks and tourist attractions. YapQ provides Wikipedia and Geonames places at a given location, and rates them according to their interest on social media.<br />
          YapQ's service indexes millions of points around the world, and provides content in 12 different languages. This allows you to ensure you catch the <em>must-see</em> sights in a given city.<br />
          Each point of interest comes with links to content, grading information, location and directions to help make discovering your destination easy and fun.<br /><br />
-         This service is still under active development. We'd be interested in your feedback - <a href="mailto:sandbox@amadeus.com">send us an email</a> or tweet to @yapQApp.
+         This service is still under active development. We'd be interested in your feedback - <a href="mailto:sandbox@yapq.com">send us an email</a>.
       parameters:
         - name: apikey
           in: query
@@ -1371,7 +1371,7 @@ paths:
           default: "Tel Aviv"
         - name: lang
           in: query
-          description: The preferred language of the content related to each car rental. Content will be returned in this language if available.
+          description: The preferred language of the content related to each point of interest. Content will be returned in this language if available.
           required: false
           type: string
           enum: [DE, EN, ES, FR, HE, IT, JA, KO, NL, PL, RU, ZH]
@@ -1384,7 +1384,82 @@ paths:
           default: "Museum"
         - name: image_size
           in: query
-          description: The size of the images you'd like to see in the response.(What is the exact pixel size of each image type?, Does this refer only to the social )
+          description: The size of the images you'd like to see in the response
+          required: false
+          type: string
+          enum: [SMALL, MEDIUM, LARGE, HD]
+          default: MEDIUM
+        - name: number_of_images
+          in: query
+          description: Number of images to display.
+          required: false
+          type: integer
+          default: 4
+        - name: number_of_results
+          in: query
+          description: "The maximum number of points of interest to return in the results set. This is a range from 1 to 100"
+          required: false
+          type: integer
+          default: 20
+      responses:
+        200:
+          description: Valid Points of Interest Response from YapQ
+          schema:
+            $ref: "#/definitions/PointsOfInterestResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+
+  /points-of-interest/yapq-search-circle:
+    get:
+      operationId: YapQ Geosearch
+      summary: Use YapQ's Point of Interest service to find landmarks and attractions near a given point.
+      description: |
+         Amadeus has partnered with <a href="http://yapq.io/">YapQ</a> to bring you point of interest APIs with the goal of offering you unbiased ratings of landmarks and tourist attractions. YapQ provides Wikipedia and Geonames places at a given geolocation, and rates them according to their interest on social media.<br />
+         YapQ's service indexes millions of points around the world, and provides content in 12 different languages. This allows you to ensure you catch the <em>must-see</em> sights near the user's current location.<br />
+         Each point of interest comes with links to content, grading information, location and directions to help make discovering your destination easy and fun.<br /><br />
+         This service is still under active development. We'd be interested in your feedback - <a href="mailto:sandbox@yapq.com">send us an email</a>.
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: latitude
+          in: query
+          description: Latitude of the center of the search, in decimal degrees.
+          required: true
+          type: number
+          default: 35.1504
+        - name: longitude
+          in: query
+          description: Longitude of the center of the search, in decimal degrees.
+          required: true
+          type: number
+          default: -114.57632
+        - name: radius
+          in: query
+          description: Radius around the center to look for points-of-interest around the given latitude and longitude in kilometers (km).
+          required: true
+          type: integer
+          default: 42
+        - name: lang
+          in: query
+          description: The preferred language of the content related to each point of interest. Content will be returned in this language if available.
+          required: false
+          type: string
+          enum: [DE, EN, ES, FR, HE, IT, JA, KO, NL, PL, RU, ZH]
+          default: "EN"
+        - name: category
+          in: query
+          description: Filters the resulting points_of_interest to include only results which have a least one category containing the given provided word. Good examples are <em>museum</em>, <em>landmark</em> or <em>church</em>
+          required: false
+          type: string
+          default: "Museum"
+        - name: image_size
+          in: query
+          description: The size of the images you'd like to see in the response.
           required: false
           type: string
           enum: [SMALL, MEDIUM, LARGE, HD]
