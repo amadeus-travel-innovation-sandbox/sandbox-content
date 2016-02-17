@@ -1130,9 +1130,10 @@ paths:
       operationId: Train Schedule Search
       summary: The train schedule search can suggest destinations from your chosen departure station
       description:  |
-        This API allows you to find all the possible destinations in the Rail Instant Search cache (used by Extensive Search above) from a given origin station on a given day. You can use this to help build network maps, journey planners or provide inspiration for rail travel.
+        This API allows you to find all the possible destinations in the Rail Instant Search cache (used by Extensive Search above) from a given origin station on a given day. You can use this to help build network maps, journey planners or provide inspiration for rail travel.<br />
 
-        This API has content from SNCF (French trains) and Trenitalia (Italian Trains). All the options returned are single-leg trips - where a single train takes you directly from the origin to the destination. In general, only departure dates up to 90 days in the future are supported
+        This API has continuous content from <a href="http://www.sncf.com/">SNCF</a>. <a href="http://www.trenitalia.com/">Trenitalia</a> content may also be loaded on request - please contact us if you need this.<br />
+        All the options returned are single-leg trips - where a single train takes you directly from the origin to the destination. In general, only departure dates up to 90 days in the future are supported
 
         Currently agglomeration stations are not supported    
       parameters:
