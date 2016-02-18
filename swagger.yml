@@ -1354,10 +1354,10 @@ paths:
       operationId: YapQ City Name Search
       summary: Use YapQ's Point of Interest service to find landmarks and attractions in a given city.
       description: |
-         Amadeus has partnered with <a href="http://yapq.io/">YapQ</a> to bring you point of interest APIs with the goal of offering you unbiased ratings of landmarks and tourist attractions. YapQ provides Wikipedia and Geonames places at a given location, and rates them according to their interest on social media.<br />
+         Amadeus has partnered with <a href="http://yapq.io/">YapQ</a> to bring you point of interest APIs with the goal of offering you unbiased ratings of landmarks and tourist attractions. YapQ rates these points according to their interest on social media and provides Wikipedia content and Geonames ID in a given city. <br />
          YapQ's service indexes millions of points around the world, and provides content in 12 different languages. This allows you to ensure you catch the <em>must-see</em> sights in a given city.<br />
          Each point of interest comes with links to content, grading information, location and directions to help make discovering your destination easy and fun.<br /><br />
-         This service is still under active development. We'd be interested in your feedback - <a href="mailto:sandbox@yapq.com">send us an email</a>.
+         This service is still under active development, and the response format may change without warning. We'd be interested in your feedback - <a href="mailto:sandbox@yapq.com">send us an email</a>.
       parameters:
         - name: apikey
           in: query
@@ -1366,13 +1366,13 @@ paths:
           type: string
         - name: city_name
           in: query
-          description: The name of the city for which you are searching, in the selected language.
+          description: The name of the city for which you are searching, in the selected language
           required: true
           type: string
           default: "Tel Aviv"
         - name: lang
           in: query
-          description: The preferred language of the content related to each point of interest. Content will be returned in this language if available.
+          description: The preferred language of the content related to each point of interest. Content will be returned in this language if available
           required: false
           type: string
           enum: [DE, EN, ES, FR, HE, IT, JA, KO, NL, PL, RU, ZH]
@@ -1383,6 +1383,18 @@ paths:
           required: false
           type: string
           default: "Museum"
+        - name: vibes
+          in: query
+          description: Includes content that doesn't correspond to an active physical place, but which gives the user some background information, or <em>vibe</em> for the place they are visiting. An example of this may be information on an influential demolished building that used to exist at a certain location, or more information on a district of the city
+          required: false
+          type: boolean
+          default: false
+        - name: social_media
+          in: query
+          description: Enabling this includes images from Instagram in the output results. This is disabled by default, since these images are often just pictures of people or food, which often have little relevance to the actual location
+          required: false
+          type: boolean
+          default: false
         - name: image_size
           in: query
           description: The size of the images you'd like to see in the response
@@ -1392,7 +1404,7 @@ paths:
           default: MEDIUM
         - name: number_of_images
           in: query
-          description: Number of images to display.
+          description: Number of images to display
           required: false
           type: integer
           default: 4
@@ -1417,10 +1429,10 @@ paths:
       operationId: YapQ Geosearch
       summary: Use YapQ's Point of Interest service to find landmarks and attractions near a given point.
       description: |
-         Amadeus has partnered with <a href="http://yapq.io/">YapQ</a> to bring you point of interest APIs with the goal of offering you unbiased ratings of landmarks and tourist attractions. YapQ provides Wikipedia and Geonames places at a given geolocation, and rates them according to their interest on social media.<br />
-         YapQ's service indexes millions of points around the world, and provides content in 12 different languages. This allows you to ensure you catch the <em>must-see</em> sights near the user's current location.<br />
+         Amadeus has partnered with <a href="http://yapq.io/">YapQ</a> to bring you point of interest APIs with the goal of offering you unbiased ratings of landmarks and tourist attractions. YapQ rates places according to their interest on social media and provides Wikipedia content and Geonames ID at a given location. <br />
+         YapQ's service indexes millions of points around the world, and provides content in 12 different languages. This allows you to ensure you catch the <em>must-see</em> sights at a specific location.<br />
          Each point of interest comes with links to content, grading information, location and directions to help make discovering your destination easy and fun.<br /><br />
-         This service is still under active development. We'd be interested in your feedback - <a href="mailto:sandbox@yapq.com">send us an email</a>.
+         This service is still under active development, and the response format may change without warning. We'd be interested in your feedback - <a href="mailto:sandbox@yapq.com">send us an email</a>.
       parameters:
         - name: apikey
           in: query
@@ -1429,25 +1441,24 @@ paths:
           type: string
         - name: latitude
           in: query
-          description: Latitude of the center of the search, in decimal degrees.
+          description: Latitude of the center of the search, in decimal degrees
           required: true
           type: number
           default: 35.1504
         - name: longitude
           in: query
-          description: Longitude of the center of the search, in decimal degrees.
+          description: Longitude of the center of the search, in decimal degrees
           required: true
           type: number
           default: -114.57632
         - name: radius
           in: query
-          description: Radius around the center to look for points-of-interest around the given latitude and longitude in kilometers (km).
-          required: true
+          description: Radius around the center to look for points-of-interest around the given latitude and longitude in kilometers (km)
           type: integer
           default: 42
         - name: lang
           in: query
-          description: The preferred language of the content related to each point of interest. Content will be returned in this language if available.
+          description: The preferred language of the content related to each point of interest. Content will be returned in this language if available
           required: false
           type: string
           enum: [DE, EN, ES, FR, HE, IT, JA, KO, NL, PL, RU, ZH]
@@ -1458,9 +1469,21 @@ paths:
           required: false
           type: string
           default: "Museum"
+        - name: vibes
+          in: query
+          description: Includes content that doesn't correspond to an active physical place, but which gives the user some background information, or <em>vibe</em> for the place they are visiting. An example of this may be information on an influential demolished building that used to exist at a certain location, or more information on a district of the city
+          required: false
+          type: boolean
+          default: false
+        - name: social_media
+          in: query
+          description: Enabling this includes images from Instagram in the output results. This is disabled by default, since these images are often just pictures of people or food, which often have little relevance to the actual location
+          required: false
+          type: boolean
+          default: false
         - name: image_size
           in: query
-          description: The size of the images you'd like to see in the response.
+          description: The size of the images you'd like to see in the response
           required: false
           type: string
           enum: [SMALL, MEDIUM, LARGE, HD]
@@ -1805,6 +1828,9 @@ definitions:
       longitude:
         type: number
         description: The east-west coordinate of this location, in decimal degrees, between -180 and 180
+      google_maps_link:
+        type: string
+        description: For YapQ APIs only  - a link to a google map rendering of this location.
   HotelSearchResponse:
      properties:
       results:
@@ -2917,11 +2943,11 @@ definitions:
         description: Result availble grades.
         properties:
           yapq_grade:
-            type: string
-            description: Main YAPQ grade. Grade among selected group of POI's into most popular tourists places.
+            type: integer
+            description: Main YAPQ grade. A grade out of 5 for this point, rated against all points in the world and normalized among selected group of points. 5 is best, 0 is worst.
           city_grade:
-            type: string
-            description: POI grade as a comperison to all city POI's. used as "city_grade/number_of_poi_city"
+            type: integer
+            description: The ranking of this point of interest compared to other points in this city. 1 is the highest rated.
       categories:
         type: array
         description: Array of descriptions indicating what type of point of interest this is. You can filter the results to include only certain categories of point of interest using the category input parameter.
@@ -2930,7 +2956,10 @@ definitions:
       details:
         $ref: "#/definitions/PointOfInterestDetails"
       contextual_images:
-        $ref: "#/definitions/Image"
+        type: array
+        description: Images taken at this point of interest. Note that these images might have nothing to do with the point itself, particularly if you have enabled the social_media parameter
+        items:
+            $ref: "#/definitions/ImageSize"
       geoname_id:
         type: integer
         description: The GeonamesID of this point of interest, if available
@@ -2949,3 +2978,14 @@ definitions:
       wiki_page_link:
         type: string
         description: A link to this point of interest&quot;s wikipedia page
+  ImageSize:
+     description: An image size selector used in the YapQ API response. The size should correspond the the image_size parameter used during input
+     properties:
+      Small:
+        $ref: "#/definitions/Image"
+      Medium:
+        $ref: "#/definitions/Image"
+      Large:
+        $ref: "#/definitions/Image"
+      Hd:
+        $ref: "#/definitions/Image"
