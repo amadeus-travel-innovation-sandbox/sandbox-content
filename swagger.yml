@@ -1135,9 +1135,10 @@ paths:
       operationId: Train Schedule Search
       summary: The train schedule search can suggest destinations from your chosen departure station
       description:  |
-        This API allows you to find all the possible destinations in the Rail Instant Search cache (used by Extensive Search above) from a given origin station on a given day. You can use this to help build network maps, journey planners or provide inspiration for rail travel.
+        This API allows you to find all the possible destinations in the Rail Instant Search cache (used by Extensive Search above) from a given origin station on a given day. You can use this to help build network maps, journey planners or provide inspiration for rail travel.<br />
 
-        This API has content from SNCF (French trains) and Trenitalia (Italian Trains). All the options returned are single-leg trips - where a single train takes you directly from the origin to the destination. In general, only departure dates up to 90 days in the future are supported
+        This API has continuous content from <a href="http://www.sncf.com/">SNCF</a>. <a href="http://www.trenitalia.com/">Trenitalia</a> content may also be loaded on request - please contact us if you need this.<br />
+        All the options returned are single-leg trips - where a single train takes you directly from the origin to the destination. In general, only departure dates up to 90 days in the future are supported
 
         Currently agglomeration stations are not supported    
       parameters:
@@ -1353,31 +1354,174 @@ paths:
           description: Client or server error
           schema:
             $ref: "#/definitions/Error"
-  /travel-intelligence/airline-autocomplete:
+  /points-of-interest/yapq-search-text:
     get:
-      operationId: Airline Autocomplete
-      summary: The Airline Autocomplete API provides a simple means to find an IATA airline code for flight search based on an airline. The API is fully JQuery-Autocomplete compatible to enable you to quickly build a drop-down list for your users to find the right airline easily. 
+      operationId: YapQ City Name Search
+      summary: Use YapQ's Point of Interest service to find landmarks and attractions in a given city.
       description: |
-        Given the start of any word in an airline official name or the start of an airline IATA code, this API provides the full name and IATA airline code of the airline, for use in flight searches. The response provides all possible matches, sorted alphabetically, in a <a href="http://jqueryui.com/autocomplete/">JQuery UI Autocomplete</a> compatible format.
-
-        The value returned is the IATA airline code. The label returned is always in UTF-8 format, with the airline official name.
+         Amadeus has partnered with <a href="http://yapq.io/">YapQ</a> to bring you point of interest APIs with the goal of offering you unbiased ratings of landmarks and tourist attractions. YapQ rates these points according to their interest on social media and provides Wikipedia content and Geonames ID in a given city. <br />
+         YapQ's service indexes millions of points around the world, and provides content in 12 different languages. This allows you to ensure you catch the <em>must-see</em> sights in a given city.<br />
+         Each point of interest comes with links to content, grading information, location and directions to help make discovering your destination easy and fun.<br /><br />
+         This service is still under active development, and the response format may change without warning. We'd be interested in your feedback - <a href="mailto:sandbox@yapq.com">send us an email</a>.
       parameters:
         - name: apikey
           in: query
           description: API Key provided for your account, to identify you for API access
           required: true
           type: string
-        - name: term
+        - name: city_name
           in: query
-          description: Search term that should represent some part airline name or airline IATA code.
+          description: The name of the city for which you are searching, in the selected language
           required: true
           type: string
-          default: "Vir"
+          default: "Tel Aviv"
+        - name: lang
+          in: query
+          description: The preferred language of the content related to each point of interest. Content will be returned in this language if available
+          required: false
+          type: string
+          enum: [DE, EN, ES, FR, HE, IT, JA, KO, NL, PL, RU, ZH]
+          default: "EN"
+        - name: category
+          in: query
+          description: Filters the resulting points_of_interest to include only results which have a least one category containing the given provided word. Good examples are <em>museum</em>, <em>landmark</em> or <em>church</em>
+          required: false
+          type: string
+          default: "Museum"
+        - name: geonames
+          in: query
+          description: Setting this to true includes only points of interest with a geonames ID
+          required: false
+          type: boolean
+          default: false
+        - name: vibes
+          in: query
+          description: Includes content that doesn't correspond to an active physical place, but which gives the user some background information, or <em>vibe</em> for the place they are visiting. An example of this may be information on an influential demolished building that used to exist at a certain location, or more information on a district of the city
+          required: false
+          type: boolean
+          default: false
+        - name: social_media
+          in: query
+          description: Enabling this includes images from Instagram in the output results. This is disabled by default, since these images are often just pictures of people or food, which often have little relevance to the actual location
+          required: false
+          type: boolean
+          default: false
+        - name: image_size
+          in: query
+          description: The size of the images you'd like to see in the response
+          required: false
+          type: string
+          enum: [SMALL, MEDIUM, LARGE, HD]
+          default: MEDIUM
+        - name: number_of_images
+          in: query
+          description: Number of images to display
+          required: false
+          type: integer
+          default: 4
+        - name: number_of_results
+          in: query
+          description: "The maximum number of points of interest to return in the results set. This is a range from 1 to 100"
+          required: false
+          type: integer
+          default: 20
       responses:
         200:
-          description: Valid Search Response
+          description: Valid Points of Interest Response from YapQ
           schema:
-            $ref: "#/definitions/AirlineAutocompleteResponse"
+            $ref: "#/definitions/PointsOfInterestResponse"
+        default:
+          description: Client or server error
+          schema:
+            $ref: "#/definitions/Error"
+
+  /points-of-interest/yapq-search-circle:
+    get:
+      operationId: YapQ Geosearch
+      summary: Use YapQ's Point of Interest service to find landmarks and attractions near a given point.
+      description: |
+         Amadeus has partnered with <a href="http://yapq.io/">YapQ</a> to bring you point of interest APIs with the goal of offering you unbiased ratings of landmarks and tourist attractions. YapQ rates places according to their interest on social media and provides Wikipedia content and Geonames ID at a given location. <br />
+         YapQ's service indexes millions of points around the world, and provides content in 12 different languages. This allows you to ensure you catch the <em>must-see</em> sights at a specific location.<br />
+         Each point of interest comes with links to content, grading information, location and directions to help make discovering your destination easy and fun.<br /><br />
+         This service is still under active development, and the response format may change without warning. We'd be interested in your feedback - <a href="mailto:sandbox@yapq.com">send us an email</a>.
+      parameters:
+        - name: apikey
+          in: query
+          description: API Key provided for your account, to identify you for API access
+          required: true
+          type: string
+        - name: latitude
+          in: query
+          description: Latitude of the center of the search, in decimal degrees
+          required: true
+          type: number
+          default: 35.1504
+        - name: longitude
+          in: query
+          description: Longitude of the center of the search, in decimal degrees
+          required: true
+          type: number
+          default: -114.57632
+        - name: radius
+          in: query
+          description: Radius around the center to look for points-of-interest around the given latitude and longitude in kilometers (km)
+          type: integer
+          default: 42
+        - name: lang
+          in: query
+          description: The preferred language of the content related to each point of interest. Content will be returned in this language if available
+          required: false
+          type: string
+          enum: [DE, EN, ES, FR, HE, IT, JA, KO, NL, PL, RU, ZH]
+          default: "EN"
+        - name: category
+          in: query
+          description: Filters the resulting points_of_interest to include only results which have a least one category containing the given provided word. Good examples are <em>museum</em>, <em>landmark</em> or <em>church</em>
+          required: false
+          type: string
+          default: "Museum"
+        - name: geonames
+          in: query
+          description: Setting this to true includes only points of interest with a geonames ID
+          required: false
+          type: boolean
+          default: false
+        - name: vibes
+          in: query
+          description: Includes content that doesn't correspond to an active physical place, but which gives the user some background information, or <em>vibe</em> for the place they are visiting. An example of this may be information on an influential demolished building that used to exist at a certain location, or more information on a district of the city
+          required: false
+          type: boolean
+          default: false
+        - name: social_media
+          in: query
+          description: Enabling this includes images from Instagram in the output results. This is disabled by default, since these images are often just pictures of people or food, which often have little relevance to the actual location
+          required: false
+          type: boolean
+          default: false
+        - name: image_size
+          in: query
+          description: The size of the images you'd like to see in the response
+          required: false
+          type: string
+          enum: [SMALL, MEDIUM, LARGE, HD]
+          default: MEDIUM
+        - name: number_of_images
+          in: query
+          description: Number of images to display.
+          required: false
+          type: integer
+          default: 4
+        - name: number_of_results
+          in: query
+          description: "The maximum number of points of interest to return in the results set. This is a range from 1 to 100"
+          required: false
+          type: integer
+          default: 20
+      responses:
+        200:
+          description: Valid Points of Interest Response from YapQ
+          schema:
+            $ref: "#/definitions/PointsOfInterestResponse"
         default:
           description: Client or server error
           schema:
@@ -1701,6 +1845,9 @@ definitions:
       longitude:
         type: number
         description: The east-west coordinate of this location, in decimal degrees, between -180 and 180
+      google_maps_link:
+        type: string
+        description: For YapQ APIs only  - a link to a google map rendering of this location.
   HotelSearchResponse:
      properties:
       results:
@@ -2290,7 +2437,6 @@ definitions:
   Reservation:
      properties:
       flight_tickets:
-        description: The flight itineraries with a ticket or transitional stored ticket (TST) in this reservation, and their prices.
         $ref: "#/definitions/FlightTicket"
       unticketed_flights:
         description: The flight itineraries in this reservation that have not yet been ticketed or priced.
@@ -2318,6 +2464,7 @@ definitions:
         - price
         - traveler_ids
         - flight_bounds
+     description: The flight itineraries with a ticket or transitional stored ticket (TST) in this reservation, and their prices.
      properties:
       id:
         type: string
@@ -2765,3 +2912,97 @@ definitions:
       label:
         type: string
         description: The official name of this airline, in UTF-8 format.
+  PointsOfInterestResponse:
+     required:
+        - current_city
+     properties:
+      current_city:
+        $ref: "#/definitions/PointOfInterestCity"
+      points_of_interest:
+        type: array
+        items:
+          $ref: "#/definitions/PointOfInterestResult"
+  PointOfInterestCity:
+     required:
+        - name
+        - location
+        - total_points_of_interest
+     properties:
+      name:
+        type: string
+        description: The name of the location that was searched for
+      geoname_id:
+        type: string
+        description: The Geonames ID of the location that was searched for
+      location:
+        $ref: "#/definitions/Geolocation"
+      total_points_of_interest:
+        type: integer
+        description: The total number of points_of_interest that YapQ has indexed for this city
+  PointOfInterestResult:
+     required:
+        - title
+        - main_image
+        - grades
+        - categories
+        - location
+     properties:
+      title:
+        type: string
+        description: Display name of a given point of interest
+      main_image:
+        type: string
+        description: A link to an image of the given location
+      location:
+        $ref: "#/definitions/Geolocation"
+      grades:
+        type: object
+        description: Result availble grades.
+        properties:
+          yapq_grade:
+            type: integer
+            description: Main YAPQ grade. A grade out of 5 for this point, rated against all points in the world and normalized among selected group of points. 5 is best, 0 is worst.
+          city_grade:
+            type: integer
+            description: The ranking of this point of interest compared to other points in this city. 1 is the highest rated.
+      categories:
+        type: array
+        description: Array of descriptions indicating what type of point of interest this is. You can filter the results to include only certain categories of point of interest using the category input parameter.
+        items:
+          type: string
+      details:
+        $ref: "#/definitions/PointOfInterestDetails"
+      contextual_images:
+        type: array
+        description: Images taken at this point of interest. Note that these images might have nothing to do with the point itself, particularly if you have enabled the social_media parameter
+        items:
+            $ref: "#/definitions/ImageSize"
+      geoname_id:
+        type: integer
+        description: The GeonamesID of this point of interest, if available
+  PointOfInterestDetails:
+     required:
+        - short_description
+        - description
+        - wiki_page_link
+     properties:
+      short_description:
+        type: string
+        description: A summary of the given point
+      description:
+        type: string
+        description: A paragraph describing this point of interest
+      wiki_page_link:
+        type: string
+        description: A link to this point of interest&quot;s wikipedia page
+  ImageSize:
+     description: An image size selector used in the YapQ API response. The size should correspond the the image_size parameter used during input
+     properties:
+      small:
+        $ref: "#/definitions/Image"
+      medium:
+        $ref: "#/definitions/Image"
+      large:
+        $ref: "#/definitions/Image"
+      hd:
+        $ref: "#/definitions/Image"
