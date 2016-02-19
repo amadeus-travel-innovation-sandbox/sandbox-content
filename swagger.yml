@@ -1360,7 +1360,7 @@ paths:
       summary: Use YapQ's Point of Interest service to find landmarks and attractions in a given city.
       description: |
          Amadeus has partnered with <a href="http://yapq.io/">YapQ</a> to bring you point of interest APIs with the goal of offering you unbiased ratings of landmarks and tourist attractions. YapQ rates these points according to their interest on social media and provides Wikipedia content and Geonames ID in a given city. <br />
-         YapQ's service indexes millions of points around the world, and provides content in 12 different languages. This allows you to ensure you catch the <em>must-see</em> sights in a given city.<br />
+         YapQ's service indexes millions of points around the world, and provides content in 12 different languages. This allows you to ensure you catch the <em>must-see</em> sights in a <a href="http://yapq.io/cities.html">YapQ supported city</a>.<br />
          Each point of interest comes with links to content, grading information, location and directions to help make discovering your destination easy and fun.<br /><br />
          This service is still under active development, and the response format may change without warning. We'd be interested in your feedback - <a href="mailto:sandbox@yapq.com">send us an email</a>.
       parameters:
@@ -1371,7 +1371,7 @@ paths:
           type: string
         - name: city_name
           in: query
-          description: The name of the city for which you are searching, in the selected language
+          description: The name of the <a href="http://yapq.io/cities.txt">supported city</a> for which you are searching, in the selected language. 
           required: true
           type: string
           default: "Tel Aviv"
@@ -1441,7 +1441,7 @@ paths:
       summary: Use YapQ's Point of Interest service to find landmarks and attractions near a given point.
       description: |
          Amadeus has partnered with <a href="http://yapq.io/">YapQ</a> to bring you point of interest APIs with the goal of offering you unbiased ratings of landmarks and tourist attractions. YapQ rates places according to their interest on social media and provides Wikipedia content and Geonames ID at a given location. <br />
-         YapQ's service indexes millions of points around the world, and provides content in 12 different languages. This allows you to ensure you catch the <em>must-see</em> sights at a specific location.<br />
+         YapQ's service indexes millions of points around the world, and provides content in 12 different languages. This allows you to ensure you catch the <em>must-see</em> sights at a specific <a href="http://yapq.io/cities.html">YapQ supported location</a>.<br />
          Each point of interest comes with links to content, grading information, location and directions to help make discovering your destination easy and fun.<br /><br />
          This service is still under active development, and the response format may change without warning. We'd be interested in your feedback - <a href="mailto:sandbox@yapq.com">send us an email</a>.
       parameters:
