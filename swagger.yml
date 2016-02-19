@@ -1465,6 +1465,7 @@ paths:
         - name: radius
           in: query
           description: Radius around the center to look for points-of-interest around the given latitude and longitude in kilometers (km)
+          required: true
           type: integer
           default: 42
         - name: lang
