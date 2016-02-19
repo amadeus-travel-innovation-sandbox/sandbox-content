@@ -1383,6 +1383,12 @@ paths:
           required: false
           type: string
           default: "Museum"
+        - name: geonames
+          in: query
+          description: Setting this to true includes only points of interest with a geonames ID
+          required: false
+          type: boolean
+          default: false
         - name: vibes
           in: query
           description: Includes content that doesn't correspond to an active physical place, but which gives the user some background information, or <em>vibe</em> for the place they are visiting. An example of this may be information on an influential demolished building that used to exist at a certain location, or more information on a district of the city
@@ -1469,6 +1475,12 @@ paths:
           required: false
           type: string
           default: "Museum"
+        - name: geonames
+          in: query
+          description: Setting this to true includes only points of interest with a geonames ID
+          required: false
+          type: boolean
+          default: false
         - name: vibes
           in: query
           description: Includes content that doesn't correspond to an active physical place, but which gives the user some background information, or <em>vibe</em> for the place they are visiting. An example of this may be information on an influential demolished building that used to exist at a certain location, or more information on a district of the city
@@ -2981,11 +2993,11 @@ definitions:
   ImageSize:
      description: An image size selector used in the YapQ API response. The size should correspond the the image_size parameter used during input
      properties:
-      Small:
+      small:
         $ref: "#/definitions/Image"
-      Medium:
+      medium:
         $ref: "#/definitions/Image"
-      Large:
+      large:
         $ref: "#/definitions/Image"
-      Hd:
+      hd:
         $ref: "#/definitions/Image"
