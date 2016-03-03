@@ -1,7 +1,7 @@
 Travel Innovation Sandbox Content
 =================================
 
-This repo contains the content and specifications for the [Amadeus Travel Innovation Sandbox](https://sandbox.amadeus.com).  Check out [our site]](https://sandbox.amadeus.com) for more details.
+This repo contains the content and specifications for the [Amadeus Travel Innovation Sandbox](https://sandbox.amadeus.com).  Check out [our site](https://sandbox.amadeus.com) for more details.
 
 What's in these files?
 ---------------------
