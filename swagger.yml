@@ -187,7 +187,7 @@ paths:
           in: query
           description: "The date on which the traveler will depart from the origin to go to the destination. The maximum scope for a date range is 2 days, for a larger scope, use the Extensive Search! "
           required: true
-          format: date
+          format: string
           type: string
           default: "2016-06-25"
         - name: return_date
