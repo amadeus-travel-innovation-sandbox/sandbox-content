@@ -20,11 +20,11 @@ paths:
       operationId: Flight Inspiration Search
       summary: The Flight Inspiration Search API lets you go beyond the traditional search by origin, destination and dates to meet the needs of travelers looking for suggestions and a search experience that reflects the way they choose their trip. This can help you answer the question "Where can I go within a given travel budget?" 
       description: |
-        The Inspiration Flight Search allows you to find the prices of one-way and return flights from an origin city without necessarily having a destination, or even a flight date, in mind. The search doesn't return a distinct set of price options, but rather, can tell you the price of flying from a given city to some destination, for a trip of a given duration, that falls within a given date range.
+        <p>The Inspiration Flight Search allows you to find the prices of one-way and return flights from an origin city without necessarily having a destination, or even a flight date, in mind. The search doesn't return a distinct set of price options, but rather, can tell you the price of flying from a given city to some destination, for a trip of a given duration, that falls within a given date range.</p>
 
-        The search is based on our Extreme Search platform, which continually caches a large number of flight search results from a list of origin cities to a variety of destinations. Since it's a cached search, the response time is fast, but not all origin airports are available. Here is <a href="https://github.com/amadeus-travel-innovation-sandbox/sandbox-content/blob/master/flight-search-cache-origin-destination.csv">a list of the currently supported origin-destination IATA location pairs</a>. We try to keep this list as fresh as possible for you, but be aware that it may not always be exactly up-to-date and it can change without warning.
+        <p>The search is based on our Extreme Search platform, which continually caches a large number of flight search results from a list of origin cities to a variety of destinations. Since it's a cached search, the response time is fast, but not all origin airports are available. Here is <a href="https://github.com/amadeus-travel-innovation-sandbox/sandbox-content/blob/master/flight-search-cache-origin-destination.csv">a list of the currently supported origin-destination IATA location pairs</a>. We try to keep this list as fresh as possible for you, but be aware that it may not always be exactly up-to-date and it can change without warning.</p>
 
-        Despite this limitation don't underestimate the power of this API. Thanks to its quick response speed you can easily pair it with other APIs to provide a low fare and inspiration for any destination. For example, you can could combine it with a event search API and suggest a total price to see go and see an concert or a game in a selection of cities.
+        <p>Despite this limitation don't underestimate the power of this API. Thanks to its quick response speed you can easily pair it with other APIs to provide a low fare and inspiration for any destination. For example, you can could combine it with a event search API and suggest a total price to see go and see an concert or a game in a selection of cities.</p>
       parameters:
         - name: apikey
           in: query
@@ -33,19 +33,19 @@ paths:
           type: string
         - name: origin
           in: query
-          description: City code from which the traveler will depart. See the location and airport interfaces for more information.
+          description: <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city from which the traveler will depart. See the location and airport interfaces for more information.
           required: true
           type: string
           default: "NYC"
         - name: destination
           in: query
-          description:  IATA city code to which the traveler is going 
+          description:  <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city to which the traveler is going 
           required: false
           type: string
           default: "LAX"
         - name: departure_date
           in: query
-          description: "Range of dates between which the traveler could depart. Ranges are inclusive and ranges of months will apply from the start to the end of the month. If just a single date is specified, only that date will be searched. By default, the date range starts today and applies up to 361 in the future is applied. Past dates are generally not supported, future dates should be in the next 361 days, although results start to become sparse after about 6 months in the future, as airlines may still be defining their schedules. The default is to search all future dates available. "
+          description: Range of dates between which the traveler could depart. Dates are specified in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> yyyy-MM-dd date format. Ranges are inclusive and ranges of months will apply from the start to the end of the month. If just a single date is specified, only that date will be searched. By default, the date range starts today and applies up to 361 in the future is applied. Past dates are generally not supported, future dates should be in the next 361 days, although results start to become sparse after about 6 months in the future, as airlines may still be defining their schedules. The default is to search all future dates available.
           required: false
           type: string
           default: "2016-06-16--2016-06-26"
@@ -92,11 +92,11 @@ paths:
       operationId: Flight Extensive Search
       summary: The Extensive Flight Search API allows building travel searches based on very flexible and open range of dates. You can use it to answer questions such as "When is the best date to fly...".  It's built on Amadeus' Featured Results technology, which returns thousands of results (prices, itineraries and dates) in a matter of milliseconds. Results are available over half a calendar year with a 1 to 15 day stay duration    
       description: |
-        The Extensive Flight Search allows you to find the prices of one-way or return flights between two airports over a large number of dates, and for a large variety of stay durations. The search doesn't return exact itineraries, but rather tells you the best price for a flight on a given day, for a stay of a given duration.
+        <p>The Extensive Flight Search allows you to find the prices of one-way or return flights between two airports over a large number of dates, and for a large variety of stay durations. The search doesn't return exact itineraries, but rather tells you the best price for a flight on a given day, for a stay of a given duration.</p>
 
-        The search is based on our Extreme Search platform, which continually caches a large number of flight search results from a list of origin cities to a variety of destinations. Since it's a cached search, the response time is fast, but not all origin airports are available. Here is <a href="https://github.com/amadeus-travel-innovation-sandbox/sandbox-content/blob/master/flight-search-cache-origin-destination.csv">a list of the currently supported origin-destination IATA location pairs</a>. We try to keep this list as fresh as possible for you, but be aware that it may not always be exactly up-to-date and it can change without warning.
+        <p>The search is based on our Extreme Search platform, which continually caches a large number of flight search results from a list of origin cities to a variety of destinations. Since it's a cached search, the response time is fast, but not all origin airports are available. Here is <a href="https://github.com/amadeus-travel-innovation-sandbox/sandbox-content/blob/master/flight-search-cache-origin-destination.csv">a list of the currently supported origin-destination IATA location pairs</a>. We try to keep this list as fresh as possible for you, but be aware that it may not always be exactly up-to-date and it can change without warning.</p>
 
-        That said, a price graph like this provides a powerful bargin shopping tool - allowing travelers with flexible itineraries to identify days on which they can get the cheapest flights to their destinations.
+        <p>That said, a price graph like this provides a powerful bargin shopping tool - allowing travelers with flexible itineraries to identify days on which they can get the cheapest flights to their destinations.</p>
       parameters:
         - name: apikey
           in: query
@@ -105,19 +105,20 @@ paths:
           type: string
         - name: origin
           in: query
-          description: City code from which the traveler will depart. See the location and airport interfaces for more information.
+          description: <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city from which the traveler will depart. See the location and airport interfaces for more information.
           required: true
           type: string
           default: "FRA"
         - name: destination
           in: query
-          description:  IATA city code to which the traveler is going 
+          description:  <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city to which the traveler is going 
           required: true
           type: string
           default: "LON"
         - name: departure_date
           in: query
-          description: "Range of dates between which the traveler could depart. Ranges are inclusive and ranges of months will apply from the start to the end of the month. If just a single date is specified, only that date will be searched. By default, the date range starts today and applies up to 361 in the future is applied. Past dates are generally not supported, future dates should be in the next 361 days, although results start to become sparse after about 6 months in the future, as airlines may still be defining their schedules. The default is to search all future dates available. "
+          description: |
+             Range of dates between which the traveler could depart. Dates are specified in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> yyyy-MM-dd date format. Ranges are inclusive and ranges of months will apply from the start to the end of the month. If just a single date is specified, only that date will be searched. By default, the date range starts today and applies up to 361 in the future is applied. Past dates are generally not supported, future dates should be in the next 361 days, although results start to become sparse after about 6 months in the future, as airlines may still be defining their schedules. The default is to search all future dates available. 
           required: false
           type: string
           default: "2016-06-16--2016-06-26"
@@ -164,7 +165,12 @@ paths:
     get:
       operationId: Flight Low-Fare Search   
       summary: The Low-Fare Search API lets you find the cheapest one way or return itineraries and fares between two airports at specific dates.
-      description: This is the low fare search engine Amadeus uses to retrieve the best price for flights, based on our latest Master Pricer Travel Board technology. This document describes how to make a low fare search and how to handle the returned messages. The message is composed of multiple results for given request. A result is defined by a unique combination of price, tax, passenger type, fare type, cabin, and availability for each requested segment. A result is then composed of single or multiple itineraries. Each itinerary is composed of an outbound leg, and, if a return date was specified, an inbound leg. Each leg is composed of a list of one or more flights, that the traveller will be required to take in order to get from the origin airport to the destination airport. 
+      description: |
+          <p>This is the low fare search engine Amadeus uses to retrieve the best price for flights, based on our latest Master Pricer Travel Board technology. This document describes how to make a low fare search and how to handle the returned messages.</p>
+          
+          <p>The message is composed of multiple results for given request. A result is defined by a unique combination of price, tax, passenger type, fare type, cabin, and availability for each requested segment.</p> 
+          
+          <p>A result is then composed of single or multiple itineraries. Each itinerary is composed of an outbound leg, and, if a return date was specified, an inbound leg. Each leg is composed of a list of one or more flights, that the traveller will be required to take in order to get from the origin airport to the destination airport.</p>
       parameters:
         - name: apikey
           in: query
@@ -179,32 +185,32 @@ paths:
           default: "BOS"
         - name: destination
           in: query
-          description:  IATA city code to which the traveler is going 
+          description: <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city to which the traveler is going 
           required: true
           type: string
           default: "LON"
         - name: departure_date
           in: query
-          description: "The date on which the traveler will depart from the origin to go to the destination. The maximum scope for a date range is 2 days, for a larger scope, use the Extensive Search! "
+          description: The date on which the traveler will depart from the origin to go to the destination. You can specify a date range of up to 2 days. For a larger date range, use the Extensive Search. Dates are specified in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> yyyy-MM-dd date format and separated by --.
           required: true
           format: date
           type: string
           default: "2016-06-25"
         - name: return_date
           in: query
-          description: "The date on which the traveler will depart from the destination to return to the origin. If this parameter is not specified, the search will find only one-way trips. If this, or the return_by parameter are specified, only return trips are found"
+          description: The date on which the traveler will depart from the destination to return to the origin. If this parameter is not specified, the search will find only one-way trips. If this, or the return_by parameter are specified, only return trips are found. You can specify a date range of up to 2 days.
           required: false
           type: string
           default: "2016-06-28"
         - name: arrive_by
           in: query
-          description: "The datetime by which the outbound flight should arrive, based on local time at the destination airport"
+          description: The datetime by which the outbound flight should arrive, based on local time at the destination airport.  Date-times are specified in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> yyyy-MM-ddTHH:mm date format
           required: false
           type: string
           default: "2016-06-25T16:00"
         - name: return_by
           in: query
-          description: "The time by which the inbound flight should arrive, based on local time at the airport specified as the origin parameter"
+          description: The time by which the inbound flight should arrive, based on local time at the airport specified as the origin parameter
           required: false
           type: string
           default: "2016-06-28T08:00"
@@ -228,16 +234,22 @@ paths:
           default: 0
         - name: include_airlines
           in: query
-          description: If specified, all results will include at least one flight where one or more of these airlines is the marketing carrier. This behaves as an OR function.
+          description: If specified, all results will include at least one flight where one or more of these airlines is the marketing carrier. This behaves as an OR function. Airlines are specified using <a href="https://en.wikipedia.org/wiki/Airline_codes"><a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a>s</a>.
           required: false
-          type: string
-          default: "AF"
+          type: array
+          items:
+            type: string
+          collectionFormat: csv
+          default: [AF]
         - name: exclude_airlines
           in: query
-          description: If specified, no results will include any flights where any of these airlines is the marketing carrier
+          description: If specified, no results will include any flights where any of these airlines is the marketing carrier. Airlines are specified using <a href="https://en.wikipedia.org/wiki/Airline_codes"><a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a>s</a>.
           required: false
-          type: string
-          default: "UA"
+          type: array
+          items:
+            type: string
+          collectionFormat: csv
+          default: [UA]
         - name: non-stop
           in: query
           description: Setting this to true will find only flights that do not require the passenger to change from one flight to another
@@ -252,7 +264,7 @@ paths:
           default: 980
         - name: currency
           in: query
-          description: "The preferred currency for the results"
+          description: The preferred <a href="https://en.wikipedia.org/wiki/ISO_4217">currency</a> for the results
           required: false
           type: string
           default: "USD"
@@ -282,14 +294,16 @@ paths:
       operationId: Flight Affiliate Search   
       summary: The  Flight Affiliate Search API uses Travel Audience Connect's affiliate network API to search flights from our list of partners and provides deep-links to allow the user to book directly on the airline website.
       description: |
-          The Flight Affiliate Search API combines our Master Pricer search technology with Travel Audience's Connect API partners to provide a flight search where all results come with a deep-link to book the flight at a partner's website. <br />  Our partners include <ul>
-            <li><a href="http://www.cityjet.com/">CityJet</a> in Western Europe,</li>
+          <p>The Flight Affiliate Search API combines Amadeus' flight search technology with Travel Audience's Connect API partners to provide a unique flight search, where all results come with deep-links to book the flight at a partner's website. The API will let you easily provide the traveler with a path to book flights from your application.</p>
+          <p>Travel Audience Connect partners include
+          <ul>
+            <li><a href="http://www.cityjet.com/">CityJet</a>, <a href="https://www.aireuropa.com/en/flights">Air Europa</a> and <a href="http://www.flytap.com/">TAP</a> in Western Europe,</li>
             <li><a href="http://uralairlines.com/">Ural Airlines</a> in Russia, </li>
             <li><a href="http://www.avianca.com.br/">Avianca Brazil</a>  and</li>
-            <li><a href="http://www.jal.com/">JAL</a> in East Asia, only for flights at do not originate in Japan</li>
+            <li><a href="http://www.jal.com/">JAL</a> in East Asia</li>
           </ul>
-          
-          Only Travel Audience Connect partner airlines are searched. For an up-to-date list of routes, see the route maps on each partners respective websites above. You can earn commission using the deep links provided in the search results if you sign up for an account at http://connect.travelaudience.com.
+          </p>
+          <p>Only Travel Audience Connect partner airlines are searched. For an up-to-date list of routes, see the route maps on each partners respective websites above. You can earn commission using the deep links provided in the search results if you sign up for an account at <a href="http://connect.travelaudience.com/">connect.travelaudience.com</a>.</p>
       parameters:
         - name: apikey
           in: query
@@ -304,7 +318,7 @@ paths:
           default: "LON"
         - name: destination
           in: query
-          description:  IATA city code to which the traveler is going 
+          description:  <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city to which the traveler is going 
           required: true
           type: string
           default: "DUB"
@@ -340,16 +354,22 @@ paths:
           default: 0
         - name: include_merchants
           in: query
-          description: If specified, all results will include at least one flight where one or more of these airlines is the marketing carrier
-          required: false
-          type: string
-          default: "AF"
+          description: If specified, all results will include at least one flight where one or more of these airlines is the marketing carrier. Airlines are specified using <a href="https://en.wikipedia.org/wiki/Airline_codes"><a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a>s</a>
+          required: false          
+          type: array
+          items:
+            type: string
+          collectionFormat: csv
+          default: [AF]
         - name: exclude_merchants
           in: query
-          description: If specified, no results will include any flights where any of these airlines is the marketing carrier
+          description: If specified, no results will include any flights where any of these airlines is the marketing carrier. Airlines are specified using <a href="https://en.wikipedia.org/wiki/Airline_codes"><a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a>s</a>
           required: false
-          type: string
-          default: "UA"
+          type: array
+          items:
+            type: string
+          collectionFormat: csv
+          default: [UA]
         - name: max_price
           in: query
           description: "Maximum price of trips to find in the result set, in USD (US dollars) unless some other currency code is specified. By default, no limit is applied"
@@ -358,7 +378,7 @@ paths:
           default: 980
         - name: currency
           in: query
-          description: "The preferred currency for the results"
+          description: The preferred <a href="https://en.wikipedia.org/wiki/ISO_4217">currency</a> for the results
           required: false
           type: string
           default: "EUR"
@@ -382,11 +402,11 @@ paths:
       operationId: Location Information
       summary: The Location Information API allows you to quickly find out more information about any IATA city or airport location code. With this API, you can find information such as city and airport names and locations, as well as information on timezones and airport usage.
       description: |
-        This service retrieves the location information corresponding to a IATA city or airport code.
+        <p>This service retrieves the location information corresponding to a IATA city or airport code.</p>
       
-        When provided with an IATA code, the service determines whether this code could relate to a city code, an airport code or both. If the city could contain multiple airports, it will return all possible airports that correspond to that city code.
+        <p>When provided with an <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a>, the service determines whether this code could relate to a city code, an airport code or both. If the city could contain multiple airports, it will return all possible airports that correspond to that city code.</p>
 
-        This API is based on the Amadeus supported Geobases open-source project http://opentraveldata.github.io/geobases. If you wish to make your own database with all IATA location information, in order to get faster reponses, you can download the latest raw data from their github page https://github.com/opentraveldata/geobases. The exact file used for this API is https://github.com/opentraveldata/opentraveldata/blob/master/opentraveldata/optd_por_public.csv
+        <p>This API is based on the Amadeus supported <a href="http://opentraveldata.github.io/geobases">Geobases</a> open-source project. If you wish to make your own database with all IATA location information, in order to get faster reponses, you can download the latest raw data from their <a href="https://github.com/opentraveldata/opentraveldata/blob/master/opentraveldata/optd_por_public.csv">github page</a>.</p>
       parameters:
         - name: apikey
           in: query
@@ -413,9 +433,9 @@ paths:
       operationId: Airport Autocomplete
       summary: The Airport Autocomplete API provides a simple means to find an IATA location code for flight search based on a city or airport name. The API is fully JQuery-Autocomplete compatible to enable you to quickly build a drop-down list for your users to find the right airport easily. 
       description: |
-        Given the start of any word in an airport's official name, a city name, or the start of an IATA code, this API provides the full name and IATA location code of the city or airport, for use in flight searches. Only major cities and civilian airports with several commercial flights per week are included by default. The response provides up to 20 possible matches, sorted by importance, in a <a href="http://jqueryui.com/autocomplete/">JQuery UI Autocomplete</a> compatible format. <a href="https://github.com/amadeus-travel-innovation-sandbox/sandbox-content/blob/master/airport-autocomplete-template.html">This sample implementation</a> using JQuery UI may help. This API uses data from the OpenTravelData project, see https://github.com/opentraveldata/opentraveldata/blob/master/opentraveldata/optd_por_public.csv.
+        <p>Given the start of any word in an airport's official name, a city name, or the start of an <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a>, this API provides the full name and IATA location code of the city or airport, for use in flight searches. Only major cities and civilian airports with several commercial flights per week are included by default. The response provides up to 20 possible matches, sorted by importance, in a <a href="http://jqueryui.com/autocomplete/">JQuery UI Autocomplete</a> compatible format. <a href="https://github.com/amadeus-travel-innovation-sandbox/sandbox-content/blob/master/airport-autocomplete-template.html">This sample implementation</a> using JQuery UI may help. This API uses data from the <a href="https://github.com/opentraveldata/opentraveldata/blob/master/opentraveldata/optd_por_public.csv">OpenTravelData</a> project.</p>
 
-        The value returned is the IATA location code. The label returned is always in UTF-8 format, with the airport official name (which is often in the native language), in the format of English City Name (if not already included in the airport name).
+        <p>The value returned is the IATA location code. The label returned is always in UTF-8 format, with the airport official name (which is often in the native language), in the format of English City Name (if not already included in the airport name).</p>
       parameters:
         - name: apikey
           in: query
@@ -442,13 +462,13 @@ paths:
       operationId: Nearest Relevant Airport
       summary: The Nearest Relevant Airport can find the most useful nearby airport to a given location.
       description: |
-        This service gives the most relevant airports in a radius of 500 km around the given coordinates. The relevance of an airport is computed by dividing the number of airport movements (take offs and landings) by the distance from the point. This causes the relevance of an airport to increase exponentially as you approach it.
+        <p>This service gives the most relevant airports in a radius of 500 km around the given coordinates. The relevance of an airport is computed by dividing the number of airport movements (take offs and landings) by the distance from the point. This causes the relevance of an airport to increase exponentially as you approach it.</p>
 
-        To minimize response time, all distances are computed as a <a href="http://en.wikipedia.org/wiki/Great-circle_distance">great-circle distance</a> from the provided coordinates to the airport coordinates, and thus do not take into account traffic conditions, international boundaries, mountains, water, or other elements that might make the a nearby airport hard to reach.
+        <p>To minimize response time, all distances are computed as a <a href="http://en.wikipedia.org/wiki/Great-circle_distance">great-circle distance</a> from the provided coordinates to the airport coordinates, and thus do not take into account traffic conditions, international boundaries, mountains, water, or other elements that might make the a nearby airport hard to reach.</p>
 
-        Only civilian airports with at least several commercial flights per week are included in the results.
+        <p>Only civilian airports with at least several commercial flights per week are included in the results.</p>
 
-        The result is a list of airports sorted by decreasing relevance. It always contains the nearest airport with significant commercial traffic.
+        <p>The result is a list of airports sorted by decreasing relevance. It always contains the nearest airport with significant commercial traffic.</p>
       parameters:
         - name: apikey
           in: query
@@ -483,9 +503,9 @@ paths:
       operationId: Hotel Airport Search
       summary: The Hotel Airport Search API uses Amadeus' fast hotel search engine to locate the cheapest available rooms near a given airport, for a given stay period. This API is ideal if you want to connect flight and hotels. Provide an IATA airport code, as well as the check-in and check-out dates, and get a list of up to 140 properties (names, codes, image, amenities) with their locations and rates. Optional parameters such as currency and maximum rates, amenities or hotel chain codes are also available and can be used to narrow down the results. More optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. 
       description: |
-        A fast Hotel shopping API to see which hotels are available in a given area, on a given day and displays their lowest prices. With this API you can find out the price of the cheapest daily rate for all hotels near a given airport.
+        <p>A fast Hotel shopping API to see which hotels are available in a given area, on a given day and displays their lowest prices. With this API you can find out the price of the cheapest daily rate for all hotels near a given airport.</p>
     
-        This API allows you to quickly see the locations of hotels near a given airport, and what prices in that area look like. The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.
+        <p>This API allows you to quickly see the locations of hotels near a given airport, and what prices in that area look like. The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.</p>
       parameters:
         - name: apikey
           in: query
@@ -494,7 +514,7 @@ paths:
           type: string
         - name: location
           in: query
-          description: IATA location code for which further information is required.
+          description: <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA airport code</a> for hotel availability is required requested.
           required: true
           type: string
           default: "BOS"
@@ -524,7 +544,7 @@ paths:
           default: "EN"
         - name: currency
           in: query
-          description: "The preferred currency for the results"
+          description: The preferred <a href="https://en.wikipedia.org/wiki/ISO_4217">currency</a> for the results
           required: false
           type: string
           default: "USD"
@@ -563,8 +583,11 @@ paths:
           description: >-
             Hotel <a href="hotels-api-supported-amenities-filter">amenities filter</a> to search narrow down hotels with certain amenities. For example&colon; amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED).
           required: false
-          type: string
-          default: "PARKING"
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+          default: [PARKING]
       responses:
         200:
           description: Valid Search Response
@@ -579,11 +602,11 @@ paths:
       operationId: Hotel Geosearch by circle
       summary: The Hotel Lowest-Price Search API uses Amadeus' fast hotel search engine to locate the cheapest available rooms within a given radius of a defined point for a given stay period.
       description: | 
-        A fast Hotel shopping API to see which hotels are available in a given area, on a given day and displays their lowest prices. With this API you can find out the price of the cheapest daily rate for all hotels within a specified radius of a point.
+        <p>A fast Hotel shopping API to see which hotels are available in a given area, on a given day and displays their lowest prices. With this API you can find out the price of the cheapest daily rate for all hotels within a specified radius of a point.</p>
       
-        This API allows you to quickly see the hotel locations in a region, and what prices in that area look like,  as well as the check-in and check-out dates, and get list of up to 140 properties (names, codes, image, amenities) with their locations and rates. Optional parameters such as currency and maximum rates, amenities or hotel chain codes are also available and can be used to narrow down the results. More optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. 
+        <p>This API allows you to quickly see the hotel locations in a region, and what prices in that area look like,  as well as the check-in and check-out dates, and get list of up to 140 properties (names, codes, image, amenities) with their locations and rates. Optional parameters such as currency and maximum rates, amenities or hotel chain codes are also available and can be used to narrow down the results. More optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. </p>
     
-        The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.
+        <p>The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.</p>
       parameters:
         - name: apikey
           in: query
@@ -628,7 +651,7 @@ paths:
           default: "EN"
         - name: currency
           in: query
-          description: "The preferred currency for the results"
+          description: The preferred <a href="https://en.wikipedia.org/wiki/ISO_4217">currency</a> for the results
           required: false
           type: string
           default: "USD"
@@ -667,8 +690,11 @@ paths:
           description: >-
             Hotel <a href="hotels-api-supported-amenities-filter">amenities filter</a> to search narrow down hotels with certain amenities. For example&colon; amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED).
           required: false
-          type: string
-          default: "PARKING"
+          default: [PARKING]
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
       responses:
         200:
           description: Valid Search Response
@@ -683,11 +709,11 @@ paths:
       operationId: Hotel Geosearch by box
       summary: The Hotel Lowest-Price Search API uses Amadeus' fast hotel search engine to locate the cheapest available rooms within a given rectangular region for a given stay period. It's ideal for displaying results on a map.
       description: |
-        A fast Hotel shopping API to see which hotels are available in a given area, on a given day and displays their lowest prices. With this API you can find out the price of the cheapest daily rate for all hotels within a specified geographical region.
+        <p>A fast Hotel shopping API to see which hotels are available in a given area, on a given day and displays their lowest prices. With this API you can find out the price of the cheapest daily rate for all hotels within a specified geographical region.</p>
         
-        This API allows you to quickly see the hotel locations in a region, and what prices in that area look like,  as well as the check-in and check-out dates, and get a list of up to 140 properties (names, codes, image, amenities) with their locations and rates. Optional parameters such as currency and maximum rates, amenities or hotel chain codes are also available and can be used to narrow down the results. More optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. 
+        <p>This API allows you to quickly see the hotel locations in a region, and what prices in that area look like,  as well as the check-in and check-out dates, and get a list of up to 140 properties (names, codes, image, amenities) with their locations and rates. Optional parameters such as currency and maximum rates, amenities or hotel chain codes are also available and can be used to narrow down the results. More optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms.</p>
                     
-        The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.
+        <p>The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.</p>
       parameters:
         - name: apikey
           in: query
@@ -726,7 +752,7 @@ paths:
           default: "EN"
         - name: currency
           in: query
-          description: "The preferred currency for the results"
+          description: The preferred <a href="https://en.wikipedia.org/wiki/ISO_4217">currency</a> for the results
           required: false
           type: string
           default: "USD"
@@ -765,8 +791,11 @@ paths:
           description: >-
             Hotel <a href="hotels-api-supported-amenities-filter">amenities filter</a> to search narrow down hotels with certain amenities. For example&colon; amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED).
           required: false
-          type: string
-          default: PARKING
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+          default: [PARKING]
       responses:
         200:
           description: Valid Search Response
@@ -781,11 +810,11 @@ paths:
       operationId: Hotel Property Code Search   
       summary: Once you have found your preferred hotel, our Hotel Property Code Search API allows you to quickly find out more room and rate information. It's ideal for displaying results on a map.
       description: |
-        This API allows you to quickly see the detailed information of a single hotel, including descriptions, address, GPS location, amenities, awards, lowest priced room and all room prices and booking information. 
+        <p>This API allows you to quickly see the detailed information of a single hotel, including descriptions, address, GPS location, amenities, awards, lowest priced room and all room prices and booking information. </p>
 
-        This API gives you more information on a specific property. Optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. 
+        <p>This API gives you more information on a specific property. Optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. </p>
     
-        The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/). Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.
+        <p>The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/). Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.</p>
       parameters:
         - name: apikey
           in: query
@@ -794,7 +823,7 @@ paths:
           type: string
         - name: property_code
           in: path
-          description: A Hotel property code based on 2 letter chain code + 3 letter IATA city code + 3 char property unique id.
+          description: A Hotel property code based on 2 letter chain code + 3 letter <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city + 3 char property unique id.
           required: true
           type: string
           default: "BWDCA133"
@@ -818,7 +847,7 @@ paths:
           default: "EN"
         - name: currency
           in: query
-          description: "The preferred currency for the results"
+          description: The preferred <a href="https://en.wikipedia.org/wiki/ISO_4217">currency</a> for the results
           required: false
           type: string
           default: "USD"
@@ -863,7 +892,7 @@ paths:
           type: string
         - name: location
           in: query
-          description: The IATA code of the airport at which the car will be rented.
+          description: The <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the airport at which the car will be rented.
           required: true
           type: string
           default: "NCE"
@@ -887,7 +916,7 @@ paths:
           default: "EN"
         - name: currency
           in: query
-          description: "The preferred currency to use when displaying prices and rates related to the car rental."
+          description: The preferred <a href="https://en.wikipedia.org/wiki/ISO_4217">currency</a> to use when displaying prices and rates related to the car rental.
           required: false
           type: string
           default: "USD"
@@ -920,8 +949,11 @@ paths:
           in: query
           description: "Specifies the type of vehicle to be rented. If selected, the results set will include only vehicles that match these type descriptions. The enumerations above correspond to ACRISS Pseudo Codes, and you may also provide an ACRISS pseudo code directly. If specifying a vehicle-specific ACRISS code, you may provide this parameter up to 3 times."
           required: false
-          type: string
-          default: "PASSENGER_VAN"
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
+          default: [PASSENGER_VAN]
       responses:
         200:
           description: Valid Search Response
@@ -987,7 +1019,7 @@ paths:
           default: "EN"
         - name: currency
           in: query
-          description: "The preferred currency to use when displaying prices and rates related to the car rental."
+          description: The preferred <a href="https://en.wikipedia.org/wiki/ISO_4217">currency</a> to use when displaying prices and rates related to the car rental.
           required: false
           type: string
           default: "USD"
@@ -1020,8 +1052,11 @@ paths:
           in: query
           description: "Specifies the type of vehicle to be rented. If selected, the results set will include only vehicles that match these type descriptions. The enumerations above correspond to ACRISS Pseudo Codes, and you may also provide an ACRISS pseudo code directly. If specifying a vehicle-specific ACRISS code, you may provide this parameter up to 3 times."
           required: false
-          type: string
-          default: "PASSENGER_VAN"
+          default: [PASSENGER_VAN]
+          type: array
+          items:
+            type: string
+          collectionFormat: multi
       responses:
         200:
           description: Valid Search Response
@@ -1239,7 +1274,7 @@ paths:
           default: "2015-09"
         - name: origin
           in: query
-          description: IATA city code from which the traveler will depart. 
+          description: <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city from which the traveler will depart. 
           required: true
           type: string
           default: "BOS"
@@ -1277,13 +1312,13 @@ paths:
           default: "2015-09"
         - name: origin
           in: query
-          description: IATA city code from which the traveler will depart. 
+          description: <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city from which the traveler will depart. 
           required: true
           type: string
           default: "BOS"
         - name: destination
           in: query
-          description:  "IATA city code to which the traveler is going"
+          description: <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city to which the traveler is going
           required: false
           type: string
           default: "LON"
@@ -1329,13 +1364,13 @@ paths:
           default: "2014-09--2014-10"
         - name: origin
           in: query
-          description: IATA city code from which the traveler will depart. 
+          description: <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city from which the traveler will depart. 
           required: true
           type: string
           default: "BOS"
         - name: destination
           in: query
-          description: IATA city code to which the traveler is going. 
+          description: <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city to which the traveler is going. 
           required: false
           type: string
           default: "LAX"
@@ -1548,7 +1583,7 @@ definitions:
     properties:
       origin:
         type: string
-        description: IATA code
+        description: <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a>
       currency:
         type: string
         description: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency code.
@@ -1563,7 +1598,7 @@ definitions:
      properties:
       destination:
         type: string
-        description: The IATA code of the city or airport to which the traveler may go, from the provided origin
+        description: The <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city or airport to which the traveler may go, from the provided origin
       departure_date:
         type: string
         format: date
@@ -1577,7 +1612,7 @@ definitions:
         description: "The minimum total price for one adult passenger for a round trip from the origin to the destination and back. Always a string, formatted correctly for the provided currency"
       airline:
         type: string
-        description: "The 2 character alphanumeric IATA airline code of the airline that is responsible for selling the traveler this flight - also known as the Validating Carrier." 
+        description: The 2 character alphanumeric <a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a> of the airline that is responsible for selling the traveler this flight - also known as the Validating Carrier. Airlines are specified using <a href="https://en.wikipedia.org/wiki/Airline_codes"><a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a>s</a>
   LowFareSearchResponse:
      required:
         - currency
@@ -1646,10 +1681,10 @@ definitions:
         $ref: "#/definitions/Airport"       
       marketing_airline:
         type: string
-        description: "The 2 character alphanumeric IATA airline code of the airline that is responsible for the traveller this flight "
+        description: The 2 character alphanumeric <a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a> of the airline that is responsible for the traveller this flight 
       operating_airline:
         type: string
-        description: "The 2 character alphanumeric IATA airline code of the airline that is providing the aircraft for this flight. Note that in the USA, if the marketing and operating carrier are different, you are legally required to display this in your application."
+        description: The 2 character alphanumeric <a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a> of the airline that is providing the aircraft for this flight. Note that in the USA, if the marketing and operating carrier are different, you are legally required to display this in your application.
       flight_number:
         type: string
         description: "The identifier that the airline uses for this flight route. This is most commonly - but not always - a number. When combined with the airline and date, it identifies an individual aircraft's flight"
@@ -1665,7 +1700,7 @@ definitions:
      properties:
       airport:
         type: string
-        description: The 3 character IATA code of the airport in question for this flight
+        description: The 3 character <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA airport code</a> of the airport in question for this flight
       terminal:
         type: string
         description: "The terminal identifier at which this flight will arrive or depart in the given airport"
@@ -1746,7 +1781,7 @@ definitions:
         description: The 3 letter IATA location code of the given city or airport. You can use this as an input parameter for a flight low-fare or inspiration search.
       label:
         type: string
-        description: The name of this airport, in UTF-8 format, prefixed with the name of the city if it is not already incorporated in the name of the airport, and appended with the location's IATA code (as in value), enclosed in square brackets.
+        description: The name of this airport, in UTF-8 format, prefixed with the name of the city if it is not already incorporated in the name of the airport, and appended with the location's <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> (as in value), enclosed in square brackets.
   RailStationAutocompleteResponse:
      required:
         - value
@@ -1761,10 +1796,10 @@ definitions:
   LocationResponse:
      properties:
       city:
-        description: "Information for any IATA city code which corresponds to the provided code"        
+        description: Information for any <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city which corresponds to the provided code
         $ref: "#/definitions/CityInformation"
       airports:
-        description: Information for any IATA airport located in the provided IATA city code or which corresponds to the provided code
+        description: Information for any IATA airport located in the provided <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city or which corresponds to the provided code
         type: array
         items:
           $ref: "#/definitions/AirportInformation"        
@@ -1779,7 +1814,7 @@ definitions:
      properties:
       code:
         type: string
-        description: The IATA code of this city. If you intend to make a flight search from the output of this call, I recommend using this as your input parameter as it generally gives the best results.
+        description: The <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of this city. If you intend to make a flight search from the output of this call, I recommend using this as your input parameter as it generally gives the best results.
       geonames_ID:
         type: string
         description: The ID of this city in the open-sourced Geonames DB  
@@ -1816,7 +1851,7 @@ definitions:
         description: The name of this airport, in UTF-8 format
       city_code:
         type: string
-        description: The three letter IATA city code of the city in which this airport is located.
+        description: The three letter <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city of the city in which this airport is located.
       city_name:
         type: string
         description: The English name of the city in which this airport is located
@@ -2009,7 +2044,28 @@ definitions:
         type: array
         description: An array of description strings describing room and rate types features
         items:
-          type: string         
+          type: string    
+      room_type_info:
+        $ref: "#/definitions/RoomInfo"  
+      rate_type_code:
+        type: string
+        description: The unique rate code used by the hotel chain to price this room's rate
+  RoomInfo:
+     description: More detailed structured information about the room.
+     required:
+       - bed_type
+       - number_of_beds
+       - room_type
+     properties:
+      bed_type:
+        description: The type of bed or beds in the room, such as Double, or King.
+        type: string
+      number_of_beds:
+        description: The number of beds in the room. May be an integer or a free-text dessciption, as provided by the hotel
+        type: string
+      room_type:
+        description: Free-text indicating the type of room - such Smoking, No Smoking, Suite, etc..
+        type: string
   Amount:
      required:
         - currency
@@ -2040,7 +2096,7 @@ definitions:
         type: string
         description: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency code of this rate.
       amount:
-        type: string
+        type: number
         description: "Total amount in the given currency per day of this rate, formatted appropriately. For example&colon; 194.99."
   Link:
      required:
@@ -2522,10 +2578,10 @@ definitions:
         $ref: "#/definitions/Airport"       
       marketing_airline:
         type: string
-        description: "The 2 character alphanumeric IATA airline code of the airline that is responsible for the traveller this flight "
+        description: The 2 character alphanumeric <a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a> of the airline that is responsible for the traveller this flight 
       operating_airline:
         type: string
-        description: "The 2 character alphanumeric IATA airline code of the airline that is providing the aircraft for this flight. Note that in the USA, if the marketing and operating carrier are different, you are legally required to display this in your application."
+        description: The 2 character alphanumeric <a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a> of the airline that is providing the aircraft for this flight. Note that in the USA, if the marketing and operating carrier are different, you are legally required to display this in your application.
       flight_number:
         type: string
         description: "The identifier that the airline uses for this flight route. This is most commonly - but not always - a number. When combined with the airline and date, it identifies an individual aircraft's flight"
@@ -2579,7 +2635,7 @@ definitions:
         $ref: "#/definitions/Company"
       origin:
         type: string
-        description: "This car rental company office location ID. If this is an airport location, this will be the airport's IATA code. Otherwise, this is a custom value provided by the car rental provider."
+        description: This car rental company office location ID. If this is an airport location, this will be the airport's <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a>. Otherwise, this is a custom value provided by the car rental provider.
       car:
         description: A car information object giving further details about the vehicle provided for rental.
         $ref: "#/definitions/Vehicle"
@@ -2668,7 +2724,7 @@ definitions:
         description: Date on which this other reservation will begin, in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format yyyy-MM-dd.
       location:
         type: string
-        description: A 3 letter IATA code that identifies where this other reservation will occur.
+        description: A 3 letter <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> that identifies where this other reservation will occur.
       description:
         type: string
         description: A free-text description of this reservation, that will inform you of its functional meaning.
@@ -2750,7 +2806,7 @@ definitions:
         $ref: "#/definitions/AffiliatePayout"
       airline:
         type: string
-        description: The 2 character alphanumeric IATA airline code of the airline that is selling this result
+        description: The 2 character alphanumeric <a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a> of the airline that is selling this result
       deep_link:
         description: A link to the page from which this result can be purchased from the affiliate
         type: string
@@ -2774,7 +2830,7 @@ definitions:
      properties:
       currency:
         type: string
-        description: "See http://en.wikipedia.org/wiki/ISO_4217 for currency code applicable to this fare"
+        description: The <a href="https://en.wikipedia.org/wiki/ISO_4217">currency</a> code applicable to this fare
       total_price:
         description: The total price for all the requested passengers for this flight
         type: string
@@ -2812,7 +2868,7 @@ definitions:
         description: The date period, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format YYYY-MM or YYYY
       origin:
         type: string
-        description: IATA code
+        description: <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a>
       results:
         type: array
         items:
@@ -2825,7 +2881,7 @@ definitions:
      properties:
       destination:
         type: string
-        description: The IATA code of the city or airport to which the traveler may go, from the provided origin
+        description: The <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city or airport to which the traveler may go, from the provided origin
       flights:
         type: integer
         description: Number of flights from origin to destination during the search period provided
@@ -2848,10 +2904,10 @@ definitions:
         description: The date period, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format YYYY-MM or YYYY
       origin:
         type: string
-        description: IATA code
+        description: <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a>
       destination:
         type: string
-        description: IATA code
+        description: <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a>
       results:
         type: array
         items:
@@ -2864,7 +2920,7 @@ definitions:
      properties:
       destination:
         type: string
-        description: The IATA code of the city or airport to which the traveler may go, from the provided origin
+        description: The <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city or airport to which the traveler may go, from the provided origin
       searches:
         type: integer
         description: Average number of daily searches for the destination during the search period provided
@@ -2882,7 +2938,7 @@ definitions:
         description: The date period, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format YYYY-MM or YYYY
       origin:
         type: string
-        description: IATA code
+        description: <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a>
       results:
         type: array
         items:
@@ -2895,7 +2951,7 @@ definitions:
      properties:
       destination:
         type: string
-        description: The IATA code of the city or airport to which the traveler may go, from the provided origin
+        description: The <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city or airport to which the traveler may go, from the provided origin
       flights:
         type: integer
         description: Number of flights from origin to destination during the search period provided
@@ -2909,7 +2965,7 @@ definitions:
      properties:
       value:
         type: string
-        description: The 3 letter IATA airline code of the given airline. You can use this as a response filter for a flight low-fare or inspiration search.
+        description: The 3 letter <a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a> of the given airline. You can use this as a response filter for a flight low-fare or inspiration search.
       label:
         type: string
         description: The official name of this airline, in UTF-8 format.
