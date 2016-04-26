@@ -193,7 +193,7 @@ paths:
           in: query
           description: The date on which the traveler will depart from the origin to go to the destination. You can specify a date range of up to 2 days. For a larger date range, use the Extensive Search. Dates are specified in the <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> yyyy-MM-dd date format and separated by --.
           required: true
-          format: date
+          format: string
           type: string
           default: "2016-06-25"
         - name: return_date
