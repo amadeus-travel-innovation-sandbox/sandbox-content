@@ -2958,17 +2958,6 @@ definitions:
       travelers:
         type: integer
         description: Number of passengers from origin to destination during the search period provided
-  AirlineAutocompleteResponse:
-     required:
-        - value
-        - label
-     properties:
-      value:
-        type: string
-        description: The 3 letter <a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a> of the given airline. You can use this as a response filter for a flight low-fare or inspiration search.
-      label:
-        type: string
-        description: The official name of this airline, in UTF-8 format.
   PointsOfInterestResponse:
      required:
         - current_city
