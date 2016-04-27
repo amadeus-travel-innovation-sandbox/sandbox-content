@@ -468,7 +468,7 @@ paths:
 
         <p>Only civilian airports with at least several commercial flights per week are included in the results.</p>
 
-        <p>The result is a list of airports sorted by decreasing relevance. It always contains the nearest airport with significant commercial traffic.</p>
+        <p>The result is a list of airports sorted by decreasing relevance. It always contains the nearest airport with significant commercial traffic. You can freely download the <a href="https://github.com/opentraveldata/opentraveldata/blob/master/opentraveldata/optd_por_public.csv">point of reference information</a> used by this API from the <a href="https://github.com/opentraveldata/opentraveldata">Open Travel Data</a> project.</p>
       parameters:
         - name: apikey
           in: query
