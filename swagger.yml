@@ -248,7 +248,7 @@ paths:
           items:
             type: string
           collectionFormat: csv
-        - name: non-stop
+        - name: nonstop
           in: query
           description: Setting this to true will find only flights that do not require the passenger to change from one flight to another
           required: false
