@@ -807,7 +807,7 @@ paths:
 
         <p>This API gives you more information on a specific property. Optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. </p>
     
-        <p>The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/). Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.</p>
+        <p>The API is based on our high-speed hotel pricing cache, which is also used to power the <a href="https://hotelsearchengine.amadeus.com/">Amadeus Hotel Search Engine</a> application. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.</p>
       parameters:
         - name: apikey
           in: query
@@ -870,13 +870,13 @@ paths:
       operationId: Car Rental Airport Search
       summary: The Car Rental API uses Amadeus' classic car service to locate the best available car. Define a circular area with one coordinate and radius, or provide an airport code, as well as the pick-up and drop-off dates, and get a list of car rental providers with their locations and rates. Optional parameters such as currency and rental provider codes are also available and can be used to narrow down the results. This API is an ideal pairing with the flight and hotel search to provide ground transportation options at the destination.
       description: |
-        With this API you can find out the price and type of car, for all car rental providers, near a specified airport.
+        <p>With this API you can find out the price and type of car, for all car rental providers, near a specified airport.</p>
 
-        You can quickly see the locations of car providers near a given airport, and what cars are available to rent, and at what prices. This API is based on our classic car pricing service that gets live availability from car providers, and is used to power a variety of airline and travel agency websites.
+        <p>You can quickly see the locations of car providers near a given airport, and what cars are available to rent, and at what prices. This API is based on our car pricing service that gets live availability from car providers, and is used to power a variety of airline and travel agency websites.</p>
                    
-        Results are validated from car providers, and thus response times may take up to 10 seconds (response times are typically about 5s), and the number of concurrent calls is throttled per user to avoid flooding our provider's systems. However, this means the final result is guaranteed to be live and accurate.
+        <p>Results are validated from car providers, and thus response times may take up to 10 seconds (response times are typically about 5s), and the number of concurrent calls is throttled per user to avoid flooding our provider's systems. However, this means the final result is guaranteed to be live and accurate.</p>
 
-        The configuration of this API allows search for car rentals in the rental location where the car is picked up (at the start of the rental), is the same as the one where it will be dropped off. 
+        <p>The configuration of this API allows search for car rentals in the rental location where the car is picked up (at the start of the rental), is the same as the one where it will be dropped off.</p>
       parameters:
         - name: apikey
           in: query
@@ -958,15 +958,15 @@ paths:
   /cars/search-circle:
     get:
       operationId: Car Rental Geosearch
-      summary: The Car Rental API uses Amadeus' classic car service to locate the best available car. Define a circular area with one coordinate and radius, or provide an airport code, as well as the pick-up and drop-off dates, and get a list of car rental providers with their locations and rates. Optional parameters such as currency and rental provider codes are also available and can be used to narrow down the results. This API is an ideal pairing with the flight and hotel search to provide ground transportation options at the destination.
+      summary: The Car Rental API uses Amadeus' car service to locate the best available car. Define a circular area with one coordinate and radius, or provide an airport code, as well as the pick-up and drop-off dates, and get a list of car rental providers with their locations and rates. Optional parameters such as currency and rental provider codes are also available and can be used to narrow down the results. This API is an ideal pairing with the flight and hotel search to provide ground transportation options at the destination.
       description: | 
-        With this API you can find out the price and type of car, for all car rental providers, in a specified geographical location.
+        <p>With this API you can find out the price and type of car, for all car rental providers, in a specified geographical location.</p>
 
-        You can quickly see the locations of car providers near a given point, and what cars are available to rent, and at what prices. This API is based on our classic car pricing service that gets live availability from car providers, and is used to power a variety of airline and travel agency websites.
+        <p>You can quickly see the locations of car providers near a given point, and what cars are available to rent, and at what prices. This API is based on our car pricing service that gets live availability from car providers, and is used to power a variety of airline and travel agency websites.</p>
                    
-        Results are validated from car providers, and thus response times may take up to 10 seconds (response times are typically about 5s), and the number of concurrent calls is throttled per user to avoid flooding our provider's systems. However, this means the final result is guaranteed to be live and accurate.
+        <p>Results are validated from car providers, and thus response times may take up to 10 seconds (response times are typically about 5s), and the number of concurrent calls is throttled per user to avoid flooding our provider's systems. However, this means the final result is guaranteed to be live and accurate.</p>
 
-        The configuration of this API allows search for car rentals in the rental location where the car is picked up (at the start of the rental), is the same as the one where it will be dropped off. 
+        <p>The configuration of this API allows search for car rentals in the rental location where the car is picked up (at the start of the rental), is the same as the one where it will be dropped off. </p>
       parameters:
         - name: apikey
           in: query
@@ -1062,11 +1062,11 @@ paths:
       operationId: Rail-Station Autocomplete
       summary: Use the Rail Station Autocomplete API to transform user input into a unique rail station code.
       description:  |
-        Given the start of any word in a rail station's official name, as a term, this API provides the full name and rail station ID of a rail station for use in searches. The response provides an array of up to 20 possible matches, sorted by passenger traffic, in a JQuery Autocomplete compatible format.
+        <p>Given the start of any word in a rail station's official name, as a term, this API provides the full name and rail station ID of a rail station for use in searches. The response provides an array of up to 20 possible matches, sorted by passenger traffic, in a JQuery Autocomplete compatible format.</p>
 
-        The value returned is the UIC station code. The label returned is always in UTF-8 format, with the station's official name (which is often in the native language). Agglomeration station codes may also be returned.
+        <p>The value returned is the UIC station code. The label returned is always in UTF-8 format, with the station's official name (which is often in the native language). Agglomeration station codes may also be returned.</p>
 
-        Note that only French and Italian rail stations are supported by the Rail Station Autocomplete API
+        <p>Note that only French and Italian rail stations are supported by the Rail Station Autocomplete API</p>
       parameters:
         - name: apikey
           in: query
@@ -1118,11 +1118,11 @@ paths:
       operationId: Train Extensive Search
       summary:  Our instant extensive train search will provide you with multi-day availability and a variety of schedule and pricing options to travel to your destination.
       description:  |
-        This API allows you to search trains availability and prices for a single day or date range. It's based on our Rail Instant Search technology, providing you with immediate results from our rail search cache.
+        <p>This API allows you to search trains availability and prices for a single day or date range. It's based on our Rail Instant Search technology, providing you with immediate results from our rail search cache.</p>
 
-        This API has content from SNCF (French trains) and Trenitalia (Italian Trains).
+        <p>This API has content from SNCF (French trains).</p>
                     
-        The content is also restricted to single-leg trips - where a single train takes you directly from the origin to the destination.
+        <p>The content is also restricted to single-leg trips - where a single train takes you directly from the origin to the destination.</p>
       parameters:
         - name: apikey
           in: query
@@ -1161,12 +1161,12 @@ paths:
       operationId: Train Schedule Search
       summary: The train schedule search can suggest destinations from your chosen departure station
       description:  |
-        This API allows you to find all the possible destinations in the Rail Instant Search cache (used by Extensive Search above) from a given origin station on a given day. You can use this to help build network maps, journey planners or provide inspiration for rail travel.<br />
+        <p>This API allows you to find all the possible destinations in the Rail Instant Search cache (used by Extensive Search above) from a given origin station on a given day. You can use this to help build network maps, journey planners or provide inspiration for rail travel.</p>
 
-        This API has continuous content from <a href="http://www.sncf.com/">SNCF</a>. <a href="http://www.trenitalia.com/">Trenitalia</a> content may also be loaded on request - please contact us if you need this.<br />
-        All the options returned are single-leg trips - where a single train takes you directly from the origin to the destination. In general, only departure dates up to 90 days in the future are supported
+        <p>This API has continuous content from <a href="http://www.sncf.com/">SNCF</a>.<br />
+        All the options returned are single-leg trips - where a single train takes you directly from the origin to the destination. In general, only departure dates up to 90 days in the future are supported</p>
 
-        Currently agglomeration stations are not supported    
+        <p>Currently agglomeration stations are not supported</p>
       parameters:
         - name: apikey
           in: query
@@ -1200,17 +1200,17 @@ paths:
       operationId: Travel Record Retrieve
       summary: "Amadeus has one of the world's largest repositories of travel records. Enable travelers to explore the details of their journeys stored in the Amadeus system using our Retrieve Travel Record API."
       description: |
-        Note: This API requires the use of HTTPS
+        <p>Note: This API requires the use of HTTPS</p>
 
-        This service retrieves a travel record (also sometimes referred to as a PNR) for a given journey when provided with Record Locator to identify a travel record, along with the last name of any traveler who is marked as a passenger on this record.
+        <p>This service retrieves a travel record (also sometimes referred to as a PNR) for a given journey when provided with Record Locator to identify a travel record, along with the last name of any traveler who is marked as a passenger on this record.</p>
 
-        The API provides detailed information on a given record, including any air, car, hotel or rail reservations, as well as passenger details, and contact frequent traveler information for each passenger when available. You can use this to provide a wide variety of pre-trip or in-trip services.
+        <p>The API provides detailed information on a given record, including any air, car, hotel or rail reservations, as well as passenger details, and contact frequent traveler information for each passenger when available. You can use this to provide a wide variety of pre-trip or in-trip services.</p>
 
-        Note that this API transmits sensitive personal data about a traveler's journey. We work hard to ensure that we comply with all the legal requirements this entails, and as an application owner, you need to do so too - we don't want you to get in trouble! This paragraph, or anything else in our documentation, does not constitute legal advice, it's just to give you an idea of some of the potential issues that you may encounter. Please check your legal obligations regarding the use of this data before implementing this API
+        <p>Note that this API transmits sensitive personal data about a traveler's journey. We work hard to ensure that we comply with all the legal requirements this entails, and as an application owner, you need to do so too - we don't want you to get in trouble! This paragraph, or anything else in our documentation, does not constitute legal advice, it's just to give you an idea of some of the potential issues that you may encounter. Please check your legal obligations regarding the use of this data before implementing this API</p>
 
-        In most countries, the data in the returned travel record is considered to be the property of the traveler. In order to ensure that you are acting on behalf of the traveler, we require you to provide the traveler's last name in addition to the record locator when you make a call to this API. You should ensure that you have consent from the traveler before retrieving this record, in some countries this is a legal requirement - please respect this appropriately.
+        <p>In most countries, the data in the returned travel record is considered to be the property of the traveler. In order to ensure that you are acting on behalf of the traveler, we require you to provide the traveler's last name in addition to the record locator when you make a call to this API. You should ensure that you have consent from the traveler before retrieving this record, in some countries this is a legal requirement - please respect this appropriately.</p>
 
-        Our data center is based in Europe, so there is a legal requirement that you to access this API over a secure connection. If you plan to store the information returned by this API, ensure you comply with storage requirements for European data, in addition to those of your local country. For example, there are strict requirements on the caching of retrieved travel records, so please ensure the cache control HTTP headers in the response are respected."
+        <p>Our data center is based in Europe, so there is a legal requirement that you to access this API over a secure connection. If you plan to store the information returned by this API, ensure you comply with storage requirements for European data, in addition to those of your local country. For example, there are strict requirements on the caching of retrieved travel records, so please ensure the cache control HTTP headers in the response are respected.</p>
       parameters:
         - name: apikey
           in: query
@@ -1248,9 +1248,9 @@ paths:
       operationId: Top Flight Destinations
       summary: The Top Flight Destinations API lets you find the most popular flight destinations from an origin during a period. This can help you answer questions like "Where are most people going to from Paris during the month of September?" 
       description: |
-        The Top Flight Destinations API lets you find the most popular flight destinations from an origin during a period. This can help you answer questions like "Where are most people from Paris going to during the month of September?" The API is based on estimated flight traffic summary data from two journey points over a specific period. It returns up to 50 results, ordered by popularity, showing number of travelers as well as number of flights.
+        <p>The Top Flight Destinations API lets you find the most popular flight destinations from an origin during a period. This can help you answer questions like "Where are most people from Paris going to during the month of September?" The API is based on estimated flight traffic summary data from two journey points over a specific period. It returns up to 50 results, ordered by popularity, showing number of travelers as well as number of flights.</p>
        
-        This estimated search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see http://www.amadeus.com/travelintelligence for more information.
+        <p>This estimated search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see <a href="http://www.amadeus.com/travelintelligence">amadeus.com/travelintelligence</a> for more information.</p>
       parameters:
         - name: apikey
           in: query
@@ -1288,7 +1288,13 @@ paths:
     get:
       operationId: Top Flight Searches
       summary: The Top Flight Searches API lets you find the most popular flight searches from an origin in a during given search period. This can help you answer questions like "Where are people looking to travel from Paris during the month of September?" 
-      description: "The Top Flight Search allows you to find number of estimated searches from an origin, optionally a destination, within a time period when travelers are performing the searches. The search is based on queries performed from within a country (also refers to as market) and returns up to 50 results, ordered by popularity, showing number of searches for most searched destination with its previous year comparison. This search also shows patterns on how travelers are searching for flights, revealing where, when and for how long they’re planning to travel by returning results in Trip Durations (How long are the trips planned for?) and Advance Search Period (How long before departures do travelers start searching for their trips?) information. This estimated search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see http://www.amadeus.com/travelintelligence for more information."
+      description: |
+	      <p>The Top Flight Search allows you to find number of estimated searches from an origin, optionally a destination, within a time period when travelers are performing the searches.</p> 
+		  <p>The search is based on queries performed from within a country (also refers to as market) and returns up to 50 results, ordered by popularity, showing number of searches for most searched destination with its previous year comparison. This search also shows patterns on how travelers are searching for flights, revealing where, when and for how long they’re planning to travel. See
+		  <ul><li>Trip Durations(How long are the trips planned for?) and</li>
+		  <li> Advance Search Period (How long before departures do travelers start searching for their trips?)</li>
+		  </ul></p>
+		  <p>This estimated search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see <a href="http://www.amadeus.com/travelintelligence">amadeus.com/travelintelligence</a> for more information.</p>
       parameters:
         - name: apikey
           in: query
@@ -1339,7 +1345,9 @@ paths:
       operationId: Flight Traffic API
       summary: The Flight Traffic API lets you find the true origin and destination traffic summary between two journey points over a specified period. This can help you answer questions like "What cities are people coming from to visit Los Angeles between January through April of 2015" 
       description: |
-        The Flight Traffic API lets you find the origin and destination traffic summary between two journey points over a specified period. The search returns number of flights & travelers for each origin and destination, ordered by popularity, for each month specified within the search period. This search can help you answer questions like "Where are people from Los Angeles traveling to between January and April of 2015?" or "Which is the most popular month for New Yorkers to travel last year?". This search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see http://www.amadeus.com/travelintelligence for more information.
+        <p>The Flight Traffic API lets you find the origin and destination traffic summary between two journey points over a specified period.</p>
+		<p>The search returns number of flights & travelers for each origin and destination, ordered by popularity, for each month specified within the search period. This search can help you answer questions like "Where are people from Los Angeles traveling to between January and April of 2015?" or "Which is the most popular month for New Yorkers to travel last year?". </p>
+		<p>This search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see <a href="http://www.amadeus.com/travelintelligence">amadeus.com/travelintelligence</a> for more information.</p>
        
       parameters:
         - name: apikey
