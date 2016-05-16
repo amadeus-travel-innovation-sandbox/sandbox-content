@@ -28,7 +28,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: origin
@@ -100,7 +100,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: origin
@@ -174,7 +174,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: origin
@@ -307,7 +307,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: origin
@@ -410,7 +410,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: code
@@ -439,7 +439,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: term
@@ -472,7 +472,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: latitude
@@ -505,11 +505,11 @@ paths:
       description: |
         <p>A fast Hotel shopping API to see which hotels are available in a given area, on a given day and displays their lowest prices. With this API you can find out the price of the cheapest daily rate for all hotels near a given airport.</p>
     
-        <p>This API allows you to quickly see the locations of hotels near a given airport, and what prices in that area look like. The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.</p>
+        <p>This API allows you to quickly see the locations of hotels near a given airport, and what prices in that area look like. Note that hotel images are not available to users outside of Amadeus, as we are not licensed to redistribute them. The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.</p>
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: location
@@ -610,7 +610,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: latitude
@@ -717,7 +717,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: south_west_corner
@@ -818,7 +818,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: property_code
@@ -887,7 +887,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: location
@@ -978,7 +978,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: latitude
@@ -1079,7 +1079,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: term
@@ -1104,7 +1104,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: id
@@ -1135,7 +1135,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: origin
@@ -1179,7 +1179,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: origin 
@@ -1223,7 +1223,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: record_locator 
@@ -1263,7 +1263,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: period
@@ -1301,7 +1301,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: period
@@ -1353,7 +1353,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: period
@@ -1401,7 +1401,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: city_name
@@ -1482,7 +1482,7 @@ paths:
       parameters:
         - name: apikey
           in: query
-          description: API Key provided for your account, to identify you for API access
+          description: API Key provided for your account, to identify you for API access. Make sure to keep this API key secret.
           required: true
           type: string
         - name: latitude
