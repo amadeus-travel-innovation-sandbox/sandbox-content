@@ -240,7 +240,6 @@ paths:
           items:
             type: string
           collectionFormat: csv
-          default: [AF]
         - name: exclude_airlines
           in: query
           description: If specified, no results will include any flights where any of these airlines is the marketing carrier. Airlines are specified using <a href="https://en.wikipedia.org/wiki/Airline_codes"><a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a>s</a>.
@@ -249,7 +248,6 @@ paths:
           items:
             type: string
           collectionFormat: csv
-          default: [UA]
         - name: non-stop
           in: query
           description: Setting this to true will find only flights that do not require the passenger to change from one flight to another
@@ -360,7 +358,6 @@ paths:
           items:
             type: string
           collectionFormat: csv
-          default: [AF]
         - name: exclude_merchants
           in: query
           description: If specified, no results will include any flights where any of these airlines is the marketing carrier. Airlines are specified using <a href="https://en.wikipedia.org/wiki/Airline_codes"><a href="https://en.wikipedia.org/wiki/Airline_codes">IATA airline code</a>s</a>
@@ -369,7 +366,6 @@ paths:
           items:
             type: string
           collectionFormat: csv
-          default: [UA]
         - name: max_price
           in: query
           description: "Maximum price of trips to find in the result set, in USD (US dollars) unless some other currency code is specified. By default, no limit is applied"
@@ -505,7 +501,7 @@ paths:
       description: |
         <p>A fast Hotel shopping API to see which hotels are available in a given area, on a given day and displays their lowest prices. With this API you can find out the price of the cheapest daily rate for all hotels near a given airport.</p>
     
-        <p>This API allows you to quickly see the locations of hotels near a given airport, and what prices in that area look like. Note that hotel images are not available to users outside of Amadeus, as we are not licensed to redistribute them. The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.</p>
+        <p>This API allows you to quickly see the locations of hotels near a given airport, and what prices in that area look like. Note that hotel images are not available to users outside of Amadeus, as we are not licensed to redistribute them. The API is based on our high-speed hotel pricing cache, which is also used to power the <a href="https://hotelsearchengine.amadeus.com/">Amadeus Hotel Search Engine</a> application. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.</p>
       parameters:
         - name: apikey
           in: query
@@ -580,14 +576,13 @@ paths:
           default: false
         - name: amenity
           in: query
-          description: >-
+          description: |
             Hotel <a href="hotels-api-supported-amenities-filter">amenities filter</a> to search narrow down hotels with certain amenities. For example&colon; amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED).
           required: false
           type: array
           items:
             type: string
           collectionFormat: multi
-          default: [PARKING]
       responses:
         200:
           description: Valid Search Response
@@ -606,7 +601,7 @@ paths:
       
         <p>This API allows you to quickly see the hotel locations in a region, and what prices in that area look like,  as well as the check-in and check-out dates, and get list of up to 140 properties (names, codes, image, amenities) with their locations and rates. Optional parameters such as currency and maximum rates, amenities or hotel chain codes are also available and can be used to narrow down the results. More optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. </p>
     
-        <p>The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.</p>
+        <p>The API is based on our high-speed hotel pricing cache, which is also used to power the <a href="https://hotelsearchengine.amadeus.com/">Amadeus Hotel Search Engine</a> application. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.</p>
       parameters:
         - name: apikey
           in: query
@@ -687,10 +682,9 @@ paths:
           default: false
         - name: amenity
           in: query
-          description: >-
+          description: |
             Hotel <a href="hotels-api-supported-amenities-filter">amenities filter</a> to search narrow down hotels with certain amenities. For example&colon; amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED).
           required: false
-          default: [PARKING]
           type: array
           items:
             type: string
@@ -713,7 +707,7 @@ paths:
         
         <p>This API allows you to quickly see the hotel locations in a region, and what prices in that area look like,  as well as the check-in and check-out dates, and get a list of up to 140 properties (names, codes, image, amenities) with their locations and rates. Optional parameters such as currency and maximum rates, amenities or hotel chain codes are also available and can be used to narrow down the results. More optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms.</p>
                     
-        <p>The API is based on our high-speed hotel pricing cache, which is also used to power the hotel searchengine website https://hotelsearchengine.amadeus.com/. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.</p>
+        <p>The API is based on our high-speed hotel pricing cache, which is also used to power the <a href="https://hotelsearchengine.amadeus.com/">Amadeus Hotel Search Engine</a> application. Results are returned very quickly, response times are generally under 2s. Our cache has great global coverage and is constantly refreshed with the latest prices.</p>
       parameters:
         - name: apikey
           in: query
@@ -788,14 +782,13 @@ paths:
           default: false
         - name: amenity
           in: query
-          description: >-
+          description: |
             Hotel <a href="hotels-api-supported-amenities-filter">amenities filter</a> to search narrow down hotels with certain amenities. For example&colon; amenity=POOL. (Note: multiple amenities can be used in searches: amenity=PARKING&amenity=RESTAURANT&amenity=PETS_ALLOWED).
           required: false
           type: array
           items:
             type: string
           collectionFormat: multi
-          default: [PARKING]
       responses:
         200:
           description: Valid Search Response
@@ -953,7 +946,6 @@ paths:
           items:
             type: string
           collectionFormat: multi
-          default: [PASSENGER_VAN]
       responses:
         200:
           description: Valid Search Response
@@ -1052,7 +1044,6 @@ paths:
           in: query
           description: "Specifies the type of vehicle to be rented. If selected, the results set will include only vehicles that match these type descriptions. The enumerations above correspond to ACRISS Pseudo Codes, and you may also provide an ACRISS pseudo code directly. If specifying a vehicle-specific ACRISS code, you may provide this parameter up to 3 times."
           required: false
-          default: [PASSENGER_VAN]
           type: array
           items:
             type: string
