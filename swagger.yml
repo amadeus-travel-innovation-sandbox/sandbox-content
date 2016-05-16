@@ -1289,12 +1289,12 @@ paths:
       operationId: Top Flight Searches
       summary: The Top Flight Searches API lets you find the most popular flight searches from an origin in a during given search period. This can help you answer questions like "Where are people looking to travel from Paris during the month of September?" 
       description: |
-	      <p>The Top Flight Search allows you to find number of estimated searches from an origin, optionally a destination, within a time period when travelers are performing the searches.</p> 
-		  <p>The search is based on queries performed from within a country (also refers to as market) and returns up to 50 results, ordered by popularity, showing number of searches for most searched destination with its previous year comparison. This search also shows patterns on how travelers are searching for flights, revealing where, when and for how long they’re planning to travel. See
-		  <ul><li>Trip Durations(How long are the trips planned for?) and</li>
-		  <li> Advance Search Period (How long before departures do travelers start searching for their trips?)</li>
-		  </ul></p>
-		  <p>This estimated search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see <a href="http://www.amadeus.com/travelintelligence">amadeus.com/travelintelligence</a> for more information.</p>
+          <p>The Top Flight Search allows you to find number of estimated searches from an origin, optionally a destination, within a time period when travelers are performing the searches.</p> 
+          <p>The search is based on queries performed from within a country (also refers to as market) and returns up to 50 results, ordered by popularity, showing number of searches for most searched destination with its previous year comparison. This search also shows patterns on how travelers are searching for flights, revealing where, when and for how long they’re planning to travel. See
+          <ul><li>Trip Durations(How long are the trips planned for?) and</li>
+          <li> Advance Search Period (How long before departures do travelers start searching for their trips?)</li>
+          </ul></p>
+          <p>This estimated search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see <a href="http://www.amadeus.com/travelintelligence">amadeus.com/travelintelligence</a> for more information.</p>
       parameters:
         - name: apikey
           in: query
@@ -1346,9 +1346,8 @@ paths:
       summary: The Flight Traffic API lets you find the true origin and destination traffic summary between two journey points over a specified period. This can help you answer questions like "What cities are people coming from to visit Los Angeles between January through April of 2015" 
       description: |
         <p>The Flight Traffic API lets you find the origin and destination traffic summary between two journey points over a specified period.</p>
-		<p>The search returns number of flights & travelers for each origin and destination, ordered by popularity, for each month specified within the search period. This search can help you answer questions like "Where are people from Los Angeles traveling to between January and April of 2015?" or "Which is the most popular month for New Yorkers to travel last year?". </p>
-		<p>This search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see <a href="http://www.amadeus.com/travelintelligence">amadeus.com/travelintelligence</a> for more information.</p>
-       
+        <p>The search returns number of flights & travelers for each origin and destination, ordered by popularity, for each month specified within the search period. This search can help you answer questions like "Where are people from Los Angeles traveling to between January and April of 2015?" or "Which is the most popular month for New Yorkers to travel last year?". </p>
+        <p>This search is based on Amadeus' Travel Intelligence Engine, a high performance scalable cloud-based platform, born in the age of Big Data and purposely built for the industry bringing total flexibility and speed to business intelligence for travel. Please see <a href="http://www.amadeus.com/travelintelligence">amadeus.com/travelintelligence</a> for more information.</p>
       parameters:
         - name: apikey
           in: query
