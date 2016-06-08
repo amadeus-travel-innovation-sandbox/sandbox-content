@@ -489,7 +489,7 @@ paths:
           schema:
               type: array
               items:
-                $ref: "#/definitions/AirportInformation"
+                $ref: "#/definitions/NearestAirport"
         default:
           description: Client or server error
           schema:
@@ -1859,6 +1859,43 @@ definitions:
       country:
         type: string
         description: The <a href="http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166-1 alpha-2 country code</a> in which this city can be found. 
+      location:
+        description: "  An object containing the longitude and latitude of the given airport."      
+        $ref: "#/definitions/Geolocation"
+      aircraft_movements:
+        type: integer
+        description: The annual number of aircraft movements at that airport. 
+      timezone:
+        type: string
+        description: The <a href="http://en.wikipedia.org/wiki/List_of_tz_database_time_zones">Olson format</a> name of the timezone in which this airport is located
+  NearestAirport:
+     required:
+        - airport
+        - airport_name
+        - city
+        - city_name
+        - location
+        - distance
+        - timezone
+     properties:
+      airport:
+        type: string
+        description:    The 3 letter IATA airport code of this given airport. You can use this as an input parameter for a low-fare flight search, to get more specific results than the city code, but inspiration search works best using the city code.
+      airport_name:
+        type: string
+        description: The name of this airport, in UTF-8 format
+      city:
+        type: string
+        description: The three letter <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city of the city in which this airport is located.
+      city_name:
+        type: string
+        description: The English name of the city in which this airport is located
+      state:
+        type: string
+        description: The state code of this city, if applicable  
+      distance:
+        type: number
+        description: The distance in km from the point specified in the query, to this location 
       location:
         description: "  An object containing the longitude and latitude of the given airport."      
         $ref: "#/definitions/Geolocation"
