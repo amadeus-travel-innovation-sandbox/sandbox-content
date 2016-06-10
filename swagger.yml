@@ -2067,7 +2067,7 @@ definitions:
       rate_plan_code:
         type: string
         description: A 3 letter code to designate different rates base on traveler type.
-      total_price:
+      total_amount:
         description: The total price of staying in this room from the given check-in date to the given check-out date
         $ref: "#/definitions/Amount"
       rates:
