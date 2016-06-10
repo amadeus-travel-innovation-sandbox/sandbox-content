@@ -2117,7 +2117,7 @@ definitions:
         - start_date
         - end_date
         - currency
-        - amount
+        - price
      properties:
       start_date:
         type: string
@@ -2130,7 +2130,7 @@ definitions:
       currency:
         type: string
         description: <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO 4217</a> currency code of this rate.
-      amount:
+      price:
         type: number
         description: "Total amount in the given currency per day of this rate, formatted appropriately. For example&colon; 194.99."
   Link:
