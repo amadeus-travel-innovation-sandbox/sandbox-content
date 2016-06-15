@@ -448,13 +448,13 @@ paths:
         200:
           description: Valid Search Response
           schema:
-            $ref: "#/definitions/AirportAutocompleteResponse"
+            type: array
+            items:
+              $ref: "#/definitions/AirportAutocompleteResponse"
         default:
           description: Client or server error
           schema:
-            type: array
-            items:
-              $ref: "#/definitions/Error"
+            $ref: "#/definitions/Error"
   /airports/nearest-relevant:
     get:
       operationId: Nearest Relevant Airport
