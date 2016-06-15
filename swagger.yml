@@ -452,7 +452,9 @@ paths:
         default:
           description: Client or server error
           schema:
-            $ref: "#/definitions/Error"
+            type: array
+            items:
+              $ref: "#/definitions/Error"
   /airports/nearest-relevant:
     get:
       operationId: Nearest Relevant Airport
@@ -1083,7 +1085,9 @@ paths:
         200:
           description: Valid Search Response
           schema:
-            $ref: "#/definitions/RailStationAutocompleteResponse"
+            type: array
+            items:
+              $ref: "#/definitions/RailStationAutocompleteResponse"
         default:
           description: Client or server error
           schema:
