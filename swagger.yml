@@ -1913,6 +1913,7 @@ definitions:
      required:
         - latitude
         - longitude
+     description: An object to describe the coordinates of a map location    
      properties:
       latitude:
         type: number
@@ -1944,10 +1945,8 @@ definitions:
         type: string
         description: The name of this hotel.
       location:
-        description: This hotel's approximate geolocation.
         $ref: "#/definitions/Geolocation"
       address:
-        description: This hotel's postal address.
         $ref: "#/definitions/Address"
       total_price:
         description: The lowest price of a stay, from the given check in date to the given check out date.
@@ -1974,7 +1973,7 @@ definitions:
           $ref: "#/definitions/Award"
       images:
         type: array
-        description: A selection of image objects, showing pictures of the hotel building, the entrance or some rooms, to give an indication of what to expect at this hotel.
+        description: 'A selection of image objects, showing pictures of the hotel building, the entrance or some rooms, to give an indication of what to expect at this hotel. Note that redistribution of images outside Amadeus products requires licensing from our image providers: Leonardo and Ice Portal. Thus image links are returned for whitelisted Amadeus users only.'
         items:
           $ref: "#/definitions/Image"       
       rooms:
@@ -1990,6 +1989,7 @@ definitions:
         - line1
         - city
         - country
+     description: An object to describe a postal address.
      properties:
       line1:
         type: string
@@ -2109,6 +2109,7 @@ definitions:
      required:
         - currency
         - amount
+     description: A monetary amount with a price and a currency
      properties:
       currency:
         type: string
