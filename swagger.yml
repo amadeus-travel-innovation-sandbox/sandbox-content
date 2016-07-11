@@ -3000,7 +3000,7 @@ definitions:
         description: Number of passengers from origin to destination during the search period provided
   PointsOfInterestResponse:
      required:
-        - current_city
+        - points_of_interest
      properties:
       current_city:
         $ref: "#/definitions/PointOfInterestCity"
@@ -3066,6 +3066,9 @@ definitions:
       geoname_id:
         type: integer
         description: The GeonamesID of this point of interest, if available
+      walk_time:
+        type: number
+        description: Time in minutes that it takes to walk from the searched coordinates to this Point of Interest
   PointOfInterestDetails:
      required:
         - short_description
