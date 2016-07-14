@@ -1835,6 +1835,9 @@ definitions:
       timezone:
         type: string
         description: The <a href="http://en.wikipedia.org/wiki/List_of_tz_database_time_zones">Olson format</a> name of the timezone in which this city is located 
+      currency:
+        type: string
+        description: The ISO-4217 currency code of the official local currency at this location 
   AirportInformation:
      required:
         - code
