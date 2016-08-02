@@ -2192,7 +2192,8 @@ definitions:
         $ref: "#/definitions/VehicleInfo"
       rates:
         description: Rates that will be applied during the duration of the car rental requested. These rates are generally not inclusive of tax and are used by the car rental company to compute the total cost at the end of the rental period.
-        $ref: "#/definitions/Rate"
+        items:
+          $ref: "#/definitions/Rate"
       estimated_total:
         description:    The estimated total cost of the rental given the rental period and location provided, including all mandatory taxes and charges, and using a default set of rental options and restrictions defined by the car company.
         $ref: "#/definitions/Amount"
