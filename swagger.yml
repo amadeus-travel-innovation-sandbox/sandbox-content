@@ -427,10 +427,12 @@ paths:
   /airports/autocomplete:
     get:
       operationId: Airport Autocomplete
-      summary: The Airport Autocomplete API provides a simple means to find an IATA location code for flight search based on a city or airport name. The API is fully JQuery-Autocomplete compatible to enable you to quickly build a drop-down list for your users to find the right airport easily. 
+      summary: Using the term parameter, the Airport Autocomplete API provides a simple means to find an IATA location code for flight search based on a city or airport name. By only using the country parameter, this API is also able to find all the IATA location codes associated with a country. Both term and country parameters can be used together to filter the results accordingly. The API is fully JQuery-Autocomplete compatible to enable you to quickly build a drop-down list for your users to find the right airport easily. 
       description: |
-        <p>Given the start of any word in an airport's official name, a city name, or the start of an <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a>, this API provides the full name and IATA location code of the city or airport, for use in flight searches. Only major cities and civilian airports with several commercial flights per week are included by default. The response provides up to 20 possible matches, sorted by importance, in a <a href="http://jqueryui.com/autocomplete/">JQuery UI Autocomplete</a> compatible format. <a href="https://github.com/amadeus-travel-innovation-sandbox/sandbox-content/blob/master/airport-autocomplete-template.html">This sample implementation</a> using JQuery UI may help. This API uses data from the <a href="https://github.com/opentraveldata/opentraveldata/blob/master/opentraveldata/optd_por_public.csv">OpenTravelData</a> project.</p>
-
+        <p>Using the term parameter and given the start of any word in an airport's official name, a city name, or the start of an <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a>, this API provides the full name and IATA location code of the city or airport, for use in flight searches. Only major cities and civilian airports with several commercial flights per week are included by default. The response provides up to 20 possible matches, sorted by importance, in a <a href="http://jqueryui.com/autocomplete/">JQuery UI Autocomplete</a> compatible format. <a href="https://github.com/amadeus-travel-innovation-sandbox/sandbox-content/blob/master/airport-autocomplete-template.html">This sample implementation</a> using JQuery UI may help. This API uses data from the <a href="https://github.com/opentraveldata/opentraveldata/blob/master/opentraveldata/optd_por_public.csv">OpenTravelData</a> project.
+        </p> 
+        <p>By only using the country parameter, this API is also able to find all the IATA location codes associated with a country. Both term and country parameters can be used together to filter the results accordingly.          
+        </p>
         <p>The value returned is the IATA location code. The label returned is always in UTF-8 format, with the airport official name (which is often in the native language), in the format of English City Name (if not already included in the airport name).</p>
       parameters:
         - name: apikey
@@ -440,10 +442,22 @@ paths:
           type: string
         - name: term
           in: query
-          description: Search term that should represent some part of a city or airport name.
-          required: true
+          description: Search keyword that should represent the start of a word in a city or airport name.
+          required: false
           type: string
           default: "Ban"
+        - name: country
+          in: query
+          description: Identified a country based of a <a href="https://en.wikipedia.org/wiki/ISO_3166-2#Current_codes">ISO 3166-1 alpha-2 code</a>
+          required: false
+          type: string
+          default: "US"
+        - name: all_airports
+          in: query
+          description: Boolean to include or not all airports, no matter their traffic rank. False by default, to only display relevant airports.
+          required: false
+          type: boolean
+          default: false
       responses:
         200:
           description: Valid Search Response
