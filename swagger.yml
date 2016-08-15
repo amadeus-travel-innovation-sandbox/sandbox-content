@@ -17,6 +17,7 @@ produces:
 paths:
   /flights/inspiration-search:
     get:
+      tags: [Flight]
       operationId: Flight Inspiration Search
       summary: Flight Inspiration Search - Go beyond the traditional search by origin, destination and dates to meet the needs of travelers looking for suggestions and a search experience that reflects the way they choose their trip. This can help you answer the question "Where can I go within a given travel budget?" 
       description: |
@@ -89,6 +90,7 @@ paths:
             $ref: "#/definitions/Error"          
   /flights/extensive-search:
     get:
+      tags: [Flight]
       operationId: Flight Extensive Search
       summary: Flight Extensive Search - Build travel searches based on very flexible and open range of dates. You can use it to answer questions such as "When is the best date to fly...".  It's built on Amadeus' Featured Results technology, which returns thousands of results (prices, itineraries and dates) in a matter of milliseconds. Results are available over half a calendar year with a 1 to 15 day stay duration
       description: |
@@ -163,6 +165,7 @@ paths:
             $ref: "#/definitions/Error"          
   /flights/low-fare-search:
     get:
+      tags: [Flight]
       operationId: Flight Low-Fare Search   
       summary: Flight Low-Fare Search - Find the cheapest one way or return itineraries and fares between two airports at specific dates.
       description: |
@@ -289,6 +292,7 @@ paths:
             $ref: "#/definitions/Error"
   /flights/affiliate-search:
     get:
+      tags: [Flight]
       operationId: Flight Affiliate Search   
       summary: Flight Affiliate Search - Use Travel Audience Connect's affiliate network API to search flights from our list of partners and provides deep-links to allow the user to book directly on the airline website.
       description: |
@@ -395,6 +399,7 @@ paths:
             $ref: "#/definitions/Error"         
   /location/{code}:
     get:
+      tags: [Flight, Reference]
       operationId: Location Information
       summary: Location Information - Find more information about any IATA city or airport location code. With this API, you can find information such as city and airport names and locations, as well as information on timezones and airport usage.
       description: |
@@ -426,6 +431,7 @@ paths:
             $ref: "#/definitions/Error"
   /airports/autocomplete:
     get:
+      tags: [Flight, Reference]
       operationId: Airport Autocomplete
       summary: Airport Autocomplete - Find an IATA location code for flight search based on a city or airport name using the term parameter. By only using the country parameter, this API is also able to find all the IATA location codes associated with a country. Both term and country parameters can be used together to filter the results accordingly. The API is fully JQuery-Autocomplete compatible to enable you to quickly build a drop-down list for your users to find the right airport easily. 
       description: |
@@ -471,6 +477,7 @@ paths:
             $ref: "#/definitions/Error"
   /airports/nearest-relevant:
     get:
+      tags: [Flight, Reference]
       operationId: Nearest Relevant Airport
       summary: Nearest Relevant Airport - Find the most useful nearby airport to a given location.
       description: |
@@ -512,6 +519,7 @@ paths:
             $ref: "#/definitions/Error"
   /hotels/search-airport:
     get:
+      tags: [Hotel]
       operationId: Hotel Airport Search
       summary: Hotel Airport Search - Locate the cheapest available rooms near a given airport, for a given stay period. This API is ideal if you want to connect flight and hotels. Provide an IATA airport code, as well as the check-in and check-out dates, and get a list of up to 140 properties (names, codes, image, amenities) with their locations and rates. Optional parameters such as currency and maximum rates, amenities or hotel chain codes are also available and can be used to narrow down the results. More optional parameters such as show_sold_out & rooms can be used to show sold out rooms and all available rooms. 
       description: |
@@ -610,6 +618,7 @@ paths:
             $ref: "#/definitions/Error"
   /hotels/search-circle:
     get:
+      tags: [Hotel]
       operationId: Hotel Geosearch by circle
       summary: Hotel Geosearch by Circle API - Locate the cheapest available rooms within a given radius of a defined point for a given stay period.
       description: | 
@@ -716,6 +725,7 @@ paths:
             $ref: "#/definitions/Error"
   /hotels/search-box:
     get:
+      tags: [Hotel]
       operationId: Hotel Geosearch by box
       summary: Hotel Geosearch by box - Locate the cheapest available rooms within a given rectangular region for a given stay period. It's ideal for displaying results on a map.
       description: |
@@ -816,6 +826,7 @@ paths:
             $ref: "#/definitions/Error"
   /hotels/{property_code}:
     get:
+      tags: [Hotel]
       operationId: Hotel Property Code Search   
       summary: Hotel Property Code Search - Find out more room and rate information once you have found your preferred hotel.
       description: |
@@ -883,6 +894,7 @@ paths:
             $ref: "#/definitions/Error"
   /cars/search-airport:
     get:
+      tags: [Car]
       operationId: Car Rental Airport Search
       summary: Car Rental Airport Search - Find car rental providers and rates when you provide an airport code, as well as the pick-up and drop-off dates. Optional parameters such as currency and rental provider codes are also available and can be used to narrow down the results. This API is an ideal pairing with the flight and hotel search to provide ground transportation options at the destination.
       description: |
@@ -973,6 +985,7 @@ paths:
             $ref: "#/definitions/Error"
   /cars/search-circle:
     get:
+      tags: [Car]
       operationId: Car Rental Geosearch
       summary: Car Rental Geosearch - Locate car rental providers and available vehicles when you define a circular area with one coordinate and radius, as well as the pick-up and drop-off dates. Optional parameters such as currency and rental provider codes are also available and can be used to narrow down the results. This API is an ideal pairing with the flight and hotel search to provide ground transportation options at the destination.
       description: | 
@@ -1075,6 +1088,7 @@ paths:
             $ref: "#/definitions/Error"
   /rail-stations/autocomplete:
     get:
+      tags: [Rail & Train, Reference]
       operationId: Rail-Station Autocomplete
       summary: Rail Station Autocomplete - Transform user input into a unique rail station code. Currently only French and Italian stations are supported.
       description:  |
@@ -1108,6 +1122,7 @@ paths:
             $ref: "#/definitions/Error"
   /rail-station/{id}:
     get:
+      tags: [Rail & Train, Reference]
       operationId: Rail-Station Information
       summary: Rail-Station Information - Retrieve the rail station information corresponding to an Amadeus UIC rail station ID. Currently only French and Italian stations are supported.
       parameters:
@@ -1133,6 +1148,7 @@ paths:
             $ref: "#/definitions/Error"
   /trains/extensive-search:
     get:
+      tags: [Rail & Train]
       operationId: Train Extensive Search
       summary:  Train Extensive Search - Provides multi-day availability and a variety of schedule and pricing options to travel to your destination instantly. Supports SNCF French trains only.
       description:  |
@@ -1176,6 +1192,7 @@ paths:
             $ref: "#/definitions/Error"
   /trains/schedule-search:
     get:
+      tags: [Rail & Train]
       operationId: Train Schedule Search
       summary: Train Schedule Search - Suggest destinations from your chosen departure station. Supports SNCF French Rail only.
       description:  |
@@ -1215,6 +1232,7 @@ paths:
             $ref: "#/definitions/Error"
   /travel-record/{record_locator}:
     get:
+      tags: [Travel Record]
       operationId: Travel Record Retrieve
       summary: "Travel Record Retrieve - Enable travelers to explore the details of their journeys stored in the Amadeus system using our Retrieve Travel Record API."
       description: |
@@ -1263,6 +1281,7 @@ paths:
             $ref: "#/definitions/Error"
   /travel-intelligence/top-destinations:
     get:
+      tags: [Travel Intelligence]
       operationId: Top Flight Destinations
       summary: Top Flight Destinations - Find the most popular flight destinations from an origin during a period. This can help you answer questions like "Where are most people going to from Paris during the month of September?" 
       description: |
@@ -1304,6 +1323,7 @@ paths:
             $ref: "#/definitions/Error"
   /travel-intelligence/top-searches:
     get:
+      tags: [Travel Intelligence]
       operationId: Top Flight Searches
       summary: Top Flight Searches - Find the most popular flight searches from an origin in a during given search period. This can help you answer questions like "Where are people looking to travel from Paris during the month of September?" 
       description: |
@@ -1360,6 +1380,7 @@ paths:
             $ref: "#/definitions/Error"
   /travel-intelligence/flight-traffic:
     get:
+      tags: [Travel Intelligence]
       operationId: Flight Traffic API
       summary: Flight Traffic API - Find the true origin and destination traffic summary between two journey points over a specified period. This can help you answer questions like "What cities are people coming from to visit Los Angeles between January through April of 2015" 
       description: |
@@ -1407,6 +1428,7 @@ paths:
             $ref: "#/definitions/Error"
   /points-of-interest/yapq-search-text:
     get:
+      tags: [Point of Interest]
       operationId: YapQ City Name Search
       summary: YapQ City Name Search - Find landmarks and attractions in a given city.
       description: |
@@ -1488,6 +1510,7 @@ paths:
 
   /points-of-interest/yapq-search-circle:
     get:
+      tags: [Point of Interest]
       operationId: YapQ Geosearch
       summary: YapQ Geosearch - Find landmarks and attractions near a given point.
       description: |
