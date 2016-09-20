@@ -2212,7 +2212,7 @@ definitions:
       estimated_total:
         description:    The estimated total cost of the rental given the rental period and location provided, including all mandatory taxes and charges, and using a default set of rental options and restrictions defined by the car company.
         $ref: "#/definitions/Amount"
-      image:
+      images:
         description: An image to give an indication of what to expect when renting this vehicle.
         type: array
         items:
