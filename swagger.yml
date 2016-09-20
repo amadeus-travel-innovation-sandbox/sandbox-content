@@ -2214,7 +2214,9 @@ definitions:
         $ref: "#/definitions/Amount"
       image:
         description: An image to give an indication of what to expect when renting this vehicle.
-        $ref: "#/definitions/Image"
+        type: array
+        items:
+          $ref: "#/definitions/Image"
   VehicleInfo:
      required:
         - acriss_code
