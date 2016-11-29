@@ -1400,7 +1400,9 @@ paths:
         200:
           description: Valid Search Response
           schema:
-            $ref: "#/definitions/FlightTrafficSearchResponse"
+            type: array
+            items:
+              $ref: "#/definitions/FlightTrafficSearchResult"
         default:
           description: Client or server error
           schema:
@@ -2987,24 +2989,9 @@ definitions:
       searches_prior_year:
         type: integer
         description: Prior year average number of daily searches for the destination during the search period provided
-  FlightTrafficSearchResponse:
-    required:
-      - period
-      - origin
-      - results  
-    properties:
-      period:
-        type: string
-        description: The date period, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format YYYY-MM or YYYY
-      origin:
-        type: string
-        description: <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a>
-      results:
-        type: array
-        items:
-          $ref: "#/definitions/FlightTrafficSearchResult"
   FlightTrafficSearchResult:
      required:
+        - period
         - destination
         - travelers
      properties:
@@ -3017,6 +3004,9 @@ definitions:
       travelers:
         type: integer
         description: Number of passengers from origin to destination during the search period provided
+      period:
+        type: string
+        description: The date period, in <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO 8601</a> date format YYYY-MM or YYYY
   PointsOfInterestResponse:
      required:
         - points_of_interest
