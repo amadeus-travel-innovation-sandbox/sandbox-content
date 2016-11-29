@@ -2937,7 +2937,6 @@ definitions:
   TopDestinationsSearchResult:
      required:
         - destination
-        - flights
         - travelers
      properties:
       destination:
@@ -2945,7 +2944,7 @@ definitions:
         description: The <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city or airport to which the traveler may go, from the provided origin
       flights:
         type: integer
-        description: Number of flights from origin to destination during the search period provided
+        description: Number of flights from origin to destination during the search period provided. This field is deprecated.
       travelers:
         type: integer
         description: Number of passengers from origin to destination during the search period provided
@@ -3007,7 +3006,6 @@ definitions:
   FlightTrafficSearchResult:
      required:
         - destination
-        - flights
         - travelers
      properties:
       destination:
@@ -3015,7 +3013,7 @@ definitions:
         description: The <a href="https://en.wikipedia.org/wiki/International_Air_Transport_Association_airport_code">IATA code</a> of the city or airport to which the traveler may go, from the provided origin
       flights:
         type: integer
-        description: Number of flights from origin to destination during the search period provided
+        description: Number of flights from origin to destination during the search period provided. This field is deprecated.
       travelers:
         type: integer
         description: Number of passengers from origin to destination during the search period provided
