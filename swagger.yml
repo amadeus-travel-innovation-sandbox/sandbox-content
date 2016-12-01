@@ -2909,9 +2909,6 @@ definitions:
       restrictions:
         description: The restrictions associated with this fare
         $ref: "#/definitions/FareRestrictions"
-      fees:
-        description: The fees that apply in addition to the total price of this fare
-        $ref: "#/definitions/Fees"
   Fees:
     properties:
       service_fees:
