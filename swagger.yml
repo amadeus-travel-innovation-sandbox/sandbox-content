@@ -443,7 +443,7 @@ paths:
         - name: term
           in: query
           description: Search keyword that should represent the start of a word in a city or airport name.
-          required: false
+          required: true
           type: string
           default: "Ban"
         - name: country
