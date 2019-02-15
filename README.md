@@ -46,15 +46,9 @@
 	</li>
 	<li>
 	<p>A<b> Production environment</b> that you can seamlessly access to. Here you will access production data and benefit from unlimited API calls, with a simple pay-as-you-go pricing. By switching over to Amadeus for Developers you can also enjoy other benefits, such as:</p>
-
-	<ul>
 		<li>A developer workspace where you can monitor your use of the APIs and get relevant analytics to help you manage your applications.</li>
 		<li>Additional resources, such as SDKs, code examples and tutorials.</li>
 		<li>A Developers Blog to keep you updated with the latest news about tech trends, hackathons and events, and Amadeus for Developers community.</li>
-	</ul>
-
-	<p>&nbsp;</p>
-	</li>
 </ul>
 
 <h4>How can I switch over to the Amadeus for Developers portal?</h4>
