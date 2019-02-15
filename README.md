@@ -1,5 +1,5 @@
 <div class="about-block">
-<h3>Announcement: Upcoming decommission of the Travel Innovation Sandbox</h3>
+<h3>Announcement: Decommission of the Travel Innovation Sandbox</h3>
 
 <p>The Travel Innovation Sandbox will be decommissioned on <b>February 15th, 2019</b>. After that date you will not be able to access <a href="https://sandbox.amadeus.com">https://sandbox.amadeus.com</a>.</p>
 
